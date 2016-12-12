@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         if(bundle_tmp != null)
         {
 
-            String response_register = R.string.login_text_after_register + bundle_tmp.getString("response");
+            String response_register = getString(R.string.login_text_after_register) + bundle_tmp.getString("response");
             text_response_register.setTextColor(Color.parseColor("#96CA2D"));
             if(!response_register.isEmpty())
             {

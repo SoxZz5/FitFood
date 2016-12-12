@@ -65,11 +65,15 @@
     <string name="step1_title">Step 1</string>
     <string name="step2_title">Step 2</string>
     <string name="step3_title">Step 3</string>
+    <string name="step4_title">Step 4</string>
 
     <string name="step_error_title">Bad title min 10 char</string>
     <string name="step_error_categorie">Please select one category</string>
     <string name="step_error_type">Please select one type</string>
     <string name="step_error_difficulty">Please select difficulty</string>
+    <string name="step_error_heat">Please enter cooking time (enter 0 if no cooking)</string>
+    <string name="step_error_prepare">Please enter preparation time</string>
+    <string name="step_error_forwho">Please enter number of servings</string>
 
     <string name="step1_et_title">Enter a title</string>
     <string name="step1_tv_title">Title</string>
@@ -111,6 +115,13 @@
     <string name="step3_et_nbwho">x</string>
     <string name="step3_et_forwho">People</string>
     <string name="step3_info_forwho">Example: For 6 people, for 1 liter, for 1 glass ...</string>
+
+
+    <string name="step4_tv_ingredient">Ingredients (Quantity and name)</string>
+    <string name="step4_et_quantity">Quantity</string>
+    <string name="step4_tv_de">Of</string>
+    <string name="step4_et_ingredient">Ingredient</string>
+    <string name="step4_info_ingredient">Example: 2cl of milk, 200g of flour, 2 eggs ...</string>
 
 
 </resources>

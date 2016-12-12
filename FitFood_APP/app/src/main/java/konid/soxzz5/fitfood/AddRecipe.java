@@ -15,6 +15,7 @@ import org.w3c.dom.Text;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step1;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step2;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step3;
+import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step4;
 import konid.soxzz5.fitfood.fitfood_fragment.AddRecipeFragment;
 
 /**
@@ -27,6 +28,13 @@ public class AddRecipe extends AppCompatActivity {
     int iCategory;
     int iLevel;
     int iType;
+    int iPrepareHour;
+    int iPrepareMinute;
+    int iHeatHour;
+    int iHeatMinute;
+    String sForWho;
+    String sWho;
+    int iNbWho;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +60,7 @@ public class AddRecipe extends AppCompatActivity {
         final addrecipe_step1 step1 = new addrecipe_step1();
         final addrecipe_step2 step2 = new addrecipe_step2();
         final addrecipe_step3 step3 = new addrecipe_step3();
+        final addrecipe_step4 step4 = new addrecipe_step4();
 
         if(step == 1)
         {
@@ -73,6 +82,7 @@ public class AddRecipe extends AppCompatActivity {
                         finish();
                         break;
                     case 2:
+                        info_error.setText("");
                         transaction = getSupportFragmentManager().beginTransaction();
                         transaction.replace(R.id.step_container, step1);
                         step = 1;
@@ -84,6 +94,7 @@ public class AddRecipe extends AppCompatActivity {
                         step1.setTitle(sTitle);
                         break;
                     case 3:
+                        info_error.setText("");
                         transaction = getSupportFragmentManager().beginTransaction();
                         transaction.replace(R.id.step_container, step2);
                         step = 2;
@@ -94,6 +105,22 @@ public class AddRecipe extends AppCompatActivity {
                         step2.setLevel(iLevel);
                         step2.setType(iType);
                         break;
+                    case 4:
+                        info_error.setText("");
+                        transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.step_container, step3);
+                        step = 3;
+                        title.setText(R.string.step3_title);
+                        stepinfo4.setBackgroundResource(R.color.material_drawer_dark_selected);
+                        stepinfo3.setBackgroundResource(R.color.colorAccent);
+                        transaction.commit();
+                        step3.setHeathour(iHeatHour);
+                        step3.setHeatminute(iHeatMinute);
+                        step3.setPrepminute(iPrepareMinute);
+                        step3.setPrephour(iPrepareHour);
+                        step3.setForwho(sWho);
+                        step3.setNbwho(iNbWho);
+                        break;
                 }
             }
         });
@@ -101,7 +128,7 @@ public class AddRecipe extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                info_error.setText("");
                 switch (step) {
                     case 1:
                     boolean validate_title = false;
@@ -174,6 +201,53 @@ public class AddRecipe extends AppCompatActivity {
                         break;
 
                     case 3:
+                        boolean validate_prepare = false;
+                        boolean validate_heat = false;
+                        boolean validate_forwho = false;
+
+                        if(step3.getHeathour() != -1 && step3.getHeatminute() != -1)
+                        {
+                            iHeatHour = step3.getHeathour();
+                            iHeatMinute = step3.getHeatminute();
+                            validate_heat = true;
+                        }
+                        else
+                        {
+                            info_error.setText(getString(R.string.step_error_heat));
+                        }
+                        if(step3.getPrephour() != -1 && step3.getPrepminute() != -1)
+                        {
+                            iPrepareHour = step3.getPrephour();
+                            iPrepareMinute = step3.getPrepminute();
+                            validate_prepare = true;
+                        }
+                        else
+                        {
+                            info_error.setText(getString(R.string.step_error_prepare));
+                        }
+                        if(step3.getNbwho() != -1 && step3.getForwho() != "ERROR_FORWHO")
+                        {
+                            sForWho = Integer.toString(step3.getNbwho()) +" "+ step3.getForwho();
+                            sWho = step3.getForwho();
+                            iNbWho = step3.getNbwho();
+                            Log.d("FORWHO",sForWho);
+                            validate_forwho = true;
+                        }
+                        else
+                        {
+                            info_error.setText(getString(R.string.step_error_forwho));
+                        }
+                        if(validate_prepare && validate_heat && validate_forwho)
+                        {
+                            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                            transaction.replace(R.id.step_container, step4);
+                            step = 4;
+                            title.setText(R.string.step4_title);
+                            stepinfo3.setBackgroundResource(R.color.material_drawer_dark_selected);
+                            stepinfo4.setBackgroundResource(R.color.colorAccent);
+                            transaction.commit();
+                        }
+
                         break;
                 }
 
