@@ -69,7 +69,8 @@
                         android:textColorHint="#FFFFFF"
                         android:textColor="#FFFFFF"
                         android:textSize="14sp"
-                        android:layout_marginRight="10dp" />
+                        android:layout_marginRight="10dp"
+                        android:maxLength="30" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -89,7 +90,8 @@
                         android:textColorHint="#FFFFFF"
                         android:textColor="#FFFFFF"
                         android:textSize="14sp"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="10dp"
+                        android:maxLength="30" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -128,7 +130,7 @@
                 android:textColorHint="#FFFFFF"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
-                />
+                android:maxLength="30" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -149,7 +151,7 @@
                 android:textColorHint="#FFFFFF"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
-                />
+                android:maxLength="50" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -170,7 +172,7 @@
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
                 android:textSize="14sp"
-                />
+                android:maxLength="20" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -229,7 +231,7 @@
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
                 android:textSize="14sp"
-                />
+                android:maxLength="20" />
 
             <TextView
                 android:layout_width="match_parent"

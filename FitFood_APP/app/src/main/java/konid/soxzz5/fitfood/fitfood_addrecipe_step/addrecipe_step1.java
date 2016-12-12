@@ -23,13 +23,15 @@ public class addrecipe_step1 extends Fragment {
     int category;
     String title;
     boolean title_changed;
+    RadioGroup rg_categorie;
+    EditText et_title;
 
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         //DO SOMETHING WITH
         final View v = inflater.inflate(R.layout.addrecipe_step1, container, false);
-        final EditText et_title = (EditText) v.findViewById(R.id.step1_et_title);
-        final RadioGroup rg_categorie = (RadioGroup) v.findViewById(R.id.step1_rg_categorie);
+        et_title = (EditText) v.findViewById(R.id.step1_et_title);
+        rg_categorie = (RadioGroup) v.findViewById(R.id.step1_rg_categorie);
         category = -1;
         title_changed = false;
 
@@ -95,5 +97,15 @@ public class addrecipe_step1 extends Fragment {
 
     public int getCategory() {
             return category;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
+        rg_categorie.check(category);
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+        et_title.setText(title);
     }
 }

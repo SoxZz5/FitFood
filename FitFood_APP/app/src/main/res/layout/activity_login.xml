@@ -59,7 +59,8 @@
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 android:layout_weight="1"
-                android:hint="@string/login_hint_pseudo" />
+                android:hint="@string/login_hint_pseudo"
+                android:maxLength="30" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -71,7 +72,8 @@
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 android:layout_weight="1"
-                android:hint="@string/login_hint_password" />
+                android:hint="@string/login_hint_password"
+                android:maxLength="20" />
 
             <ProgressBar
                 style="?android:attr/progressBarStyleLarge"

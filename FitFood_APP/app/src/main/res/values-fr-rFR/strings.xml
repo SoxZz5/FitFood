@@ -12,6 +12,7 @@
     <string name="drawer_item_top_cook">Top des recettes</string>
     <string name="drawer_item_last_cook">Dernières recettes</string>
     <string name="drawer_item_add_cook">Proposer une recette</string>
+    <string name="drawer_item_seek_cook">Recherche avancée</string>
     <string name="drawer_item_book">Coin perso</string>
     <string name="drawer_item_mycook_book">Mes recettes</string>
     <string name="drawer_item_list_book">Mes courses</string>
@@ -62,6 +63,12 @@
     <string name="wizard_prev">Précédent</string>
     <string name="step1_title">Etape 1</string>
     <string name="step2_title">Etape 2</string>
+    <string name="step3_title">Etape 3</string>
+
+    <string name="step_error_title">Mauvais titre min 10 charactères</string>
+    <string name="step_error_categorie">Veuillez choisir une catégorie</string>
+    <string name="step_error_type">Veuillez choisir un type</string>
+    <string name="step_error_difficulty">Veuillez choisir la difficulté</string>
 
     <string name="step1_et_title">Entrez un titre</string>
     <string name="step1_tv_title">Titre</string>
@@ -71,5 +78,38 @@
     <string name="step1_rb_omnivore">Omnivore</string>
     <string name="step1_tv_info">Choisissez la bonne catégorie, ça peut aider la communauté :)</string>
 
+    <string name="step2_tv_title">Type de plat</string>
+    <string name="step2_rb_starter">Entrée</string>
+    <string name="step2_rb_maincourse">Plat principal</string>
+    <string name="step2_rb_dessert">Dessert</string>
+    <string name="step2_rb_sidedish">Accompagnement</string>
+    <string name="step2_rb_appetizer">Appéritif</string>
+    <string name="step2_rb_drink">Boisson</string>
+    <string name="step2_rb_sweets">Confiserie</string>
+    <string name="step2_rb_sauce">Sauce</string>
+    <string name="step2_tv_difficulty">Difficulté</string>
+
+    <string name="step2_tv_info_0">Très simple</string>
+    <string name="step2_tv_info_1">Simple</string>
+    <string name="step2_tv_info_2">Moyenne</string>
+    <string name="step2_tv_info_3">Difficile</string>
+    <string name="step2_tv_info_4">Très difficile</string>
+
+
+    <string name="step3_tv_prepare">Temps de préparation</string>
+    <string name="step3_tv_prephour">Heures</string>
+    <string name="step3_et_prephour">0</string>
+    <string name="step3_tv_prepminute">Minutes</string>
+    <string name="step3_et_prepminute">0</string>
+    <string name="step3_tv_heat">Temps de cuisson</string>
+    <string name="step3_tv_heathour">Heures</string>
+    <string name="step3_et_heathour">0</string>
+    <string name="step3_tv_heatminute">Minutes</string>
+    <string name="step3_et_heatminute">0</string>
+    <string name="step3_tv_nbwho">Nombre de portions</string>
+    <string name="step3_tv_forwho">Pour</string>
+    <string name="step3_et_nbwho">x</string>
+    <string name="step3_et_forwho">Personne</string>
+    <string name="step3_info_forwho">Exemple: Pour 6 personnes, pour 1 litre, pour 1 verre ...</string>
 </resources>
 

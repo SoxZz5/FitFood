@@ -47,7 +47,7 @@
 	
 	if($valid)
 	{
-		$statement = mysqli_prepare($connect, "INSERT INTO user (name, surname, pseudo, mail, password) VALUES (?, ?, ?, ?, ?)");
+		$statement = mysqli_prepare($connect, "INSERT INTO user (name, surname, pseudo, mail, password, diet_iddiet) VALUES (?, ?, ?, ?, ?,1)");
         mysqli_stmt_bind_param($statement, "sssss", $name, $surname, $pseudo, $mail, md5($password));
         mysqli_stmt_execute($statement);
         mysqli_stmt_close($statement);   

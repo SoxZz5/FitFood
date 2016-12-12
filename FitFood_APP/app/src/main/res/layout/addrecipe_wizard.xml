@@ -91,12 +91,18 @@
             android:textColor="@color/colorAccent"
             android:textSize="18sp"
             android:layout_marginTop="15dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recipeadd_info_error"
+            android:textColor="@color/md_deep_orange_A700" />
     </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.20"
+        android:layout_weight="0.25"
         android:id="@+id/step_container">
 
     </FrameLayout>

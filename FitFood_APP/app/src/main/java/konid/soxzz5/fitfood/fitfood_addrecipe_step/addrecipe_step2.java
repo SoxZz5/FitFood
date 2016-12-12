@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import konid.soxzz5.fitfood.R;
 
@@ -18,23 +21,84 @@ import konid.soxzz5.fitfood.R;
 
 public class addrecipe_step2 extends Fragment
 {
+    int type;
+    int level;
+    RadioGroup rg_typedish;
+    SeekBar sb_difficulty;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.addrecipe_step2, container, false);
 
-        LinearLayout container_new = (LinearLayout) v.findViewById(R.id.step2_container_new);
-        LinearLayout object_add = (LinearLayout) v.findViewById(R.id.step2_object_addlayout);
-        ImageView add = (ImageView) v.findViewById(R.id.step2_bt_add);
+        type=-1;
+        level=-1;
+        rg_typedish = (RadioGroup) v.findViewById(R.id.step2_rg_typedish);
+        sb_difficulty = (SeekBar) v.findViewById(R.id.step2_sb_difficulty);
+        final TextView tv_info_difficulty = (TextView) v.findViewById(R.id.step2_tv_info_difficulty);
 
-        add.setOnClickListener(new View.OnClickListener() {
+        sb_difficulty.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onClick(View view) {
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                level = i;
+                switch (i)
+                {
+                    case 0:
+                        tv_info_difficulty.setText(getResources().getString(R.string.step2_tv_info_0));
+                        break;
+                    case 1:
+                        tv_info_difficulty.setText(getResources().getString(R.string.step2_tv_info_1));
+                        break;
+                    case 2:
+                        tv_info_difficulty.setText(getResources().getString(R.string.step2_tv_info_2));
+                        break;
+                    case 3:
+                        tv_info_difficulty.setText(getResources().getString(R.string.step2_tv_info_3));
+                        break;
+                    case 4:
+                        tv_info_difficulty.setText(getResources().getString(R.string.step2_tv_info_4));
+                        break;
+                }
 
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        rg_typedish.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                type=i;
             }
         });
 
 
         return v;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+        sb_difficulty.setProgress(level);
+
+    }
+
+    public void setType(int type) {
+        this.type = type;
+        rg_typedish.check(type);
     }
 }
