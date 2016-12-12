@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/step_pager_tab_height"
+        android:background="@color/material_drawer_dark_selected"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"></LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/material_drawer_dark_selected">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/step1_tv_title"
+            android:textSize="18sp"
+            android:layout_marginLeft="15dp"
+            android:text="@string/step1_tv_title"
+            android:textStyle="normal|bold"
+            android:textColor="@color/md_green_A700"
+            android:textAlignment="viewStart"
+            android:layout_marginTop="10dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/step1_et_title"
+            android:hint="@string/step1_et_title"
+            android:textColor="@color/material_drawer_dark_secondary_text"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/step1_tv_categorie"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:text="@string/step1_tv_categorie"
+            android:textSize="18sp"
+            android:textStyle="normal|bold"
+            android:textColor="@color/md_green_A700" />
+        <RadioGroup
+            android:id="@+id/step1_rg_categorie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.09"
+            android:layout_gravity="center">
+        <RadioButton
+            android:layout_height="wrap_content"
+            android:id="@+id/step1_rb_vegetarien"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:text="@string/step1_rb_vegetarien"
+            android:textColor="@color/material_drawer_dark_primary_text"
+            android:textStyle="normal|italic"
+            android:textAlignment="viewStart"
+            android:layout_width="120dp"
+            android:layout_gravity="center"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/step1_rb_vegetalien"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/step1_rb_vegetalien"
+            android:textColor="@color/material_drawer_dark_primary_text"
+            android:textStyle="normal|italic"
+            android:layout_gravity="center" />
+
+        <RadioButton
+            android:layout_height="wrap_content"
+            android:id="@+id/step1_rb_omnivore"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/step1_rb_omnivore"
+            android:textColor="@color/material_drawer_dark_primary_text"
+            android:textStyle="normal|italic"
+            android:layout_gravity="center"
+            android:layout_width="120dp"
+            android:checked="false" />
+</RadioGroup>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/step_tv_info"
+        android:text="@string/step1_tv_info"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textSize="12sp"
+        android:textColor="@color/md_green_A700"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp" />
+
+</LinearLayout>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/addrecipe_wizard">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/step_pager_tab_height"
+            android:layout_weight="1"
+            android:layout_marginLeft="2.5dp"
+            android:layout_marginRight="2.5dp"
+            android:background="@color/accent"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="2.5dp"
+            android:id="@+id/stepinfo1">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/step_pager_tab_height"
+            android:layout_weight="1"
+            android:layout_marginRight="2.5dp"
+            android:layout_marginLeft="2.5dp"
+            android:background="@color/material_drawer_dark_selected"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="2.5dp"
+            android:id="@+id/stepinfo2">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/step_pager_tab_height"
+            android:layout_weight="1"
+            android:layout_marginRight="2.5dp"
+            android:layout_marginLeft="2.5dp"
+            android:background="@color/material_drawer_dark_selected"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="2.5dp"
+            android:id="@+id/stepinfo3">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/step_pager_tab_height"
+            android:layout_weight="1"
+            android:layout_marginRight="2.5dp"
+            android:layout_marginLeft="2.5dp"
+            android:background="@color/material_drawer_dark_selected"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="2.5dp"
+            android:id="@+id/stepinfo4">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/step_pager_tab_height"
+            android:layout_weight="1"
+            android:layout_marginLeft="2.5dp"
+            android:layout_marginRight="2.5dp"
+            android:background="@color/material_drawer_dark_selected"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="2.5dp"
+            android:id="@+id/stepinfo5">
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.95">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recipeadd_wizard_title"
+            android:layout_marginLeft="2.5dp"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:layout_marginTop="15dp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.20"
+        android:id="@+id/step_container">
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.90">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/wizard_bt_prev"
+            android:layout_weight="1"
+            android:text="@string/wizard_prev"
+            android:textColor="@color/accent"
+            android:background="@color/material_drawer_dark_selected"
+            android:layout_gravity="bottom" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/wizard_bt_next"
+            android:layout_weight="1"
+            android:text="@string/wizard_next"
+            android:textColor="@color/accent"
+            android:background="@color/material_drawer_dark_selected"
+            android:layout_gravity="bottom" />
+    </LinearLayout>
+</LinearLayout>

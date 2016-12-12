@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">Fitfood</string>
+    <string name="auth_account_type">FitFood</string>
+    <string name="welcome_msg">Welcome back </string>
+    <string name="search_hint">Looking for a recipe ?</string>
+
+
+    <string name="drawer_item_home_cook">Home</string>
+    <string name="drawer_item_cook">Kitchen place</string>
+    <string name="drawer_item_day_cook">Recipe of the day</string>
+    <string name="drawer_item_top_cook">Top recipes</string>
+    <string name="drawer_item_last_cook">Lasts recipes</string>
+    <string name="drawer_item_add_cook">Submit a recipe</string>
+    <string name="drawer_item_book">Personal place</string>
+    <string name="drawer_item_mycook_book">My recipes</string>
+    <string name="drawer_item_list_book">Shopping list</string>
+    <string name="drawer_item_historic_book">Already done !</string>
+    <string name="drawer_item_param_book">Preferences</string>
+    <string name="drawer_item_account">My account</string>
+    <string name="drawer_item_disconnect">Logout</string>
+
+    <string name="login_hint_pseudo">Username</string>
+    <string name="login_hint_password">Password</string>
+    <string name="login_bt_connection">Connection</string>
+    <string name="login_tp_register">Register</string>
+    <string name="login_text_error_pseudo">Wrong username</string>
+    <string name="login_text_error_password">Wrong password</string>
+    <string name="login_text_after_register">Thanks for signing up </string>
+
+
+
+    <string name="register_text_title">Create an account</string>
+    <string name="register_hint_name">Name</string>
+    <string name="register_error_name">Invalid name begin with capital letter</string>
+    <string name="register_hint_surname">Surname</string>
+    <string name="register_error_surname">Invalid surname begin with capital letter</string>
+    <string name="register_hint_pseudo">Username</string>
+    <string name="register_error_pseudo">Invalid username</string>
+    <string name="register_hint_mail">Mail</string>
+    <string name="register_error_mail">Invalid mail</string>
+    <string name="register_hint_password">Password</string>
+    <string name="register_error_password">Must have capital letter , number and special characters</string>
+    <string name="register_hint_confirm_password">Confirm password</string>
+    <string name="register_error_confirm_password">Passwords are different</string>
+    <string name="register_valid_confirm_password">Passwords are valid</string>
+    <string name="register_error_incomplete_form">All fields are not filled</string>
+    <string name="register_error_confirm_pseudo">Username already exist</string>
+    <string name="register_error_confirm_mail">Mail already use with an account</string>
+    <string name="register_bt_register">Register</string>
+    <string name="register_progressbar_password_veryweak">Very weak</string>
+    <string name="register_progressbar_password_weak">Weak</string>
+    <string name="register_progressbar_password_normal">Medium</string>
+    <string name="register_progressbar_password_good">Good</string>
+    <string name="register_progressbar_password_verygood">Very good</string>
+
+    <string name="recipeadd_text_title">Submit a recipe</string>
+    <string name="recipeadd_text_selecttitle">Choose a relevant title describing your recipe with clarity to the community.</string>
+    <string name="recipeadd_text_selectinfo">Do not forget to inform the measurements of your ingredients and the allergens.</string>
+    <string name="recipeadd_text_selectverif">Before submitting a recipe, make sure that it doesn\'t already exist on our platform.</string>
+    <string name="recipeadd_bt_add">submit</string>
+
+    <string name="wizard_next">Next</string>
+    <string name="wizard_prev">Previous</string>
+    <string name="step1_title">Step 1</string>
+    <string name="step2_title">Step 2</string>
+
+    <string name="step1_et_title">Enter a title</string>
+    <string name="step1_tv_title">Title</string>
+    <string name="step1_tv_categorie">Category</string>
+    <string name="step1_rb_vegetarien">Vegetarian</string>
+    <string name="step1_rb_vegetalien">Vegan</string>
+    <string name="step1_rb_omnivore">Omnivorous</string>
+    <string name="step1_tv_info">Please choose the right category, it can help the community :)</string>
+
+</resources>

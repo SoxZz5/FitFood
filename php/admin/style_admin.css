@@ -1,0 +1,126 @@
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: rgba(0, 0, 0, 0.85);
+  font: 100% / 1;
+  color: #B4B4B4;
+  font: 400 12px / 1 'Source Sans Pro', Helvetica, Arial, sans-serif;
+}
+
+.panel-container {
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+}
+
+.panel-controls {
+  float: left;
+  width: 175px;
+  background-color: transparent;
+  height: 100%;
+  font-size: 14px;
+  padding: 10px 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  -webkit-transition: width 0.3s;
+  -moz-transition: width 0.3s;
+  -ms-transition: width 0.3s;
+  transition: width 0.3s;
+}
+.panel-controls li {
+  white-space: nowrap;
+  padding: 5px 0;
+  color: #F1F1F1;
+  font-weight: 300;
+  min-height: 50px;
+  list-style: none;
+  display: table;
+  width: 100%;
+  text-transform: uppercase;
+}
+.panel-controls li:hover a, .panel-controls li.active a {
+  color: #18A7E1;
+}
+.panel-controls li.active a .caret {
+  display: inline-block;
+}
+.panel-controls li a {
+  cursor: pointer;
+  display: table-cell;
+  vertical-align: middle;
+}
+.panel-controls li a .label {
+  opacity: 1;
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  -ms-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+.panel-controls li a i {
+  width: 15px;
+  margin-right: 10px;
+  text-align: center;
+}
+.panel-controls li a .caret {
+  display: none;
+  font-size: 35px;
+  position: absolute;
+  left: 165px;
+  color: #F1F1F1;
+  line-height: 50%;
+  -webkit-transition: left 0.3s;
+  -moz-transition: left 0.3s;
+  -ms-transition: left 0.3s;
+  transition: left 0.3s;
+}
+.panel-controls li.nav-control a {
+  color: #F1F1F1;
+}
+.panel-controls li.nav-control a i {
+  font-size: 20px;
+}
+.panel-controls.collapsed {
+  width: 50px;
+}
+.panel-controls.collapsed li a .label {
+  opacity: 0;
+}
+.panel-controls.collapsed li a .caret {
+  left: 30px;
+}
+
+section.panel-content {
+  margin-left: 175px;
+  height: 100%;
+  -webkit-transition: margin-left 0.3s;
+  -moz-transition: margin-left 0.3s;
+  -ms-transition: margin-left 0.3s;
+  transition: margin-left 0.3s;
+}
+section.panel-content .main-wrapper {
+  background-color: #F1F1F1;
+  height: 100%;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+section.panel-content .widget {
+  padding: 10px;
+}
+section.panel-content.collapsed {
+  margin-left: 40px;
+}

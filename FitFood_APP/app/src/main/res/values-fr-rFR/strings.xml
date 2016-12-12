@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fitfood</string>
+    <string name="auth_account_type">FitFood</string>
+    <string name="welcome_msg">Bienvenue </string>
+    <string name="search_hint">Vous chercher une recette ?</string>
+
+
+    <string name="drawer_item_home_cook">Accueil</string>
+    <string name="drawer_item_cook">Coin cuisine</string>
+    <string name="drawer_item_day_cook">Recette du jour</string>
+    <string name="drawer_item_top_cook">Top des recettes</string>
+    <string name="drawer_item_last_cook">Dernières recettes</string>
+    <string name="drawer_item_add_cook">Proposer une recette</string>
+    <string name="drawer_item_book">Coin perso</string>
+    <string name="drawer_item_mycook_book">Mes recettes</string>
+    <string name="drawer_item_list_book">Mes courses</string>
+    <string name="drawer_item_historic_book">Déjà fait !</string>
+    <string name="drawer_item_param_book">Préférences</string>
+    <string name="drawer_item_account">Mon Compte</string>
+    <string name="drawer_item_disconnect">Se déconnecter</string>
+
+    <string name="login_hint_pseudo">Pseudonyme</string>
+    <string name="login_hint_password">Mot de passe</string>
+    <string name="login_bt_connection">Connexion</string>
+    <string name="login_tp_register">S\'inscrire</string>
+    <string name="login_text_error_pseudo">Ce pseudo n\'éxiste pas</string>
+    <string name="login_text_error_password">Mauvais mot de passe</string>
+    <string name="login_text_after_register">Merci de votre inscription </string>
+
+    <string name="register_text_title">Créer un compte</string>
+    <string name="register_hint_name">Nom</string>
+    <string name="register_error_name">Nom invalide commencer par une lettre majuscule</string>
+    <string name="register_hint_surname">Prénom</string>
+    <string name="register_error_surname">Prénom invalide commencer par une lettre majuscule</string>
+    <string name="register_hint_pseudo">Pseudo</string>
+    <string name="register_error_pseudo">Pseudo invalide</string>
+    <string name="register_hint_mail">Mail</string>
+    <string name="register_error_mail">Mail invalide</string>
+    <string name="register_hint_password">Mot de passe</string>
+    <string name="register_error_password">Doit contenir majuscule, chiffre et caractère spéciaux</string>
+    <string name="register_hint_confirm_password">Confirmer le mot de passe</string>
+    <string name="register_error_confirm_password">Les mots de passes sont différents</string>
+    <string name="register_valid_confirm_password">Les mots de passes sont valides</string>
+    <string name="register_bt_register">S\'enregistrer</string>
+    <string name="register_error_incomplete_form">Tous les champs ne sont pas remplies</string>
+    <string name="register_error_confirm_pseudo">Pseudo déjà utilisé</string>
+    <string name="register_error_confirm_mail">Mail déjà associer à un compte</string>
+    <string name="register_progressbar_password_veryweak">Très faible</string>
+    <string name="register_progressbar_password_weak">Faible</string>
+    <string name="register_progressbar_password_normal">Moyen</string>
+    <string name="register_progressbar_password_good">Bon</string>
+    <string name="register_progressbar_password_verygood">Très bon</string>
+
+    <string name="recipeadd_text_title">Proposer une recette</string>
+    <string name="recipeadd_text_selecttitle">Choisissez un titre pertinent décrivant votre recette avec clarté à la communauté.</string>
+    <string name="recipeadd_text_selectinfo">N\'oubliez pas de renseigner les mesures de vos ingrédients ainsi que les allergènes.</string>
+    <string name="recipeadd_text_selectverif">Avant de proposer une recette, vérifiez bien que celle-ci n\'existe pas déjà sur notre plateforme.</string>
+    <string name="recipeadd_bt_add">proposer</string>
+
+    <string name="wizard_next">Suivant</string>
+    <string name="wizard_prev">Précédent</string>
+    <string name="step1_title">Etape 1</string>
+    <string name="step2_title">Etape 2</string>
+
+    <string name="step1_et_title">Entrez un titre</string>
+    <string name="step1_tv_title">Titre</string>
+    <string name="step1_tv_categorie">Catégorie</string>
+    <string name="step1_rb_vegetarien">Végétarien</string>
+    <string name="step1_rb_vegetalien">Vegan</string>
+    <string name="step1_rb_omnivore">Omnivore</string>
+    <string name="step1_tv_info">Choisissez la bonne catégorie, ça peut aider la communauté :)</string>
+
+</resources>
+
