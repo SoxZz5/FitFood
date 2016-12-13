@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step1;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step2;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step3;
@@ -35,6 +37,7 @@ public class AddRecipe extends AppCompatActivity {
     String sForWho;
     String sWho;
     int iNbWho;
+    ArrayList<ArrayList<String>> alIngrendients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,20 +208,28 @@ public class AddRecipe extends AppCompatActivity {
                         boolean validate_heat = false;
                         boolean validate_forwho = false;
 
-                        if(step3.getHeathour() != -1 && step3.getHeatminute() != -1)
+                        if(step3.getHeatminute() != -1)
                         {
-                            iHeatHour = step3.getHeathour();
+                            iHeatHour = 0;
                             iHeatMinute = step3.getHeatminute();
+                            if(step3.getHeathour() != -1)
+                            {
+                                iHeatHour = step3.getHeathour();
+                            }
                             validate_heat = true;
                         }
                         else
                         {
                             info_error.setText(getString(R.string.step_error_heat));
                         }
-                        if(step3.getPrephour() != -1 && step3.getPrepminute() != -1)
+                        if(step3.getPrepminute() != -1)
                         {
-                            iPrepareHour = step3.getPrephour();
+                            iPrepareHour = 0;
                             iPrepareMinute = step3.getPrepminute();
+                            if(step3.getPrephour() != -1)
+                            {
+                                iPrepareHour = step3.getPrephour();
+                            }
                             validate_prepare = true;
                         }
                         else
@@ -230,7 +241,6 @@ public class AddRecipe extends AppCompatActivity {
                             sForWho = Integer.toString(step3.getNbwho()) +" "+ step3.getForwho();
                             sWho = step3.getForwho();
                             iNbWho = step3.getNbwho();
-                            Log.d("FORWHO",sForWho);
                             validate_forwho = true;
                         }
                         else
@@ -246,6 +256,22 @@ public class AddRecipe extends AppCompatActivity {
                             stepinfo3.setBackgroundResource(R.color.material_drawer_dark_selected);
                             stepinfo4.setBackgroundResource(R.color.colorAccent);
                             transaction.commit();
+                        }
+
+                    case 4:
+                        boolean validate_ingredient=false;
+                        alIngrendients = step4.getQuantity_ingredients();
+                        if(!alIngrendients.isEmpty())
+                        {
+                            validate_ingredient = true;
+                        }
+                        else
+                        {
+                            info_error.setText(getString(R.string.step_error_ingredients));
+                        }
+                        if(validate_ingredient)
+                        {
+
                         }
 
                         break;

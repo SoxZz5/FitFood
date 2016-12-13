@@ -74,6 +74,7 @@
     <string name="step_error_heat">Please enter cooking time (enter 0 if no cooking)</string>
     <string name="step_error_prepare">Please enter preparation time</string>
     <string name="step_error_forwho">Please enter number of servings</string>
+    <string name="step_error_ingredients">Please enter one ingredient</string>
 
     <string name="step1_et_title">Enter a title</string>
     <string name="step1_tv_title">Title</string>

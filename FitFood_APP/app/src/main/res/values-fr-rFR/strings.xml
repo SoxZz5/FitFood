@@ -73,6 +73,7 @@
     <string name="step_error_heat">Veuillez renseignez le temps de cuisson (entrez 0 si pas de cuisson)</string>
     <string name="step_error_prepare">Veuillez renseignez le temps de préparation</string>
     <string name="step_error_forwho">Veuillez renseignez le nombre de portions</string>
+    <string name="step_error_ingredients">Veuillez renseignez au moins un ingrédient</string>
 
     <string name="step1_et_title">Entrez un titre</string>
     <string name="step1_tv_title">Titre</string>

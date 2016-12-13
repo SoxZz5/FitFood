@@ -58,7 +58,8 @@
                 android:inputType="textPersonName"
                 android:id="@+id/step4_et_quantity"
                 android:layout_weight="1"
-                android:hint="@string/step4_et_quantity" />
+                android:hint="@string/step4_et_quantity"
+                android:maxLength="30" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -78,7 +79,8 @@
                 android:inputType="textPersonName"
                 android:id="@+id/step4_et_ingredient"
                 android:layout_weight="1"
-                android:hint="@string/step4_et_ingredient" />
+                android:hint="@string/step4_et_ingredient"
+                android:maxLength="30" />
 
             <ImageView
                 android:layout_width="wrap_content"
