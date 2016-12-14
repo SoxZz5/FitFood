@@ -129,5 +129,9 @@ public class addrecipe_step5 extends Fragment implements OnClickListener, OnItem
     public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
         //NOTHING TO DO
     }
+
+    public List<Item> getItems() {
+        return items;
+    }
 }
 

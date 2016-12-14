@@ -3,26 +3,21 @@ package konid.soxzz5.fitfood;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Ingredient;
+import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Item;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step1;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step2;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step3;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step4;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step5;
-import konid.soxzz5.fitfood.fitfood_fragment.AddRecipeFragment;
 
 /**
  * Created by Soxzer on 08/12/2016.
@@ -42,6 +37,7 @@ public class AddRecipe extends AppCompatActivity {
     String sWho;
     int iNbWho;
     List<Ingredient> alIngrendients;
+    List<Item> alSteps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -301,6 +297,17 @@ public class AddRecipe extends AppCompatActivity {
 
                         break;
                     case 5:
+                        boolean validate_steps =false;
+                        alSteps = step5.getItems();
+                        if(alSteps != null)
+                        {
+                            validate_steps = true;
+                        }
+
+                        if(validate_steps)
+                        {
+                        //TODO UPLOAD IMAGE TO SERVER SEE ADDRECIPE_WIZARD_FINAL
+                        }
                         break;
                 }
 

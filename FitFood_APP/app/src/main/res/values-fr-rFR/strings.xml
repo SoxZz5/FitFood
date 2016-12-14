@@ -61,6 +61,10 @@
 
     <string name="wizard_next">Suivant</string>
     <string name="wizard_prev">Précédent</string>
+    <string name="wizard_final">Validation final</string>
+    <string name="wizard_bt_choose">Choisir une image</string>
+    <string name="wizard_bt_upload">Envoyer l\'image</string>
+    <string name="wizard_select_picture">Choisir une image</string>
     <string name="step1_title">Etape 1</string>
     <string name="step2_title">Etape 2</string>
     <string name="step3_title">Etape 3</string>
