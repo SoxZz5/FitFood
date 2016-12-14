@@ -14,7 +14,9 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Ingredient;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step1;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step2;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step3;
@@ -39,7 +41,7 @@ public class AddRecipe extends AppCompatActivity {
     String sForWho;
     String sWho;
     int iNbWho;
-    ArrayList<ArrayList<String>> alIngrendients;
+    List<Ingredient> alIngrendients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +131,15 @@ public class AddRecipe extends AppCompatActivity {
                         step3.setNbwho(iNbWho);
                         break;
                     case 5:
+                        info_error.setText("");
+                        transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.step_container, step4);
+                        step=4;
+                        title.setText(R.string.step4_title);
+                        stepinfo5.setBackgroundResource(R.color.material_drawer_dark_selected);
+                        stepinfo4.setBackgroundResource(R.color.colorAccent);
+                        transaction.commit();
+                        step4.setIngredients(alIngrendients);
                         break;
                 }
             }
@@ -267,7 +278,7 @@ public class AddRecipe extends AppCompatActivity {
 
                     case 4:
                         boolean validate_ingredient=false;
-                        /*alIngrendients = step4.getQuantity_ingredients();
+                        alIngrendients = step4.getIngredients();
                         if(alIngrendients != null)
                         {
                             validate_ingredient = true;
@@ -286,7 +297,7 @@ public class AddRecipe extends AppCompatActivity {
                         else
                         {
                             info_error.setText(getString(R.string.step_error_ingredients));
-                        }*/
+                        }
 
                         break;
                     case 5:

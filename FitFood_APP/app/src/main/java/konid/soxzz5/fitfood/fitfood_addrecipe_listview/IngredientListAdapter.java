@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.view.View.OnClickListener;
 
 import java.util.List;
 
@@ -18,10 +19,18 @@ import konid.soxzz5.fitfood.R;
  */
 
 public class IngredientListAdapter extends ArrayAdapter<Ingredient> {
-
-    public IngredientListAdapter(Context context, List<Ingredient> ingredients)
+    IngredientViewHolder ingredientHolder;
+    private Context mContext;
+    private List<Ingredient> mIngredients;
+    private View mConvertView;
+    OnClickListener clickListener;
+    public IngredientListAdapter(Context context, List<Ingredient> ingredients, OnClickListener clickListener)
     {
         super(context,0,ingredients);
+        mContext=context;
+        mIngredients = ingredients;
+        this.clickListener = clickListener;
+
     }
 
     @NonNull
@@ -30,9 +39,10 @@ public class IngredientListAdapter extends ArrayAdapter<Ingredient> {
         //ON DEFINIE LE DESIGN DE CHAQUE ITEM
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.addrecipe_step4_listitem,parent, false);
+            mConvertView = convertView;
         }
         //ON CREER UNE VIEWHOLDER
-        IngredientViewHolder ingredientHolder = (IngredientViewHolder) convertView.getTag();
+        ingredientHolder = (IngredientViewHolder) convertView.getTag();
         if(ingredientHolder == null)
         {
             ingredientHolder = new IngredientViewHolder();
@@ -47,9 +57,31 @@ public class IngredientListAdapter extends ArrayAdapter<Ingredient> {
         ingredientHolder.quantity.setText(ingredient.getName());
         ingredientHolder.ingredient.setText(ingredient.getQuantity());
 
+        setClickListeners(ingredientHolder.delete);
+
+        setTagsToViews(ingredientHolder.delete, position);
         return convertView;
     }
 
+    @Override
+    public int getCount() {
+        return mIngredients.size();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    private void setClickListeners(View view)
+    {
+        view.setOnClickListener(clickListener);
+    }
+
+    private void setTagsToViews(View view, int position)
+    {
+        view.setTag(R.id.key_position, position);
+    }
 }
 
 class IngredientViewHolder{
@@ -57,3 +89,5 @@ class IngredientViewHolder{
     public TextView ingredient;
     public ImageView delete;
 }
+
+
