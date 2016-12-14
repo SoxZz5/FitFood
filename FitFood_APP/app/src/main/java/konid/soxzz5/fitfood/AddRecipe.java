@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -18,6 +19,7 @@ import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step1;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step2;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step3;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step4;
+import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step5;
 import konid.soxzz5.fitfood.fitfood_fragment.AddRecipeFragment;
 
 /**
@@ -42,8 +44,9 @@ public class AddRecipe extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         //ON ENLEVE LA STATUS BAR
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.addrecipe_wizard);
 
         //STEPINFO POUR SAVOIR A QUELLE ETAPE ON EST
@@ -64,6 +67,7 @@ public class AddRecipe extends AppCompatActivity {
         final addrecipe_step2 step2 = new addrecipe_step2();
         final addrecipe_step3 step3 = new addrecipe_step3();
         final addrecipe_step4 step4 = new addrecipe_step4();
+        final addrecipe_step5 step5 = new addrecipe_step5();
 
         if(step == 1)
         {
@@ -123,6 +127,8 @@ public class AddRecipe extends AppCompatActivity {
                         step3.setPrephour(iPrepareHour);
                         step3.setForwho(sWho);
                         step3.setNbwho(iNbWho);
+                        break;
+                    case 5:
                         break;
                 }
             }
@@ -257,23 +263,33 @@ public class AddRecipe extends AppCompatActivity {
                             stepinfo4.setBackgroundResource(R.color.colorAccent);
                             transaction.commit();
                         }
+                        break;
 
                     case 4:
                         boolean validate_ingredient=false;
-                        alIngrendients = step4.getQuantity_ingredients();
-                        if(!alIngrendients.isEmpty())
+                        /*alIngrendients = step4.getQuantity_ingredients();
+                        if(alIngrendients != null)
                         {
                             validate_ingredient = true;
+                        }
+
+                        if(validate_ingredient)
+                        {
+                            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                            transaction.replace(R.id.step_container, step5);
+                            step = 5;
+                            title.setText(R.string.step5_title);
+                            stepinfo4.setBackgroundResource(R.color.material_drawer_dark_selected);
+                            stepinfo5.setBackgroundResource(R.color.colorAccent);
+                            transaction.commit();
                         }
                         else
                         {
                             info_error.setText(getString(R.string.step_error_ingredients));
-                        }
-                        if(validate_ingredient)
-                        {
+                        }*/
 
-                        }
-
+                        break;
+                    case 5:
                         break;
                 }
 

@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/step4_tv_ingredient"
+            android:id="@+id/step5_tv_ingredient"
             android:textSize="18sp"
             android:layout_marginLeft="15dp"
             android:textStyle="normal|bold"
@@ -43,7 +43,7 @@
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/step4_listview"
+                android:id="@+id/step5_listview"
                 android:layout_margin="15dp"
                 android:padding="10dp"
                 android:layout_weight="2" />
@@ -55,39 +55,20 @@
                 android:layout_weight="1">
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:id="@+id/step4_et_quantity"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="15dp"
-                    android:hint="@string/step4_et_quantity" />
-
-                <TextView
-                    android:text="@string/step4_tv_de"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/step4_tv_de"
-                    android:layout_weight="1"
-                    android:textColor="@color/material_drawer_dark_primary_text"
-                    android:textAlignment="center"
-                    android:textStyle="normal|bold|italic" />
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:id="@+id/step4_et_ingredient"
-                    android:layout_weight="1"
-                    android:hint="@string/step4_et_ingredient" />
+                    android:id="@+id/step5_et_step"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="15dp" />
 
                 <ImageView
                     app:srcCompat="@android:drawable/ic_input_add"
-                    android:id="@+id/step4_bt_add"
+                    android:id="@+id/step5_bt_add"
                     android:layout_weight="1"
                     android:clickable="true"
                     android:layout_height="match_parent"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_marginLeft="10dp" />
 
             </LinearLayout>
@@ -95,7 +76,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/step4_info_ingredient"
+                android:id="@+id/step5_info_ingredient"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textSize="12sp"
                 android:textColor="@color/md_green_A700"

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@color/black_overlay"
+    android:layout_height="60dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginBottom="20dp"
+    android:layout_marginTop="20dp">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"
+        android:background="@color/accent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/stepId"
+            android:layout_weight="0.001"
+            android:textSize="36sp"
+            android:textColor="@color/material_drawer_dark_primary_text"
+            android:textAlignment="gravity"
+            android:gravity="center_vertical"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="TEST"
+        android:layout_weight="1"
+        android:textSize="12sp"
+        android:textColor="@color/material_drawer_dark_primary_text"
+        android:layout_marginLeft="5dp"
+        android:textAlignment="gravity"
+        android:gravity="center_vertical"
+        android:textStyle="normal|bold|italic" />
+
+    <ImageView
+        android:id="@+id/handler"
+        android:layout_width="60px"
+        android:layout_height="60px"
+        android:src="@android:drawable/ic_delete"
+        android:layout_weight="0.1"
+        android:clickable="true" />
+
+</LinearLayout>
