@@ -64,7 +64,7 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(utils.findMatch(et_ingredient.getText().toString(),"^[\\s\\w]{4,30}$"))
+                if(utils.findMatch(et_ingredient.getText().toString(),"^[\\s\\w]{2,30}$"))
                 {
                     ingredient = et_ingredient.getText().toString();
                     valid_ingredient=true;
@@ -91,7 +91,7 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(utils.findMatch(et_quantity.getText().toString(),"^[0-9]*[\\s]+[\\s\\w]{4,30}$"))
+                if(utils.findMatch(et_quantity.getText().toString(),"^([0-9])+([\\s]{1}[\\s\\w]{1,30})$"))
                 {
                     quantity = et_quantity.getText().toString();
                     valid_quantity=true;
