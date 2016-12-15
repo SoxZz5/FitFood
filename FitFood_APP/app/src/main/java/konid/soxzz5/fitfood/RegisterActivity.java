@@ -1,30 +1,25 @@
 package konid.soxzz5.fitfood;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import konid.soxzz5.fitfood.fitfood_request.RegisterRequest;
 import konid.soxzz5.fitfood.utils.utils;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -32,7 +27,8 @@ public class RegisterActivity extends AppCompatActivity {
     Boolean validat_form = false;
     ProgressBar progressbar_password;
     TextView text_password_strength;
-
+    FirebaseAuth firebaseAuth;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +53,10 @@ public class RegisterActivity extends AppCompatActivity {
         final TextView error_password_confirm = (TextView) findViewById(R.id.error_password_confirm);
 
 
+        firebaseAuth = FirebaseAuth.getInstance();
         text_password_strength = (TextView) findViewById(R.id.text_password_strength);
         progressbar_password = (ProgressBar) findViewById(R.id.progressbar_password);
-
+        progressDialog = new ProgressDialog(this);
 
         //DETECTION DU CHANGEMENT DE TEXT DANS LES EDITS
         edit_name.addTextChangedListener(new TextWatcher() {
@@ -275,56 +272,27 @@ public class RegisterActivity extends AppCompatActivity {
                 final String mail = edit_mail.getText().toString();
                 final String password = edit_password.getText().toString();
 
-                //RESPONSE LISTENER PERMET GRACE A VOLLEY DE RECUPERER UNE REPONSE SUITE A L'EXECUTION DE RegisterRequest.java
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response); //ON RECUPERE UN OBJET JSON EN REPONSE VIA PHP
-                            boolean success = jsonResponse.getBoolean("success"); //ON RECUPERE LE BOOLEAN DE LA REPONSE
-                            if(success)
-                            {//SI L'INSCRIPTION EST REUSSIE ON RETOURNE AU LOGIN EN ENVOYANT UN MESSAGE DE REMERCIEMENT
-
-                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                intent.putExtra("response", pseudo);
-                                RegisterActivity.this.startActivityForResult(intent, 0);
-                                finish();
-                            }
-                            else{//SI L'INSCRIPTION EST RATER ON AFFICHE UN MESSAGE POUR REESSAYER
-                                boolean error_pseudo = jsonResponse.getBoolean("errorpseudo");
-                                boolean error_mail = jsonResponse.getBoolean("errormail");
-                                if(error_pseudo)
-                                {
-                                    response_register.setText(R.string.register_error_confirm_pseudo);
-                                    response_register.setVisibility(View.VISIBLE);
-                                    edit_pseudo.setText("");
-                                    validat_form=false;
-                                }
-                                if(error_mail)
-                                {
-                                    response_register.setText(R.string.register_error_confirm_mail);
-                                    response_register.setVisibility(View.VISIBLE);
-                                    edit_pseudo.setText("");
-                                    validat_form=false;
-                                }
-                                response_register.setTextColor(Color.parseColor("#B9121B"));
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                };
-
+                progressDialog.setMessage(getString(R.string.register_pd_registering));
+                progressDialog.show();
                 if(validat_form)
                 {
-                    //ON LANCE LA REQUETE VIA LE CONSTRUCTEUR DE RegisterRequest AU SERVEUR MYSQL
-                    RegisterRequest registerRequest= new RegisterRequest(name,surname,pseudo,mail,password,responseListener);
-                    //ON DEFINIE UNE QUEUE POUR LANCER LES REQUETES
-                    RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
-                    //ON AJOUTE LA REQUETE A LA QUEUE
-                    queue.add(registerRequest);
+                        firebaseAuth.createUserWithEmailAndPassword(mail,password).
+                                addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+                                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                    intent.putExtra("response", pseudo);
+                                    progressDialog.hide();
+                                    startActivity(intent);
+                                    finish();
+                                }
+                                else
+                                {
+                                    Toast.makeText(RegisterActivity.this, getString(R.string.register_error_firebase), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                 }
                 else
                 {

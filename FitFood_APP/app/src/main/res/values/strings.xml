@@ -54,6 +54,8 @@
     <string name="register_progressbar_password_normal">Medium</string>
     <string name="register_progressbar_password_good">Good</string>
     <string name="register_progressbar_password_verygood">Very good</string>
+    <string name="register_error_firebase">Could not register ..., please try later</string>
+    <string name="register_pd_registering">Registering User ...</string>
 
     <string name="recipeadd_text_title">Submit a recipe</string>
     <string name="recipeadd_text_selecttitle">Choose a relevant title describing your recipe with clarity to the community.</string>

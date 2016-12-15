@@ -53,6 +53,8 @@
     <string name="register_progressbar_password_normal">Moyen</string>
     <string name="register_progressbar_password_good">Bon</string>
     <string name="register_progressbar_password_verygood">Très bon</string>
+    <string name="register_error_firebase">Impossible de s\'inscrire ..., merci d\'essayer plus tard</string>
+    <string name="register_pd_registering">Inscription en cours ...</string>
 
     <string name="recipeadd_text_title">Proposer une recette</string>
     <string name="recipeadd_text_selecttitle">Choisissez un titre pertinent décrivant votre recette avec clarté à la communauté.</string>
