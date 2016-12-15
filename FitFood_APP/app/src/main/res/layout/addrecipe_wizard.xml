@@ -9,7 +9,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_weight="1"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/step_layout_steper">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -81,7 +82,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.95">
+        android:layout_weight="0.95"
+        android:id="@+id/step_layout_title">
 
         <TextView
             android:layout_width="match_parent"
@@ -99,19 +101,28 @@
             android:textColor="@color/md_deep_orange_A700" />
     </LinearLayout>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.25"
-        android:id="@+id/step_container">
-
-    </FrameLayout>
+        android:id="@+id/step_container"
+        android:orientation="vertical"/>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.90">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/wizard_bt_final"
+                android:layout_weight="1"
+                android:text="@string/wizard_final"
+                android:textColor="@color/accent"
+                android:background="@color/material_drawer_dark_selected"
+                android:layout_gravity="bottom"
+                android:visibility="gone" />
 
         <Button
             android:layout_width="wrap_content"

@@ -1,5 +1,6 @@
 package konid.soxzz5.fitfood.fitfood_addrecipe_step;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -39,6 +40,8 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
     String quantity;
     boolean valid_quantity;
     boolean valid_ingredient;
+    Context _context;
+    int nbIngredient;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,7 +49,8 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
 
         //ON CREE NOTRE LISTVIEW
         mListView = (ListView) v.findViewById(R.id.step4_listview);
-
+        _context=getContext();
+        nbIngredient = 0;
         final EditText et_quantity = (EditText) v.findViewById(R.id.step4_et_quantity);
         final EditText et_ingredient = (EditText) v.findViewById(R.id.step4_et_ingredient);
         final ImageView bt_add = (ImageView) v.findViewById(R.id.step4_bt_add);
@@ -119,6 +123,12 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
 
     }
 
+    public void addIngredient(String quantity, String name)
+    {
+        ingredients.add(new Ingredient(quantity, name));
+        addToList();
+    }
+
     public void onClick(View v){
         int position = (Integer) v.getTag(R.id.key_position);
         if(v.getId() == R.id.handler){
@@ -128,9 +138,10 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
     }
     private void addToList()
     {
+        nbIngredient++;
         if(!first_item)
         {
-            adapter = new IngredientListAdapter(getContext(), ingredients,this);
+            adapter = new IngredientListAdapter(_context, ingredients,this);
             mListView.setAdapter(adapter);
             first_item=true;
         }
@@ -140,12 +151,6 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
         }
     }
 
-    public void setIngredients(List<Ingredient> ingredients)
-    {
-        this.ingredients = ingredients;
-        addToList();
-    }
-
     public List<Ingredient> getIngredients() {
         return ingredients;
     }
@@ -153,5 +158,9 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
     @Override
     public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
         //NOTHING TO DO
+    }
+
+    public int getNbIngredient() {
+        return nbIngredient;
     }
 }

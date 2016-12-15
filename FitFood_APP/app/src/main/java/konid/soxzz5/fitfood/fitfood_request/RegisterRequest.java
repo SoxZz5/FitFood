@@ -6,10 +6,12 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+import static konid.soxzz5.fitfood.utils.Constants.REGISTER_REQUEST_URL;
+
 
 public class RegisterRequest extends StringRequest {
 
-    private static final String REGISTER_REQUEST_URL = "http://soxzer-001-site1.ftempurl.com/server_android/Register.php"; //URL DU SCRIPT DE LA REQUETE
+
     private Map<String, String> params; //MAP PERMET DE FORMATER POUR L'ENVOIE A LA BDD
 
     //CONSTRUCTEUR QUI PERMET L'ENVOIE DE LA REQUETE AVEC LES PARAMETRES
