@@ -3,24 +3,21 @@ package konid.soxzz5.fitfood;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import java.util.List;
 
-import java.util.ArrayList;
-
+import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Ingredient;
+import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Item;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step1;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step2;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step3;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step4;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step5;
-import konid.soxzz5.fitfood.fitfood_fragment.AddRecipeFragment;
 
 /**
  * Created by Soxzer on 08/12/2016.
@@ -39,7 +36,8 @@ public class AddRecipe extends AppCompatActivity {
     String sForWho;
     String sWho;
     int iNbWho;
-    ArrayList<ArrayList<String>> alIngrendients;
+    List<Ingredient> alIngrendients;
+    List<Item> alSteps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +127,15 @@ public class AddRecipe extends AppCompatActivity {
                         step3.setNbwho(iNbWho);
                         break;
                     case 5:
+                        info_error.setText("");
+                        transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.step_container, step4);
+                        step=4;
+                        title.setText(R.string.step4_title);
+                        stepinfo5.setBackgroundResource(R.color.material_drawer_dark_selected);
+                        stepinfo4.setBackgroundResource(R.color.colorAccent);
+                        transaction.commit();
+                        step4.setIngredients(alIngrendients);
                         break;
                 }
             }
@@ -267,7 +274,7 @@ public class AddRecipe extends AppCompatActivity {
 
                     case 4:
                         boolean validate_ingredient=false;
-                        /*alIngrendients = step4.getQuantity_ingredients();
+                        alIngrendients = step4.getIngredients();
                         if(alIngrendients != null)
                         {
                             validate_ingredient = true;
@@ -286,10 +293,21 @@ public class AddRecipe extends AppCompatActivity {
                         else
                         {
                             info_error.setText(getString(R.string.step_error_ingredients));
-                        }*/
+                        }
 
                         break;
                     case 5:
+                        boolean validate_steps =false;
+                        alSteps = step5.getItems();
+                        if(alSteps != null)
+                        {
+                            validate_steps = true;
+                        }
+
+                        if(validate_steps)
+                        {
+                        //TODO UPLOAD IMAGE TO SERVER SEE ADDRECIPE_WIZARD_FINAL
+                        }
                         break;
                 }
 

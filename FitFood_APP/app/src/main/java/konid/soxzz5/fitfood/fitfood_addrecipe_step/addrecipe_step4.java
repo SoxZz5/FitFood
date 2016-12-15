@@ -1,25 +1,22 @@
 package konid.soxzz5.fitfood.fitfood_addrecipe_step;
 
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.ArrayMap;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,15 +24,13 @@ import java.util.List;
 import konid.soxzz5.fitfood.R;
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Ingredient;
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.IngredientListAdapter;
-import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Item;
-import konid.soxzz5.fitfood.fitfood_addrecipe_listview.ListAdapter;
 import konid.soxzz5.fitfood.utils.utils;
 
 /**
  * Created by Soxzer on 12/12/2016.
  */
 
-public class addrecipe_step4 extends Fragment {
+public class addrecipe_step4 extends Fragment implements OnClickListener, OnItemClickListener{
     ListView mListView;
     List<Ingredient> ingredients;
     boolean first_item;
@@ -96,7 +91,7 @@ public class addrecipe_step4 extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(utils.findMatch(et_quantity.getText().toString(),"^[0-9]*[ ][\\s\\w]{4,30}$"))
+                if(utils.findMatch(et_quantity.getText().toString(),"^[0-9]*[\\s]+[\\s\\w]{4,30}$"))
                 {
                     quantity = et_quantity.getText().toString();
                     valid_quantity=true;
@@ -111,19 +106,31 @@ public class addrecipe_step4 extends Fragment {
             @Override
             public void onClick(View view) {
                 if(valid_quantity && valid_ingredient) {
-                    ingredients.add(new Ingredient(ingredient, quantity));
+                    ingredients.add(new Ingredient(quantity, ingredient));
+                    et_quantity.setText("");
+                    et_ingredient.setText("");
                     addToList();
+                    valid_quantity=false;
+                    valid_ingredient=false;
                 }
             }
         });
         return v;
+
     }
 
+    public void onClick(View v){
+        int position = (Integer) v.getTag(R.id.key_position);
+        if(v.getId() == R.id.handler){
+            ingredients.remove(position);
+            adapter.notifyDataSetChanged();
+        }
+    }
     private void addToList()
     {
         if(!first_item)
         {
-            adapter = new IngredientListAdapter(getContext(),ingredients);
+            adapter = new IngredientListAdapter(getContext(), ingredients,this);
             mListView.setAdapter(adapter);
             first_item=true;
         }
@@ -131,5 +138,20 @@ public class addrecipe_step4 extends Fragment {
         {
             adapter.notifyDataSetChanged();
         }
+    }
+
+    public void setIngredients(List<Ingredient> ingredients)
+    {
+        this.ingredients = ingredients;
+        addToList();
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+        //NOTHING TO DO
     }
 }

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.view.View.OnClickListener;
 import java.util.List;
 
 import konid.soxzz5.fitfood.R;
@@ -18,10 +18,19 @@ import konid.soxzz5.fitfood.R;
  */
 
 public class ListAdapter extends ArrayAdapter<Item> {
-
+    private View.OnClickListener clickListener;
+    private List<Item> items;
+    private View convertView;
     public ListAdapter(Context context, List<Item> items)
     {
         super(context,0,items);
+    }
+
+    public ListAdapter(Context context,List<Item> items, OnClickListener clickListener)
+    {
+        super(context,0,items);
+        this.items = items;
+        this.clickListener = clickListener;
     }
 
     @NonNull
@@ -34,7 +43,6 @@ public class ListAdapter extends ArrayAdapter<Item> {
         if(itemHolder == null)
         {
             itemHolder = new ItemViewHolder();
-            itemHolder.stepId = (TextView) convertView.findViewById(R.id.stepId);
             itemHolder.name = (TextView) convertView.findViewById(R.id.text);
             itemHolder.delete = (ImageView) convertView.findViewById(R.id.handler);
             convertView.setTag(itemHolder);
@@ -42,15 +50,27 @@ public class ListAdapter extends ArrayAdapter<Item> {
 
         Item item = getItem(position);
         itemHolder.name.setText(item.getName());
-        itemHolder.stepId.setText(item.getStep());
+
+        setClickListeners(itemHolder.delete);
+
+        setTagsToViews(itemHolder.delete,position);
 
         return convertView;
+    }
+
+    private void setClickListeners(View view)
+    {
+        view.setOnClickListener(clickListener);
+    }
+
+    private void setTagsToViews(View view, int position)
+    {
+        view.setTag(R.id.key_position, position);
     }
 
 }
 
 class ItemViewHolder{
-    public TextView stepId;
     public TextView name;
     public ImageView delete;
 }
