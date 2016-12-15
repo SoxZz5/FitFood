@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".LoginActivity"
-    android:background="#e4f3ff">
+    tools:context=".LoginActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -53,21 +52,13 @@
             android:paddingRight="15dp"
             android:weightSum="5">
 
-            <TextView
-                android:text="@string/login_title"
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/text_TP_register"
+                android:id="@+id/fitfoodtext"
                 android:layout_weight="1"
-                android:textAlignment="gravity"
-                android:layout_gravity="center"
-                android:textColor="@color/colorButton_G"
-                android:textAllCaps="false"
-                android:textStyle="normal|bold"
-                android:gravity="center_vertical|center_horizontal"
-                android:textSize="18sp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp" />
+                app:srcCompat="@drawable/fitfoodtextesmall"
+                android:layout_margin="15dp"
+                android:layout_height="25dp" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -113,15 +104,22 @@
             <ProgressBar
                 style="?android:attr/progressBarStyleLarge"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/progressbar_login_loading"
                 android:layout_weight="1"
                 android:visibility="gone"
-                android:maxHeight="90dip"
-                android:maxWidth="90dip"
-                android:minWidth="90dip"
-                android:minHeight="90dip"
-                android:layout_gravity="center_vertical|center_horizontal" />
+                android:maxHeight="180dip"
+                android:maxWidth="180dip"
+                android:minWidth="100dp"
+                android:minHeight="100dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:indeterminateTintMode="src_atop"
+                android:indeterminateTint="@color/colorButton_G"
+                android:layout_marginBottom="80dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -138,13 +136,21 @@
                     android:layout_margin="10dp" />
             </FrameLayout>
 
-            <ImageView
+            <TextView
+                android:text="@string/login_tp_register"
                 android:layout_width="match_parent"
-                android:id="@+id/fitfoodtext"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_TP_register"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/fitfoodtextesmall"
-                android:layout_margin="15dp"
-                android:layout_height="25dp" />
+                android:textAlignment="gravity"
+                android:layout_gravity="center"
+                android:textColor="@color/colorButton_G"
+                android:textAllCaps="false"
+                android:textStyle="normal|bold"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="18sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
 
         </LinearLayout>
 
