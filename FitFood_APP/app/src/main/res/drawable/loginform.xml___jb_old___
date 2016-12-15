@@ -9,7 +9,7 @@
 
     <stroke
         android:width="2dp"
-        android:color="@color/black_overlay_65" >
+        android:color="@color/white_overlay_65verlay_65" >
     </stroke>
 
     <padding

@@ -16,13 +16,13 @@
         android:scaleType="centerCrop"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:accessibilityTraversalBefore="@+id/edit_password" />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.25"
+        android:layout_height="match_parent"
         android:weightSum="10"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp">
@@ -30,76 +30,73 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2.5"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="25dp">
+            android:layout_weight="3"
+            android:layout_height="0dp">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:id="@+id/imageView3"
                 app:srcCompat="@drawable/fitfoodlogosmall"
-                android:layout_height="120dp" />
+                android:layout_height="wrap_content"
+                android:padding="30dp" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
+            android:layout_height="0dp"
+            android:layout_weight="3.5"
             android:background="@drawable/loginform"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:weightSum="5">
+            android:weightSum="10">
 
-            <ImageView
+            <TextView
                 android:layout_width="match_parent"
-                android:id="@+id/fitfoodtext"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/fitfoodtextesmall"
-                android:layout_margin="15dp"
-                android:layout_height="25dp" />
+                android:layout_height="0dp"
+                android:id="@+id/textView"
+                android:layout_weight="3"
+                android:text="@string/login_bt_connection"
+                android:gravity="top|center_horizontal"
+                android:textColor="@color/colorButton_G"
+                android:textSize="36sp"
+                android:elevation="0dp" />
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:inputType="textPersonName"
                 android:id="@+id/edit_pseudo"
                 android:textColorHint="@color/material_drawer_dark_hint_text"
                 android:textSize="14sp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:hint="@string/login_hint_pseudo"
                 android:maxLength="30"
                 android:textColor="@color/material_drawer_dark_primary_text"
                 android:fontFamily="monospace"
                 android:textColorLink="@color/material_drawer_dark_hint_text"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="@android:drawable/editbox_dropdown_dark_frame"
+                android:background="@drawable/edittextcustom"
+                android:elevation="1dp"
                 android:paddingLeft="25dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp" />
+                android:layout_margin="5dp" />
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:inputType="textPassword"
                 android:id="@+id/edit_password"
                 android:textColorHint="@color/material_drawer_dark_hint_text"
                 android:textColor="@color/material_drawer_dark_primary_text"
                 android:textSize="14sp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:hint="@string/login_hint_password"
                 android:maxLength="20"
                 android:fontFamily="monospace"
                 android:autoText="false"
                 android:textColorLink="@color/material_drawer_dark_hint_text"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="@android:drawable/editbox_dropdown_dark_frame"
+                android:background="@drawable/edittextcustom"
                 android:paddingLeft="25dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp" />
+                android:layout_margin="5dp" />
 
             <ProgressBar
                 style="?android:attr/progressBarStyleLarge"
@@ -123,8 +120,12 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
 
                 <Button
                     android:text="@string/login_bt_connection"
@@ -132,14 +133,13 @@
                     android:layout_height="match_parent"
                     android:id="@+id/button_login"
                     android:background="@drawable/loginroundedbutton"
-                    android:textSize="16sp"
-                    android:layout_margin="10dp" />
+                    android:textSize="14sp" />
             </FrameLayout>
 
             <TextView
                 android:text="@string/login_tp_register"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:id="@+id/text_TP_register"
                 android:layout_weight="1"
                 android:textAlignment="gravity"
@@ -147,11 +147,29 @@
                 android:textColor="@color/colorButton_G"
                 android:textAllCaps="false"
                 android:textStyle="normal|bold"
-                android:gravity="center_vertical|center_horizontal"
+                android:gravity="bottom|center_horizontal"
                 android:textSize="18sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3.5"
+            android:paddingLeft="70dp"
+            android:paddingRight="70dp"
+            android:layout_marginBottom="0dp"
+            android:gravity="bottom">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:id="@+id/fitfoodtext"
+                app:srcCompat="@drawable/fitfoodtextesmall"
+                android:layout_height="30dp"
+                android:layout_marginBottom="20dp" />
         </LinearLayout>
 
     </LinearLayout>

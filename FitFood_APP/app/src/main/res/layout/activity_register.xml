@@ -1,56 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_register"
+    android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context="fr.esiea.fitfood.fitfood.RegisterActivity"
-    android:baselineAligned="false">
+    tools:context=".RegisterActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/"
+        android:id="@+id/imageView"
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:accessibilityTraversalBefore="@+id/edit_password" />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"></LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.25">
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:weightSum="10">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.60">
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:backgroundTintMode="src_in"
+            android:background="@drawable/loginform"
+            android:weightSum="16"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="80dp"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp">
 
             <TextView
                 android:text="@string/register_text_title"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:id="@+id/textview_title"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textAlignment="gravity"
-                android:gravity="bottom|center_horizontal" />
-        </LinearLayout>
+                android:gravity="top|center_horizontal"
+                android:layout_weight="2"
+                android:textColor="@color/colorButton_G" />
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.20"
-            android:backgroundTintMode="src_in"
-            android:background="@color/black_overlay_75"
-            android:padding="10dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/error_name"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    android:textColor="#ff000e"
+                    android:gravity="center_vertical|center_horizontal" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/error_surname"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    android:textColor="#ff000e"
+                    android:gravity="center_vertical|center_horizontal" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView3"
+                    android:layout_weight="1"
+                    android:textSize="10sp"
+                    android:textColor="#B9121B"
+                    android:gravity="top|center_horizontal"
+                    android:text="hjhjjhj" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView2"
+                    android:layout_weight="1"
+                    android:textSize="10sp"
+                    android:textColor="#B9121B"
+                    android:gravity="top|center_horizontal"
+                    android:text="hjhjjhj" />
+            </LinearLayout>
 
             <LinearLayout
                 android:baselineAligned="false"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_height="0dp"
+                android:layout_weight="1.5">
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -70,7 +122,9 @@
                         android:textColor="#FFFFFF"
                         android:textSize="14sp"
                         android:layout_marginRight="10dp"
-                        android:maxLength="30" />
+                        android:maxLength="30"
+                        android:background="@drawable/edittextcustom"
+                        android:paddingLeft="25dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -91,118 +145,93 @@
                         android:textColor="#FFFFFF"
                         android:textSize="14sp"
                         android:layout_marginLeft="10dp"
-                        android:maxLength="30" />
+                        android:maxLength="30"
+                        android:background="@drawable/edittextcustom"
+                        android:paddingLeft="25dp" />
                 </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/error_name"
-                    android:layout_weight="1"
-                    android:textSize="10sp"
-                    android:textColor="#B9121B" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/error_surname"
-                    android:layout_weight="1"
-                    android:textSize="10sp"
-                    android:textColor="#B9121B" />
-            </LinearLayout>
+                android:layout_height="0dp"
+                android:id="@+id/error_pseudo"
+                android:layout_weight="0.7"
+                android:textColor="#ff000e"
+                android:textSize="14sp"
+                android:gravity="center_vertical|center_horizontal" />
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/edit_pseudo"
                 android:hint="@string/register_hint_pseudo"
-                android:layout_weight="1"
+                android:layout_weight="1.5"
                 android:textColorHint="#FFFFFF"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
-                android:maxLength="30" />
+                android:maxLength="30"
+                android:background="@drawable/edittextcustom"
+                android:paddingLeft="25dp" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/error_pseudo"
-                android:layout_weight="1"
-                android:textColor="#B9121B"
-                android:textSize="10sp" />
+                android:layout_height="0dp"
+                android:id="@+id/error_mail"
+                android:layout_weight="0.7"
+                android:textColor="#ff000e"
+                android:textSize="14sp"
+                android:gravity="center_vertical|center_horizontal" />
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:inputType="textEmailAddress"
                 android:ems="10"
                 android:id="@+id/edit_mail"
                 android:hint="@string/register_hint_mail"
-                android:layout_weight="1"
+                android:layout_weight="1.5"
                 android:textColorHint="#FFFFFF"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
-                android:maxLength="50" />
+                android:maxLength="50"
+                android:background="@drawable/edittextcustom"
+                android:paddingLeft="25dp" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/error_mail"
-                android:layout_weight="1"
-                android:textColor="#B9121B"
-                android:textSize="10sp" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:ems="10"
-                android:id="@+id/edit_password"
-                android:hint="@string/register_hint_password"
-                android:layout_weight="1"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF"
-                android:textSize="14sp"
-                android:maxLength="20" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:id="@+id/error_password"
-                android:layout_weight="1"
-                android:textColor="#B9121B"
-                android:textSize="10sp" />
+                android:layout_weight="0.7"
+                android:textColor="#ff000e"
+                android:textSize="10sp"
+                android:gravity="center_vertical|center_horizontal" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_height="0dp"
+                android:layout_weight="0.7"
+                android:gravity="bottom">
 
                 <ProgressBar
                     android:id="@+id/progressbar_password"
                     style="@android:style/Widget.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginRight="0dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:layout_marginTop="0dp"
                     android:layout_marginBottom="0dp"
                     android:max="100"
                     android:maxHeight="20dp"
                     android:minHeight="20dp"
-                    android:progress="0"
+                    android:progress="100"
                     android:progressDrawable="@drawable/progressbar"
                     android:secondaryProgress="100"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:alpha="0.9" />
 
                 <TextView
                     android:id="@+id/text_password_strength"
@@ -210,48 +239,75 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentRight="true"
-                    android:layout_centerVertical="false"
                     android:textStyle="bold"
                     android:textSize="14sp"
-                    android:gravity="top|center_horizontal"
-                    android:layout_alignParentTop="false"
+                    android:gravity="center_vertical|center_horizontal"
                     android:layout_alignParentEnd="false"
                     android:layout_alignParentStart="false"
-                    android:layout_alignTop="@+id/progressbar_password" />
+                    android:layout_alignParentTop="true"
+                    android:layout_alignBottom="@+id/progressbar_password" />
             </RelativeLayout>
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/edit_password"
+                android:hint="@string/register_hint_password"
+                android:layout_weight="1.5"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="14sp"
+                android:maxLength="20"
+                android:background="@drawable/edittextcustom"
+                android:paddingLeft="25dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/error_password_confirm"
+                android:layout_weight="0.7"
+                android:textColor="#ff000e"
+                android:textSize="14sp"
+                android:gravity="center_vertical|center_horizontal" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:inputType="textPassword"
                 android:ems="10"
                 android:id="@+id/edit_password_confirm"
                 android:hint="@string/register_hint_confirm_password"
-                android:layout_weight="1"
+                android:layout_weight="1.5"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
                 android:textSize="14sp"
-                android:maxLength="20" />
+                android:maxLength="20"
+                android:background="@drawable/edittextcustom"
+                android:paddingLeft="25dp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:paddingTop="20dp">
+
+                <Button
+                    android:text="@string/register_bt_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/button_register"
+                    android:layout_weight="2"
+                    android:background="@drawable/loginroundedbutton"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="5dp" />
+            </FrameLayout>
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/error_password_confirm"
-                android:layout_weight="1"
-                android:textColor="#B9121B"
-                android:textSize="10sp" />
-
-            <Button
-                android:text="@string/register_bt_register"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/button_register"
-                android:layout_weight="1"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:id="@+id/response_register"
                 android:layout_weight="1"
                 android:textAlignment="gravity"
@@ -264,18 +320,20 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.60">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingLeft="70dp"
+            android:paddingRight="70dp"
+            android:layout_marginBottom="0dp"
+            android:gravity="bottom">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:id="@+id/fitfoodtext"
+                app:srcCompat="@drawable/fitfoodtextesmall"
+                android:layout_height="30dp"
+                android:layout_marginBottom="20dp" />
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_width="match_parent">
-
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

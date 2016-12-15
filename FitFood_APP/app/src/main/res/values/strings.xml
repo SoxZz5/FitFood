@@ -24,7 +24,7 @@
     <string name="login_title">Login</string>
     <string name="login_hint_password">Password</string>
     <string name="login_bt_connection">Connection</string>
-    <string name="login_tp_register">Register</string>
+    <string name="login_tp_register">Not yet registered? Sign up now !</string>
     <string name="login_text_error_pseudo">Wrong username</string>
     <string name="login_text_error_password">Wrong password</string>
     <string name="login_text_after_register">Successfully signed up ! You can log in now.</string>
@@ -38,10 +38,10 @@
     <string name="register_error_surname">Invalid surname begin with capital letter</string>
     <string name="register_hint_pseudo">Username</string>
     <string name="register_error_pseudo">Invalid username</string>
-    <string name="register_hint_mail">Mail</string>
-    <string name="register_error_mail">Invalid mail</string>
+    <string name="register_hint_mail">Email address</string>
+    <string name="register_error_mail">Invalid email address</string>
     <string name="register_hint_password">Password</string>
-    <string name="register_error_password">Must have capital letter , number and special characters</string>
+    <string name="register_error_password">Must contain at least an upper case letter , one digit and one special character</string>
     <string name="register_hint_confirm_password">Confirm password</string>
     <string name="register_error_confirm_password">Passwords are different</string>
     <string name="register_valid_confirm_password">Passwords are valid</string>

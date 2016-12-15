@@ -2,7 +2,9 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
     <item android:id="@android:id/background">
         <shape>
-            <corners android:radius="0dp" />
+            <corners android:topLeftRadius="10dp"
+                android:topRightRadius="10dp"
+                />
             <gradient
                 android:angle="270"
                 android:startColor="#222"
@@ -15,14 +17,15 @@
     <item android:id="@android:id/secondaryProgress">
         <clip>
             <shape>
-                <corners android:radius="0dp" />
+                <corners android:topLeftRadius="10dp"
+                    android:topRightRadius="10dp"
+                    />
                 <gradient
                     android:angle="360"
                     android:centerColor="#EDEFF4"
                     android:centerY="0.40"
                     android:endColor="#EDEFF4"
                     android:startColor="#EDEFF4"
-
                     />
             </shape>
         </clip>
@@ -30,7 +33,9 @@
     <item android:id="@android:id/progress">
         <clip>
             <shape>
-                <corners android:radius="25dp" />
+                <corners android:topLeftRadius="10dp"
+                    android:topRightRadius="10dp"
+                    />
                 <gradient
                    android:angle="360"
                    android:startColor="#A9E02A"
@@ -46,12 +51,14 @@
     <item android:id="@android:id/progress">
         <clip>
             <shape>
-                <corners android:radius="0dp" />
+                <corners android:topLeftRadius="10dp"
+                    android:topRightRadius="10dp"
+                    />
                 <gradient
                     android:angle="360"
                     android:centerColor="#ff9b00"
-                    android:centerY="0.40"
-                    android:endColor="#7BAC18"
+                    android:centerY="0.4"
+                    android:endColor="#37f707"
                     android:startColor="#B9121B"
 
                     />

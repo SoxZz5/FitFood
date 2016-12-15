@@ -213,11 +213,12 @@ public class RegisterActivity extends AppCompatActivity {
                     text_password_strength.setText("");
                     error_password.setText("");
                 }
-                else if(utils.findMatch(edit_password.getText().toString(),"((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})"))
+                else if(utils.findMatch(edit_password.getText().toString(),"^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$"))
                 {
                     checkPassword(edit_password.getText().toString());
                     validat_form = true;
                     error_password.setText("");
+
                 }
                 else
                 {
