@@ -21,6 +21,7 @@
     <string name="drawer_item_disconnect">Logout</string>
 
     <string name="login_hint_pseudo">Username</string>
+    <string name="login_title">Login</string>
     <string name="login_hint_password">Password</string>
     <string name="login_bt_connection">Connection</string>
     <string name="login_tp_register">Register</string>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
@@ -9,93 +9,113 @@
     tools:context=".LoginActivity"
     android:background="#e4f3ff">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:baselineAligned="false"/>
+        app:srcCompat="@drawable/login_background"
+        android:id="@+id/imageView"
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="0.25"
-        android:weightSum="10">
+        android:weightSum="10"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4">
+            android:layout_height="wrap_content"
+            android:layout_weight="2.5"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="25dp">
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/imageView3"
-                android:layout_weight="1"
-                android:padding="50dp"
-                app:srcCompat="@drawable/fitfoodlogosmall" />
+                app:srcCompat="@drawable/fitfoodlogosmall"
+                android:layout_height="120dp" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
             android:background="@drawable/loginform"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:weightSum="5">
 
             <TextView
-                android:text="@string/login_tp_register"
+                android:text="@string/login_title"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/text_TP_register"
-                android:layout_weight="0.5"
+                android:layout_weight="1"
                 android:textAlignment="gravity"
                 android:layout_gravity="center"
-                android:textColor="#4add2a"
+                android:textColor="@color/colorButton_G"
                 android:textAllCaps="false"
                 android:textStyle="normal|bold"
-                android:gravity="center_vertical|center_horizontal" />
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="18sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:ems="10"
                 android:id="@+id/edit_pseudo"
-                android:textColorHint="#1b1b1b"
+                android:textColorHint="@color/material_drawer_dark_hint_text"
                 android:textSize="14sp"
                 android:layout_weight="1"
                 android:hint="@string/login_hint_pseudo"
                 android:maxLength="30"
-                android:textColor="#1b1b1b"
-                android:fontFamily="monospace" />
+                android:textColor="@color/material_drawer_dark_primary_text"
+                android:fontFamily="monospace"
+                android:textColorLink="@color/material_drawer_dark_hint_text"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@android:drawable/editbox_dropdown_dark_frame"
+                android:paddingLeft="25dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:ems="10"
                 android:id="@+id/edit_password"
-                android:textColorHint="#1b1b1b"
-                android:textColor="#1b1b1b"
+                android:textColorHint="@color/material_drawer_dark_hint_text"
+                android:textColor="@color/material_drawer_dark_primary_text"
                 android:textSize="14sp"
                 android:layout_weight="1"
                 android:hint="@string/login_hint_password"
                 android:maxLength="20"
                 android:fontFamily="monospace"
-                android:autoText="false" />
+                android:autoText="false"
+                android:textColorLink="@color/material_drawer_dark_hint_text"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@android:drawable/editbox_dropdown_dark_frame"
+                android:paddingLeft="25dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
 
             <ProgressBar
                 style="?android:attr/progressBarStyleLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/progressbar_login_loading"
-                android:layout_weight="5"
+                android:layout_weight="1"
                 android:visibility="gone"
                 android:maxHeight="90dip"
                 android:maxWidth="90dip"
@@ -105,9 +125,8 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.5"
-                android:padding="15dp">
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
                 <Button
                     android:text="@string/login_bt_connection"
@@ -115,34 +134,20 @@
                     android:layout_height="match_parent"
                     android:id="@+id/button_login"
                     android:background="@drawable/loginroundedbutton"
-                    android:layout_margin="0dp"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:layout_margin="10dp" />
             </FrameLayout>
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
                 android:id="@+id/fitfoodtext"
                 android:layout_weight="1"
-                android:padding="10dp"
-                app:srcCompat="@drawable/fitfoodtextesmall" />
+                app:srcCompat="@drawable/fitfoodtextesmall"
+                android:layout_margin="15dp"
+                android:layout_height="25dp" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:weightSum="2">
-
-        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"></LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>
