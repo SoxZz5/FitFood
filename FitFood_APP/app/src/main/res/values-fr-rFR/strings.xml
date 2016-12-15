@@ -25,9 +25,9 @@
     <string name="login_hint_password">Mot de passe</string>
     <string name="login_bt_connection">Connexion</string>
     <string name="login_tp_register">S\'inscrire</string>
-    <string name="login_text_error_pseudo">Ce pseudo n\'éxiste pas</string>
+    <string name="login_text_error_pseudo">Ce pseudo n\'existe pas</string>
     <string name="login_text_error_password">Mauvais mot de passe</string>
-    <string name="login_text_after_register">Merci de votre inscription </string>
+    <string name="login_text_after_register">Inscription réussie ! Vous pouvez désormais vous connecter</string>
 
     <string name="register_text_title">Créer un compte</string>
     <string name="register_hint_name">Nom</string>
@@ -44,9 +44,9 @@
     <string name="register_error_confirm_password">Les mots de passes sont différents</string>
     <string name="register_valid_confirm_password">Les mots de passes sont valides</string>
     <string name="register_bt_register">S\'enregistrer</string>
-    <string name="register_error_incomplete_form">Tous les champs ne sont pas remplies</string>
+    <string name="register_error_incomplete_form">Tous les champs ne sont pas remplis</string>
     <string name="register_error_confirm_pseudo">Pseudo déjà utilisé</string>
-    <string name="register_error_confirm_mail">Mail déjà associer à un compte</string>
+    <string name="register_error_confirm_mail">Email déjà associé à un compte</string>
     <string name="register_progressbar_password_veryweak">Très faible</string>
     <string name="register_progressbar_password_weak">Faible</string>
     <string name="register_progressbar_password_normal">Moyen</string>

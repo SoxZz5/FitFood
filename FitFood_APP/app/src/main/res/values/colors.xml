@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">@color/material_drawer_dark_divider</color>
     <color name="colorPrimaryDark">@color/material_drawer_dark_selected</color>
-    <color name="colorAccent">#96ca2d</color>
+    <color name="colorAccent">#1b1b1b</color>
 
     <color name="black_overlay">#cc000000</color>
 </resources>

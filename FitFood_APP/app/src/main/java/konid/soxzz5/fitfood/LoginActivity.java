@@ -1,5 +1,6 @@
 package konid.soxzz5.fitfood;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,8 +9,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         setContentView(R.layout.activity_login);
 
         session = new SessionManager(getApplicationContext());
@@ -38,11 +40,13 @@ public class LoginActivity extends AppCompatActivity {
         final EditText edit_password = (EditText) findViewById(R.id.edit_password);
         final ProgressBar progressbar_login = (ProgressBar) findViewById(R.id.progressbar_login_loading);
         final Button button_login = (Button) findViewById(R.id.button_login);
+        final ImageView fitfoodText = (ImageView) findViewById(R.id.fitfoodtext);
 
         final TextView text_TP_register = (TextView) findViewById(R.id.text_TP_register);
-        final TextView response_login = (TextView) findViewById(R.id.response_login);
-        final TextView text_response_register = (TextView) findViewById(R.id.text_response_register);
 
+        //NECESSAIRE AU TOAST
+        final Context context = getApplicationContext();
+        final int duration = Toast.LENGTH_SHORT;
 
         //ON CREER UN BUNDLE POUR RECUPERER LES MESSAGES PASSER ENTRE LES INTENTS
         Intent intent_tmp = getIntent();
@@ -51,11 +55,12 @@ public class LoginActivity extends AppCompatActivity {
         if(bundle_tmp != null)
         {
 
-            String response_register = getString(R.string.login_text_after_register) + bundle_tmp.getString("response");
-            text_response_register.setTextColor(Color.parseColor("#96CA2D"));
+            String response_register = getString(R.string.login_text_after_register) + " " + bundle_tmp.getString("response");
             if(!response_register.isEmpty())
             {
-                text_response_register.setText(response_register);
+                //AFFICHAGE DE RETOUR DE REPONSE VIA TOAST
+                Toast toast = Toast.makeText(context, response_register, duration);
+                toast.show();
             }
         }
 
@@ -72,16 +77,6 @@ public class LoginActivity extends AppCompatActivity {
        button_login.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-
-               //ON EFFACE LES TEXTES DE RETOUR
-               if(text_response_register.getText() != "")
-               {
-                   text_response_register.setText("");
-               }
-               if(response_login.getText()!= "")
-               {
-                   response_login.setText("");
-               }
 
                    final String pseudo = edit_pseudo.getText().toString();
                    final String password = edit_password.getText().toString();
@@ -109,18 +104,21 @@ public class LoginActivity extends AppCompatActivity {
                                   edit_pseudo.setVisibility(View.VISIBLE);
                                   edit_password.setVisibility(View.VISIBLE);
                                   text_TP_register.setVisibility(View.VISIBLE);
+                                  fitfoodText.setVisibility(View.VISIBLE);
                                   String response_msg = jsonResponse.getString("error");
 
                                   if(response_msg.equals("pseudo"))
                                   {
-                                      response_login.setText(R.string.login_text_error_pseudo);
+                                      //AFFICHAGE D'ERREUR DE PSEUDO PAR UN TOAST
+                                      Toast toast = Toast.makeText(context, R.string.login_text_error_pseudo, duration);
+                                      toast.show();
                                   }
                                   if(response_msg.equals("password"))
                                   {
-                                      response_login.setText(R.string.login_text_error_password);
+                                      //AFFICHAGE D'ERREUR DE MOT DE PASSE PAR UN TOAST
+                                      Toast toast = Toast.makeText(context, R.string.login_text_error_password, duration);
+                                      toast.show();
                                   }
-
-                                  response_login.setTextColor(Color.parseColor("#B9121B"));
                                   edit_password.setText("");
                               }
                           }  catch (JSONException e) {
@@ -137,6 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                    edit_pseudo.setVisibility(View.GONE);
                    edit_password.setVisibility(View.GONE);
                    text_TP_register.setVisibility(View.GONE);
+                   fitfoodText.setVisibility(View.GONE);
                    progressbar_login.setVisibility(View.VISIBLE);
                //ON ENVOIE LA REQUETE AU SERVEUR PHP
                    queue.add(loginRequest);

@@ -26,7 +26,7 @@
     <string name="login_tp_register">Register</string>
     <string name="login_text_error_pseudo">Wrong username</string>
     <string name="login_text_error_password">Wrong password</string>
-    <string name="login_text_after_register">Thanks for signing up </string>
+    <string name="login_text_after_register">Successfully signed up ! You can log in now.</string>
 
 
 
