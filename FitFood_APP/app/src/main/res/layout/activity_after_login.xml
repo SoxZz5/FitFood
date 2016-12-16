@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/login_background"
+        android:id="@+id/imageView2"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="25dp"
+        android:background="@color/black_overlay_75"
+        android:layout_marginLeft="25dp"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/after_login_tv_title"
+            android:textSize="24sp"
+            android:textStyle="normal|bold|italic"
+            android:textAlignment="center"
+            android:text="@string/after_login_tv_title"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:padding="10dp" />
+
+        <TextView
+            android:text="@string/after_login_tv_moreinfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/after_login_tv_moreinfo"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:padding="10dp"
+            android:textSize="12sp"
+            android:textColor="@color/colorButton_G" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/form_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="15dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/after_login_errorname"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/after_login_errorsurname"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.20"
+                android:layout_marginBottom="15dp">
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:id="@+id/after_login_et_name"
+                    android:layout_weight="1"
+                    android:background="@android:drawable/editbox_dropdown_dark_frame"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="18sp"
+                    android:hint="@string/after_login_et_name"
+                    android:paddingLeft="10dp" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:id="@+id/after_login_et_surname"
+                    android:layout_weight="1"
+                    android:background="@android:drawable/editbox_dropdown_dark_frame"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="18sp"
+                    android:hint="@string/after_login_et_surname"
+                    android:paddingLeft="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.30">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/after_login_errorpseudo"
+                    android:layout_weight="0.10"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:id="@+id/after_login_et_pseudo"
+                    android:layout_weight="0.40"
+                    android:background="@android:drawable/editbox_dropdown_dark_frame"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="18sp"
+                    android:hint="@string/after_login_et_pseudo"
+                    android:paddingLeft="10dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/after_login_tv_diet"
+                android:layout_weight="0.10"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textColor="@color/colorButton_G"
+                android:textSize="16sp"
+                android:textStyle="normal|bold"
+                android:text="@string/after_login_tv_diet" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.10"
+                android:id="@+id/after_login_rg_diet">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp">
+
+                    <RadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/after_login_bt_omnivore"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:text="@string/after_login_bt_omnivore" />
+
+                    <RadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/after_login_bt_vegetarian"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:text="@string/after_login_bt_vegetarian" />
+
+                    <RadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/after_login_bt_vegan"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:text="@string/after_login_bt_vegan"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </RadioGroup>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/after_login_bt_valid"
+                android:layout_weight="0.10"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:padding="15dp"
+                android:text="@string/after_login_bt_valid" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

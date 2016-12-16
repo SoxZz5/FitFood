@@ -19,13 +19,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 
 public class LoginActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
-    FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +33,14 @@ public class LoginActivity extends AppCompatActivity {
 
         //ON RECUPERE L'INSTANCE DE FIREBASE
         firebaseAuth = FirebaseAuth.getInstance();
+
+        //SI ON EST DEJA LOGGUER DANS L'APPLI ON PASSE AU MAIN
+        if(firebaseAuth.getCurrentUser() != null)
+        {
+            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         final EditText edit_mail = (EditText) findViewById(R.id.edit_mail);
         final EditText edit_password = (EditText) findViewById(R.id.edit_password);
@@ -104,24 +111,10 @@ public class LoginActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful())
                                 {
-                                    user = FirebaseAuth.getInstance().getCurrentUser();
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                                     startActivity(intent);
                                     progressbar_login.setVisibility(View.GONE);
                                     finish();
-                                    /*if(TextUtils.isEmpty(user.getDisplayName())) {
-                                        Intent intent = new Intent(LoginActivity.this, AfterLogin.class);
-                                        startActivity(intent);
-                                        progressbar_login.setVisibility(View.GONE);
-                                        finish();
-                                    }
-                                    else
-                                    {
-                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);  //TODO DEBUG THIS !
-                                        startActivity(intent);
-                                        progressbar_login.setVisibility(View.GONE);
-                                        finish();
-                                    }*/
                                 }
                                 else
                                 {

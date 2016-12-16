@@ -16,7 +16,12 @@ import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.Drawer;
@@ -28,6 +33,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import java.util.ArrayList;
 
 
+import konid.soxzz5.fitfood.firebase_fitfood.AfterLogin;
 import konid.soxzz5.fitfood.fitfood_fragment.AddRecipeFragment;
 
 
@@ -42,17 +48,43 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //ON SET LA VIEW SUR LA LAYOUT DU MAIN
+        setContentView(R.layout.activity_main);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference("user");
+        if(databaseReference != null) {
+            databaseReference.orderByKey().addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    if (dataSnapshot != null) {
+                        Log.d("Child_Add", dataSnapshot.getKey());
+                        Log.d("Child_Pseudo", dataSnapshot.child(user.getUid()).child("user_information").getKey());
+                    }
+                }
 
-        if(firebaseAuth.getCurrentUser() == null)
-        {
-            Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-            startActivity(intent);
-            finish();
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
         }
-
-        setContentView(R.layout.activity_main);
         //ON EST DEJA CONNECTER
         //drawableTag PERMET DE SAVOIR QUELLE FRAGMENT LANCER ET LA GESTION DE LA TOOLBAR
         drawableTag=1;
@@ -117,6 +149,9 @@ public class MainActivity extends AppCompatActivity {
                                 if(drawableTag!=1)
                                 {
                                     drawableTag=1;
+                                    Intent intent = new Intent(MainActivity.this,AfterLogin.class);
+                                    startActivity(intent);
+                                    finish();
                                 }
                             }
 

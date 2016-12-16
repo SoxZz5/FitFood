@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/step_pager_tab_height"
+        android:background="@color/material_drawer_dark_selected"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"></LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/material_drawer_dark_selected">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/step3_tv_nbwho"
+            android:textSize="18sp"
+            android:layout_marginLeft="15dp"
+            android:textStyle="normal|bold"
+            android:textColor="@color/md_green_A700"
+            android:textAlignment="viewStart"
+            android:layout_marginTop="10dp"
+            android:text="@string/step3_tv_nbwho" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp">
+
+            <TextView
+                android:text="@string/step3_tv_forwho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/step3_tv_forwho"
+                android:layout_weight="1"
+                android:textColor="@color/material_drawer_dark_primary_text"
+                android:textAlignment="viewStart"
+                android:layout_marginLeft="25dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/step3_et_nbwho"
+                android:layout_weight="1"
+                android:hint="@string/step3_et_nbwho"
+                android:textAlignment="center"
+                android:maxLength="2" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:id="@+id/step3_et_forwho"
+                android:layout_weight="1"
+                android:hint="@string/step3_et_forwho"
+                android:textAlignment="center"
+                android:maxLength="20" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/step3_tv_prepare"
+            android:textSize="18sp"
+            android:layout_marginLeft="15dp"
+            android:textStyle="normal|bold"
+            android:textColor="@color/md_green_A700"
+            android:textAlignment="viewStart"
+            android:text="@string/step3_tv_prepare" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/step3_et_prephour"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:hint="@string/step3_et_prephour"
+                android:textAlignment="center"
+                android:maxLength="2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/step3_tv_prephour"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/step3_tv_prephour"
+                android:textColor="@color/material_drawer_dark_primary_text"
+                android:textAlignment="center" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/step3_et_prepminute"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:hint="@string/step3_et_prepminute"
+                android:textAlignment="center"
+                android:maxLength="2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/step3_tv_prepminute"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/step3_tv_prepminute"
+                android:textColor="@color/material_drawer_dark_primary_text"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/step3_tv_heat"
+            android:textSize="18sp"
+            android:layout_marginLeft="15dp"
+            android:textStyle="normal|bold"
+            android:textColor="@color/md_green_A700"
+            android:textAlignment="viewStart"
+            android:layout_marginTop="10dp"
+            android:text="@string/step3_tv_heat" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/step3_et_heathour"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:hint="@string/step3_et_heathour"
+                android:textAlignment="center"
+                android:maxLength="2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/step3_tv_heathour"
+                android:text="@string/step3_tv_heathour"
+                android:textColor="@color/material_drawer_dark_primary_text"
+                android:textAlignment="center" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/step3_et_heatminute"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:hint="@string/step3_et_heatminute"
+                android:textAlignment="center"
+                android:maxLength="2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/step3_tv_heatminute"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/step3_tv_heatminute"
+                android:textColor="@color/material_drawer_dark_primary_text"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/step3_info_forwho"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textSize="12sp"
+        android:textColor="@color/md_green_A700"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:text="@string/step3_info_forwho" />
+
+</LinearLayout>
