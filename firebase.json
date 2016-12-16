@@ -1,0 +1,14 @@
+{
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": {
+    "public": "php",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.php"
+      }
+    ]
+  }
+}

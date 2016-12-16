@@ -1,5 +1,6 @@
 package konid.soxzz5.fitfood;
 
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -7,17 +8,21 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
 
 import java.util.List;
 
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Ingredient;
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Item;
+import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_final;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step1;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step2;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step3;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step4;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step5;
+
 
 /**
  * Created by Soxzer on 08/12/2016.
@@ -39,6 +44,7 @@ public class AddRecipe extends AppCompatActivity {
     List<Ingredient> alIngrendients;
     List<Item> alSteps;
 
+    int nbIngredients;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +60,14 @@ public class AddRecipe extends AppCompatActivity {
         final FrameLayout stepinfo4 = (FrameLayout) findViewById(R.id.stepinfo4);
         final FrameLayout stepinfo5 = (FrameLayout) findViewById(R.id.stepinfo5);
         final TextView info_error = (TextView) findViewById(R.id.recipeadd_info_error);
+        final LinearLayout layout_steper = (LinearLayout) findViewById(R.id.step_layout_steper);
+        final LinearLayout layout_title = (LinearLayout) findViewById(R.id.step_layout_title);
+        final LinearLayout step_container = (LinearLayout) findViewById(R.id.step_container);
 
         final TextView title = (TextView) findViewById(R.id.recipeadd_wizard_title);
-        Button next = (Button) findViewById(R.id.wizard_bt_next);
-        Button prev = (Button) findViewById(R.id.wizard_bt_prev);
+        final Button next = (Button) findViewById(R.id.wizard_bt_next);
+        final Button prev = (Button) findViewById(R.id.wizard_bt_prev);
+        final Button valid_final = (Button) findViewById(R.id.wizard_bt_final);
 
         step = 1;
 
@@ -66,6 +76,7 @@ public class AddRecipe extends AppCompatActivity {
         final addrecipe_step3 step3 = new addrecipe_step3();
         final addrecipe_step4 step4 = new addrecipe_step4();
         final addrecipe_step5 step5 = new addrecipe_step5();
+        final addrecipe_final step_final= new addrecipe_final();
 
         if(step == 1)
         {
@@ -135,7 +146,6 @@ public class AddRecipe extends AppCompatActivity {
                         stepinfo5.setBackgroundResource(R.color.material_drawer_dark_selected);
                         stepinfo4.setBackgroundResource(R.color.colorAccent);
                         transaction.commit();
-                        step4.setIngredients(alIngrendients);
                         break;
                 }
             }
@@ -275,6 +285,7 @@ public class AddRecipe extends AppCompatActivity {
                     case 4:
                         boolean validate_ingredient=false;
                         alIngrendients = step4.getIngredients();
+                        nbIngredients = step4.getNbIngredient();
                         if(alIngrendients != null)
                         {
                             validate_ingredient = true;
@@ -306,11 +317,33 @@ public class AddRecipe extends AppCompatActivity {
 
                         if(validate_steps)
                         {
-                        //TODO UPLOAD IMAGE TO SERVER SEE ADDRECIPE_WIZARD_FINAL
+                            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                            transaction.replace(R.id.step_container, step_final);
+                            step = 6;
+                            next.setVisibility(View.GONE);
+                            layout_steper.setVisibility(View.GONE);
+                            layout_title.setVisibility(View.GONE);
+                            prev.setVisibility(View.GONE);
+                            valid_final.setVisibility(View.VISIBLE);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+                            params.weight = 0.1f;
+                            step_container.setLayoutParams(params);
+                            transaction.commit();
                         }
                         break;
                 }
 
+            }
+        });
+
+        valid_final.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(step == 6)
+                {
+                    
+                }
             }
         });
 

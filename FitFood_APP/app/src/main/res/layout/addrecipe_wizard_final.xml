@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,43 +10,61 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.90"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="15dp">
+        android:layout_weight="0.90">
 
-        <Button
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/wizard_bt_choose"
-            android:text="@string/wizard_bt_choose" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_menu_gallery"
+                android:id="@+id/wizard_bt_choose"
+                android:layout_weight="1"
+                android:background="?android:attr/galleryItemBackground"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:tintMode="multiply"
+                android:tint="@color/colorButton_G"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:padding="10dp"
+                android:backgroundTintMode="src_over"
+                android:backgroundTint="@color/black_overlay_65" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_menu_camera"
+                android:id="@+id/wizard_bt_take"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="?android:attr/galleryItemBackground"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:tintMode="multiply"
+                android:tint="@color/colorButton_G"
+                android:backgroundTintMode="src_over"
+                android:backgroundTint="@color/black_overlay_65"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:padding="10dp" />
+
+        </LinearLayout>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/wizard_iv_final" />
+            android:id="@+id/wizard_iv_final"
+            android:padding="25dp"
+            android:layout_margin="25dp" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/wizard_bt_upload"
-            android:text="@string/wizard_bt_upload" />
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.10">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/wizard_bt_final"
-            android:layout_weight="1"
-            android:text="@string/wizard_final"
-            android:textColor="@color/accent"
-            android:background="@color/material_drawer_dark_selected"
-            android:layout_gravity="bottom" />
-    </LinearLayout>
 </LinearLayout>
