@@ -40,7 +40,7 @@
     <string name="register_hint_mail">Adresse e-mail</string>
     <string name="register_error_mail">Adresse e-mail invalide</string>
     <string name="register_hint_password">Mot de passe</string>
-    <string name="register_error_password">Doit contenir au moins une majuscule, un chiffre et un caractère spécial</string>
+    <string name="register_error_password">Doit contenir au moins une minuscule, une majuscule et un chiffre</string>
     <string name="register_hint_confirm_password">Confirmer le mot de passe</string>
     <string name="register_error_confirm_password">Les mots de passes sont différents</string>
     <string name="register_valid_confirm_password">Les mots de passes sont valides</string>

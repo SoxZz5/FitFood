@@ -11,7 +11,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srcCompat="@drawable/"
+        app:srcCompat="@drawable/login_background"
         android:id="@+id/imageView"
         android:scaleType="centerCrop"
         android:layout_alignParentTop="true"
@@ -33,12 +33,11 @@
             android:layout_height="0dp"
             android:layout_weight="9"
             android:backgroundTintMode="src_in"
-            android:background="@drawable/loginform"
             android:weightSum="16"
             android:layout_marginTop="80dp"
             android:layout_marginBottom="80dp"
-            android:paddingRight="15dp"
-            android:paddingLeft="15dp">
+            android:paddingRight="30dp"
+            android:paddingLeft="30dp">
 
             <TextView
                 android:text="@string/register_text_title"
@@ -47,7 +46,7 @@
                 android:id="@+id/textview_title"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textAlignment="gravity"
-                android:gravity="top|center_horizontal"
+                android:gravity="bottom|center_horizontal"
                 android:layout_weight="2"
                 android:textColor="@color/colorButton_G" />
 
@@ -204,26 +203,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/error_password"
-                android:layout_weight="0.7"
+                android:layout_weight="1.4"
                 android:textColor="#ff000e"
-                android:textSize="10sp"
-                android:gravity="center_vertical|center_horizontal" />
+                android:textSize="14sp"
+                android:gravity="center_vertical|center_horizontal"
+                android:visibility="gone" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="0.7"
-                android:gravity="bottom">
+                android:layout_weight="1.4"
+                android:gravity="bottom"
+                android:id="@+id/progressbarlayout"
+                android:visibility="visible">
 
                 <ProgressBar
                     android:id="@+id/progressbar_password"
                     style="@android:style/Widget.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="0dp"
                     android:max="100"
                     android:maxHeight="20dp"
                     android:minHeight="20dp"
@@ -231,7 +229,9 @@
                     android:progressDrawable="@drawable/progressbar"
                     android:secondaryProgress="100"
                     android:layout_weight="1"
-                    android:alpha="0.9" />
+                    android:alpha="0.9"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp" />
 
                 <TextView
                     android:id="@+id/text_password_strength"
@@ -245,7 +245,8 @@
                     android:layout_alignParentEnd="false"
                     android:layout_alignParentStart="false"
                     android:layout_alignParentTop="true"
-                    android:layout_alignBottom="@+id/progressbar_password" />
+                    android:layout_alignBottom="@+id/progressbar_password"
+                    android:textColor="@color/black_overlay_65" />
             </RelativeLayout>
 
             <EditText

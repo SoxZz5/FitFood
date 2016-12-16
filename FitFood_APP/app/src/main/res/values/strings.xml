@@ -41,7 +41,7 @@
     <string name="register_hint_mail">Email address</string>
     <string name="register_error_mail">Invalid email address</string>
     <string name="register_hint_password">Password</string>
-    <string name="register_error_password">Must contain at least an upper case letter , one digit and one special character</string>
+    <string name="register_error_password">\"Must contain at least one lower case letter, one upper case letter and one digit</string>
     <string name="register_hint_confirm_password">Confirm password</string>
     <string name="register_error_confirm_password">Passwords are different</string>
     <string name="register_valid_confirm_password">Passwords are valid</string>
