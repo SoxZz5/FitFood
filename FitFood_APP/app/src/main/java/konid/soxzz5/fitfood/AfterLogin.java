@@ -2,10 +2,12 @@ package konid.soxzz5.fitfood;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -14,20 +16,34 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.Transaction;
+import com.google.firebase.database.ValueEventListener;
 
 import konid.soxzz5.fitfood.firebase_fitfood.UserInformation;
+import konid.soxzz5.fitfood.fitfood_session.SessionManager;
 import konid.soxzz5.fitfood.utils.utils;
 
 public class AfterLogin extends AppCompatActivity {
     boolean validat_form = false;
     DatabaseReference databaseReference;
     String name,surname,pseudo;
-    int diet = -1;
+    int diet;
     FirebaseAuth firebaseAuth;
+    SessionManager sessionManager;
+    FirebaseUser user;
+    boolean isExist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +60,11 @@ public class AfterLogin extends AppCompatActivity {
 
         final Button bt_valid = (Button) findViewById(R.id.after_login_bt_valid);
         final RadioGroup rg_diet = (RadioGroup) findViewById(R.id.after_login_rg_diet);
-
+        diet = -1;
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
+        sessionManager = new SessionManager();
+        user = firebaseAuth.getCurrentUser();
 
         et_name.addTextChangedListener(new TextWatcher() {
             @Override
@@ -151,6 +169,7 @@ public class AfterLogin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(diet == -1){validat_form=false;}
+
                 if(validat_form)
                 {
                     name = et_name.getText().toString().trim();
@@ -171,7 +190,18 @@ public class AfterLogin extends AppCompatActivity {
         rg_diet.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                diet=i;
+                switch (i)
+                {
+                    case R.id.after_login_bt_omnivore:
+                        diet=1;
+                        break;
+                    case R.id.after_login_bt_vegetarian:
+                        diet=2;
+                        break;
+                    case R.id.after_login_bt_vegan:
+                        diet=3;
+                        break;
+                }
             }
         });
 
@@ -179,12 +209,15 @@ public class AfterLogin extends AppCompatActivity {
 
     public void saveUserInformation(){
 
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+
         String email = user.getEmail().toString().trim();
         UserInformation userInformation = new UserInformation(name,surname,pseudo,diet,email);
-
         databaseReference.child("users").child(user.getUid()).setValue(userInformation);
-
-        Toast.makeText(AfterLogin.this,getString(R.string.after_login_text_validate),Toast.LENGTH_LONG).show();
+        databaseReference.child("username").child(user.getUid()).setValue(pseudo);
+        sessionManager.setPreferences(AfterLogin.this,"first_sign","0");
+        Toast.makeText(AfterLogin.this, getString(R.string.after_login_text_validate), Toast.LENGTH_LONG).show();
     }
+
+    //TODO ADD FUNCTION TO MAKE UNIQUE PSEUDO WITH FIREBASE
+
 }

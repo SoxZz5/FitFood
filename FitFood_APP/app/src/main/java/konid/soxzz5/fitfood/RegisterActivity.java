@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import konid.soxzz5.fitfood.firebase_fitfood.UserInformation;
+import konid.soxzz5.fitfood.fitfood_session.SessionManager;
 import konid.soxzz5.fitfood.utils.utils;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -36,11 +37,15 @@ public class RegisterActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     String mail;
     String password;
+    SessionManager sessionManager;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_register);
+        sessionManager=new SessionManager();
 
         final EditText edit_mail = (EditText) findViewById(R.id.edit_mail);
         final EditText edit_password = (EditText) findViewById(R.id.edit_password);
@@ -154,7 +159,7 @@ public class RegisterActivity extends AppCompatActivity {
                     error_password_confirm.setText("");
 
                 }
-                else  if(utils.findMatch(edit_password_confirm.getText().toString(),"^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{5,}$") && edit_password.getText().toString().equals(edit_password_confirm.getText().toString()))
+                else  if(utils.findMatch(edit_password_confirm.getText().toString(),"^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{7,}$") && edit_password.getText().toString().equals(edit_password_confirm.getText().toString()))
                 {
                     validat_form = true;
                     error_password_confirm.setText(R.string.register_valid_confirm_password);
@@ -199,6 +204,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     intent.putExtra("response", mail);
                                     startActivity(intent);
                                     progressDialog.hide();
+                                    sessionManager.setPreferences(RegisterActivity.this,"first_sign","1");
                                     finish();
                                 }
                                 else

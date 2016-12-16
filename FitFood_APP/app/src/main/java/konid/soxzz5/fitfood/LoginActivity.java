@@ -2,6 +2,7 @@ package konid.soxzz5.fitfood;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import konid.soxzz5.fitfood.fitfood_session.SessionManager;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -30,6 +33,9 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseUser user;
     ProgressBar progressbar_login;
     LinearLayout block_form;
+    boolean first_login;
+    SessionManager sessionManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //ON RECUPERE L'INSTANCE DE FIREBASE
         firebaseAuth = FirebaseAuth.getInstance();
+        sessionManager = new SessionManager();
 
         final EditText edit_mail = (EditText) findViewById(R.id.edit_mail);
         final EditText edit_password = (EditText) findViewById(R.id.edit_password);
@@ -127,7 +134,8 @@ public class LoginActivity extends AppCompatActivity {
     private Intent LoginUser(){
         user = firebaseAuth.getCurrentUser();
         Intent intent;
-        if(TextUtils.isEmpty(user.getDisplayName()))
+        String first_sign = sessionManager.getPreferences(LoginActivity.this,"first_sign");
+        if(first_sign.equals("1"))
         {
             intent = new Intent(LoginActivity.this, AfterLogin.class);
         }

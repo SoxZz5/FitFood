@@ -17,6 +17,7 @@ import android.view.View;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.Drawer;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 
 
 import konid.soxzz5.fitfood.fitfood_fragment.AddRecipeFragment;
+import konid.soxzz5.fitfood.fitfood_session.SessionManager;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
     FirebaseUser user;
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        sessionManager = new SessionManager();
+
         if(user == null)
         {
             Intent intent = new Intent(MainActivity.this,LoginActivity.class);
@@ -53,9 +59,10 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            if(TextUtils.isEmpty(user.getDisplayName()))
+            String first_sign = sessionManager.getPreferences(MainActivity.this,"first_sign");
+            if(first_sign.equals("1"))
             {
-                Intent intent = new Intent(MainActivity.this, AfterLogin.class);
+                Intent intent = new Intent(MainActivity.this,AfterLogin.class);
                 startActivity(intent);
                 finish();
             }

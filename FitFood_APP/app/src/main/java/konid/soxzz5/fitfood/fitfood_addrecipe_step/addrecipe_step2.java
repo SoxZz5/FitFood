@@ -75,7 +75,33 @@ public class addrecipe_step2 extends Fragment
         rg_typedish.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                type=i;
+                switch (i)
+                {
+                    case R.id.step2_rb_starter:
+                        type = 1;
+                        break;
+                    case R.id.step2_rb_maincourse:
+                        type = 2;
+                        break;
+                    case R.id.step2_rb_dessert:
+                        type = 3;
+                        break;
+                    case R.id.step2_rb_sidedish:
+                        type = 4;
+                        break;
+                    case R.id.step2_rb_appetizer:
+                        type = 5;
+                        break;
+                    case R.id.step2_rb_drink:
+                        type = 6;
+                        break;
+                    case R.id.step2_rb_sweets:
+                        type = 7;
+                        break;
+                    case R.id.step2_rb_sauce:
+                        type = 8;
+                        break;
+                }
             }
         });
 

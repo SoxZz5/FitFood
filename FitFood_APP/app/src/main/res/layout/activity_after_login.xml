@@ -159,11 +159,7 @@
                 android:textStyle="normal|bold"
                 android:text="@string/after_login_tv_diet" />
 
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.10"
-                android:id="@+id/after_login_rg_diet">
+
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -172,7 +168,11 @@
                     android:layout_weight="1"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp">
-
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.10"
+                        android:id="@+id/after_login_rg_diet">
                     <RadioButton
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -197,9 +197,8 @@
                         android:layout_gravity="center_vertical|center_horizontal"
                         android:text="@string/after_login_bt_vegan"
                         android:textSize="14sp" />
+                    </RadioGroup>
                 </LinearLayout>
-
-            </RadioGroup>
 
             <Button
                 android:layout_width="match_parent"

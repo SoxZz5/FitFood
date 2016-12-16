@@ -1,0 +1,12 @@
+"diet": 
+  {
+    "1": {
+      "name": "Omnivore",
+    },
+    "2": {
+      "name": "Végétarien",
+    },
+	"3": {
+      "name": "Vegan",
+    }
+  }
