@@ -1,7 +1,9 @@
 package konid.soxzz5.fitfood;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,10 +12,23 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.List;
 
+import konid.soxzz5.fitfood.firebase_fitfood.Recipe;
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Ingredient;
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Item;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_final;
@@ -45,6 +60,14 @@ public class AddRecipe extends AppCompatActivity {
     List<Item> alSteps;
 
     int nbIngredients;
+
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
+    DatabaseReference databaseReference;
+    StorageReference firebaseStorage;
+
+    ProgressDialog mProgressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +76,11 @@ public class AddRecipe extends AppCompatActivity {
 
         setContentView(R.layout.addrecipe_wizard);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        firebaseStorage = FirebaseStorage.getInstance().getReference();
+        mProgressDialog = new ProgressDialog(this);
         //STEPINFO POUR SAVOIR A QUELLE ETAPE ON EST
         final FrameLayout stepinfo1 = (FrameLayout) findViewById(R.id.stepinfo1);
         final FrameLayout stepinfo2 = (FrameLayout) findViewById(R.id.stepinfo2);
@@ -342,7 +370,29 @@ public class AddRecipe extends AppCompatActivity {
             public void onClick(View view) {
                 if(step == 6)
                 {
+                    if(step_final.getFilePath() != null)
+                    {
+                        mProgressDialog.setMessage("Uploading ...");
+                        mProgressDialog.show();
+                        StorageReference new_filepath = firebaseStorage.child("Recipe_Image").child(firebaseUser.getUid()).child(step_final.getFilePath().getLastPathSegment());
+                        new_filepath.putFile(step_final.getFilePath()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                Toast.makeText(AddRecipe.this,"UPLOAD REUSSIE",Toast.LENGTH_LONG).show();
+                            }
+                        });
 
+                        mProgressDialog.setMessage("Sending recipe ...");
+                        DatabaseReference recipe_ref = databaseReference.child("recipe");
+                        DatabaseReference user_recipe_ref = databaseReference.child("user_recipe");
+                        DatabaseReference recipe_image_ref = databaseReference.child("recipe_image").push();
+
+                        recipe_image_ref.setValue(new_filepath.getPath());
+                        String newKey = recipe_image_ref.getKey().toString();
+                        user_recipe_ref.child(newKey).setValue(firebaseUser.getUid());
+                        Recipe recipe = new Recipe(sTitle, iCategory, iLevel, iType, iPrepareHour, iPrepareMinute, iHeatHour, iHeatMinute, sForWho, alIngredients, alSteps);
+                        recipe_ref.child(newKey).setValue(recipe);
+                    }
                 }
             }
         });

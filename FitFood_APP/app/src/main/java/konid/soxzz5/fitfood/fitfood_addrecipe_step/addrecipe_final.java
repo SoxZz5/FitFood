@@ -15,7 +15,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 
-
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
 
@@ -37,7 +40,8 @@ public class addrecipe_final extends Fragment implements View.OnClickListener{
     private int PICK_IMAGE_REQUEST = 1;
     private String KEY_IMAGE = "image";
     private int REQUEST_IMAGE_CAPTURE = 2;
-
+    private StorageReference storageReference;
+    private Uri filePath;
 
     @Nullable
     @Override
@@ -47,7 +51,7 @@ public class addrecipe_final extends Fragment implements View.OnClickListener{
         buttonChoose = (ImageView) v.findViewById(R.id.wizard_bt_choose);
         buttonTake = (ImageView) v.findViewById(R.id.wizard_bt_take);
         imageView = (ImageView) v.findViewById(R.id.wizard_iv_final);
-
+        storageReference = FirebaseStorage.getInstance().getReference();
         buttonChoose.setOnClickListener(this);
         buttonTake.setOnClickListener(this);
         return v;
@@ -65,7 +69,7 @@ public class addrecipe_final extends Fragment implements View.OnClickListener{
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri filePath = data.getData();
+            filePath = data.getData();
             try {
                 //Getting the Bitmap from Gallery
                 bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), filePath);
@@ -99,5 +103,9 @@ public class addrecipe_final extends Fragment implements View.OnClickListener{
         if (takePictureIntent.resolveActivity(getContext().getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
+    }
+
+    public Uri getFilePath() {
+        return filePath;
     }
 }
