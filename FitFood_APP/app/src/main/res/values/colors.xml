@@ -20,12 +20,8 @@
     <color name="black_overlay_50">#80000000</color>
     <color name="black_overlay_65">#a6000000</color>
     <color name="black_overlay_70">#B3000000</color>
-<<<<<<< HEAD
     <color name="black_overlay_75">#bf000000</color>
-=======
-    <color name="black_overlay_75">#BF000000</color>
 
->>>>>>> 0f41541bed4fb75187c97553250e1609ffdfef95
     <color name="colorButton_G">@color/md_green_A700</color>
 
 </resources>
