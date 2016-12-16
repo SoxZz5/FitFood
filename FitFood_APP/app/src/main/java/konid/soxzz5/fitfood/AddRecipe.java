@@ -41,7 +41,7 @@ public class AddRecipe extends AppCompatActivity {
     String sForWho;
     String sWho;
     int iNbWho;
-    List<Ingredient> alIngrendients;
+    List<Ingredient> alIngredients;
     List<Item> alSteps;
 
     int nbIngredients;
@@ -49,7 +49,7 @@ public class AddRecipe extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //ON ENLEVE LA STATUS BAR
+
 
         setContentView(R.layout.addrecipe_wizard);
 
@@ -284,9 +284,9 @@ public class AddRecipe extends AppCompatActivity {
 
                     case 4:
                         boolean validate_ingredient=false;
-                        alIngrendients = step4.getIngredients();
+                        alIngredients = step4.getIngredients();
                         nbIngredients = step4.getNbIngredient();
-                        if(alIngrendients != null)
+                        if(alIngredients != null)
                         {
                             validate_ingredient = true;
                         }

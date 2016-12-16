@@ -204,10 +204,13 @@ public class AfterLogin extends AppCompatActivity {
                 if(valid_pseudo)
                 {
                     pseudo = et_pseudo.getText().toString().trim();
+                    String pseudo_lowercase = pseudo.toLowerCase();
+                    Log.d("username","pseudo_lowercase = " + pseudo_lowercase);
                     if(mUsername != null){
                         for(int i = 0 ; i < mUsername.size(); i++)
                         {
-                            if(pseudo.equals(mUsername.get(i).toString()))
+                            Log.d("username","mUsername " + i + " = " + mUsername.toString().toLowerCase());
+                            if(pseudo_lowercase.equals(mUsername.get(i).toString().toLowerCase()))
                             {
                                 isExist = true;
                             }
@@ -217,6 +220,7 @@ public class AfterLogin extends AppCompatActivity {
                     {
                         Toast.makeText(AfterLogin.this,getString(R.string.register_error_confirm_pseudo),Toast.LENGTH_SHORT).show();
                         validat_form=false;
+                        isExist=false;
                     }
                 }
 

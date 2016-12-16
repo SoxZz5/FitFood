@@ -20,10 +20,10 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="25dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
         android:layout_centerVertical="true"
-        android:layout_marginTop="80dp">
+        android:layout_marginTop="100dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -97,7 +97,7 @@
                     android:inputType="textPersonName"
                     android:id="@+id/after_login_et_name"
                     android:layout_weight="1"
-                    android:background="@android:drawable/editbox_dropdown_dark_frame"
+                    android:background="@drawable/edittextcustom"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:textSize="18sp"
@@ -110,7 +110,7 @@
                     android:inputType="textPersonName"
                     android:id="@+id/after_login_et_surname"
                     android:layout_weight="1"
-                    android:background="@android:drawable/editbox_dropdown_dark_frame"
+                    android:background="@drawable/edittextcustom"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:textSize="18sp"
@@ -138,7 +138,7 @@
                     android:inputType="textPersonName"
                     android:id="@+id/after_login_et_pseudo"
                     android:layout_weight="0.40"
-                    android:background="@android:drawable/editbox_dropdown_dark_frame"
+                    android:background="@drawable/edittextcustom"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:textSize="18sp"
@@ -179,7 +179,8 @@
                         android:id="@+id/after_login_bt_omnivore"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical|center_horizontal"
-                        android:text="@string/after_login_bt_omnivore" />
+                        android:text="@string/after_login_bt_omnivore"
+                        android:button="?android:attr/listChoiceIndicatorMultiple" />
 
                     <RadioButton
                         android:layout_width="match_parent"
