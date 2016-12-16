@@ -16,6 +16,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,6 +34,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 import konid.soxzz5.fitfood.firebase_fitfood.UserInformation;
 import konid.soxzz5.fitfood.fitfood_session.SessionManager;
 import konid.soxzz5.fitfood.utils.utils;
@@ -44,6 +49,11 @@ public class AfterLogin extends AppCompatActivity {
     SessionManager sessionManager;
     FirebaseUser user;
     boolean isExist;
+    Firebase mref;
+    boolean valid_name = false;
+    boolean valid_surname = false;
+    boolean valid_pseudo = false;
+    ArrayList<String> mUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +75,27 @@ public class AfterLogin extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference();
         sessionManager = new SessionManager();
         user = firebaseAuth.getCurrentUser();
+        mUsername = new ArrayList<>();
+
+        Firebase.setAndroidContext(AfterLogin.this);
+        mref= new Firebase("https://fir-fitfood.firebaseio.com/username");
+        mref.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(com.firebase.client.DataSnapshot dataSnapshot, String s) {
+                String value = dataSnapshot.getValue(String.class);
+                mUsername.add(value);
+            }
+            @Override
+            public void onChildChanged(com.firebase.client.DataSnapshot dataSnapshot, String s) {}
+            @Override
+            public void onChildRemoved(com.firebase.client.DataSnapshot dataSnapshot) {}
+            @Override
+            public void onChildMoved(com.firebase.client.DataSnapshot dataSnapshot, String s) {}
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {}
+        });
+
+
 
         et_name.addTextChangedListener(new TextWatcher() {
             @Override
@@ -81,13 +112,13 @@ public class AfterLogin extends AppCompatActivity {
                 }
                 else if(utils.findMatch(et_name.getText().toString(),"^[A-Z][a-z-]{3,20}$"))
                 {
-                    validat_form = true;
+                    valid_name=true;
                     error_name.setText("");
                     et_name.setTextColor(Color.parseColor("#96CA2D"));
                 }
                 else
                 {
-                    validat_form = false;
+                    valid_name = false;
                     error_name.setText(R.string.register_error_name);
                     et_name.setTextColor(Color.parseColor("#FFFFFF"));
                 }
@@ -114,13 +145,13 @@ public class AfterLogin extends AppCompatActivity {
                 }
                 else if(utils.findMatch(et_surname.getText().toString(),"^[A-Z][a-z-]{3,20}$"))
                 {
-                    validat_form = true;
+                    valid_surname = true;
                     error_surname.setText("");
                     et_surname.setTextColor(Color.parseColor("#96CA2D"));
                 }
                 else
                 {
-                    validat_form = false;
+                    valid_surname = false;
                     error_surname.setText(R.string.register_error_surname);
                     et_surname.setTextColor(Color.parseColor("#FFFFFF"));
                 }
@@ -147,13 +178,13 @@ public class AfterLogin extends AppCompatActivity {
                 }
                 else if(utils.findMatch(et_pseudo.getText().toString(),"^[a-zA-Z0-9_-]{3,15}$"))
                 {
-                    validat_form = true;
+                    valid_pseudo = true;
                     error_pseudo.setText("");
                     et_pseudo.setTextColor(Color.parseColor("#96CA2D"));
                 }
                 else
                 {
-                    validat_form = false;
+                    valid_pseudo = false;
                     error_pseudo.setText(R.string.register_error_pseudo);
                     et_pseudo.setTextColor(Color.parseColor("#FFFFFF"));
                 }
@@ -169,12 +200,30 @@ public class AfterLogin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(diet == -1){validat_form=false;}
+                if(valid_pseudo && valid_surname && valid_name){validat_form=true;}
+                if(valid_pseudo)
+                {
+                    pseudo = et_pseudo.getText().toString().trim();
+                    if(mUsername != null){
+                        for(int i = 0 ; i < mUsername.size(); i++)
+                        {
+                            if(pseudo.equals(mUsername.get(i).toString()))
+                            {
+                                isExist = true;
+                            }
+                        }
+                    }
+                    if(isExist)
+                    {
+                        Toast.makeText(AfterLogin.this,getString(R.string.register_error_confirm_pseudo),Toast.LENGTH_SHORT).show();
+                        validat_form=false;
+                    }
+                }
 
                 if(validat_form)
                 {
                     name = et_name.getText().toString().trim();
                     surname = et_surname.getText().toString().trim();
-                    pseudo = et_pseudo.getText().toString().trim();
                     saveUserInformation();
                     Intent intent = new Intent(AfterLogin.this, MainActivity.class);
                     startActivity(intent);
@@ -217,7 +266,4 @@ public class AfterLogin extends AppCompatActivity {
         sessionManager.setPreferences(AfterLogin.this,"first_sign","0");
         Toast.makeText(AfterLogin.this, getString(R.string.after_login_text_validate), Toast.LENGTH_LONG).show();
     }
-
-    //TODO ADD FUNCTION TO MAKE UNIQUE PSEUDO WITH FIREBASE
-
 }
