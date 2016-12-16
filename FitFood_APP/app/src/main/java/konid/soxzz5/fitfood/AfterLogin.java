@@ -183,7 +183,7 @@ public class AfterLogin extends AppCompatActivity {
         String email = user.getEmail().toString().trim();
         UserInformation userInformation = new UserInformation(name,surname,pseudo,diet,email);
 
-        databaseReference.child("users").child(user.getUid()).child("user_information").setValue(userInformation);
+        databaseReference.child("users").child(user.getUid()).setValue(userInformation);
 
         Toast.makeText(AfterLogin.this,getString(R.string.after_login_text_validate),Toast.LENGTH_LONG).show();
     }
