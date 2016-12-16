@@ -74,6 +74,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
 
+        if(sessionManager.getPreferences(LoginActivity.this,"mail_sign") != null)
+        {
+            edit_mail.setText(sessionManager.getPreferences(LoginActivity.this,"mail_sign"));
+            edit_password.requestFocus();
+        }
+
         //BOUTON POUR ACCEDER A L'INSCRIPTION
         text_TP_register.setOnClickListener(new View.OnClickListener() {
             @Override
