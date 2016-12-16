@@ -58,14 +58,12 @@ public class RegisterActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         text_password_strength = (TextView) findViewById(R.id.text_password_strength);
         progressbar_password = (ProgressBar) findViewById(R.id.progressbar_password);
-<<<<<<< HEAD
 
         //Progress Bar invisible et Message d'erreur visible
         progressbarlayout.setVisibility(View.GONE);
         error_password.setVisibility(View.VISIBLE);
-=======
+
         progressDialog = new ProgressDialog(this);
->>>>>>> 6ceaa0a9269378b76c69df5d4610536fe81ebc85
 
         //DETECTION DU CHANGEMENT DE TEXT DANS LES EDITS
         edit_name.addTextChangedListener(new TextWatcher() {
