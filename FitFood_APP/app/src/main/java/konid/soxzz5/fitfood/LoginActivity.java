@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         final ProgressBar progressbar_login = (ProgressBar) findViewById(R.id.progressbar_login_loading);
         final Button button_login = (Button) findViewById(R.id.button_login);
         final ImageView fitfoodText = (ImageView) findViewById(R.id.fitfoodtext);
-
+        final LinearLayout block_form = (LinearLayout) findViewById(R.id.login_block_form);
         final TextView text_TP_register = (TextView) findViewById(R.id.text_TP_register);
 
         //NECESSAIRE AU TOAST, ON RECUPERE LE CONTEXT ET ON DEFINIT LA DUREE DU TOAST
@@ -107,6 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                                     user = FirebaseAuth.getInstance().getCurrentUser();
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
+                                    block_form.setVisibility(View.GONE);
                                     progressbar_login.setVisibility(View.GONE);
                                     finish();
                                     /*if(TextUtils.isEmpty(user.getDisplayName())) {
