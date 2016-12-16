@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +28,8 @@ public class LoginActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
+    ProgressBar progressbar_login;
+    LinearLayout block_form;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +41,10 @@ public class LoginActivity extends AppCompatActivity {
 
         final EditText edit_mail = (EditText) findViewById(R.id.edit_mail);
         final EditText edit_password = (EditText) findViewById(R.id.edit_password);
-        final ProgressBar progressbar_login = (ProgressBar) findViewById(R.id.progressbar_login_loading);
+        progressbar_login = (ProgressBar) findViewById(R.id.progressbar_login_loading);
         final Button button_login = (Button) findViewById(R.id.button_login);
         final ImageView fitfoodText = (ImageView) findViewById(R.id.fitfoodtext);
-        final LinearLayout block_form = (LinearLayout) findViewById(R.id.login_block_form);
+        block_form = (LinearLayout) findViewById(R.id.login_block_form);
         final TextView text_TP_register = (TextView) findViewById(R.id.text_TP_register);
 
         //NECESSAIRE AU TOAST, ON RECUPERE LE CONTEXT ET ON DEFINIT LA DUREE DU TOAST
@@ -105,33 +108,33 @@ public class LoginActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful())
                                 {
-                                    user = FirebaseAuth.getInstance().getCurrentUser();
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    Intent intent = LoginUser();
                                     startActivity(intent);
                                     block_form.setVisibility(View.GONE);
                                     progressbar_login.setVisibility(View.GONE);
                                     finish();
-                                    /*if(TextUtils.isEmpty(user.getDisplayName())) {
-                                        Intent intent = new Intent(LoginActivity.this, AfterLogin.class);
-                                        startActivity(intent);
-                                        progressbar_login.setVisibility(View.GONE);
-                                        finish();
-                                    }
-                                    else
-                                    {
-                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);  //TODO DEBUG THIS !
-                                        startActivity(intent);
-                                        progressbar_login.setVisibility(View.GONE);
-                                        finish();
-                                    }*/
                                 }
                                 else
                                 {
-
+                                    Toast.makeText(LoginActivity.this,"Erreur",Toast.LENGTH_LONG);
                                 }
                             }
                         });
                }
        });
+    }
+
+    private Intent LoginUser(){
+        user = firebaseAuth.getCurrentUser();
+        Intent intent;
+        if(TextUtils.isEmpty(user.getDisplayName()))
+        {
+            intent = new Intent(LoginActivity.this, AfterLogin.class);
+        }
+        else
+        {
+            intent = new Intent(LoginActivity.this, MainActivity.class);
+        }
+        return intent;
     }
 }

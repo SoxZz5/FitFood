@@ -44,12 +44,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         firebaseAuth = FirebaseAuth.getInstance();
-
-        if(firebaseAuth.getCurrentUser() == null)
+        user = firebaseAuth.getCurrentUser();
+        if(user == null)
         {
             Intent intent = new Intent(MainActivity.this,LoginActivity.class);
             startActivity(intent);
             finish();
+        }
+        else
+        {
+            if(TextUtils.isEmpty(user.getDisplayName()))
+            {
+                Intent intent = new Intent(MainActivity.this, AfterLogin.class);
+                startActivity(intent);
+                finish();
+            }
         }
 
         setContentView(R.layout.activity_main);
