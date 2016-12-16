@@ -4,6 +4,15 @@
     <color name="colorPrimaryDark">@color/material_drawer_dark_selected</color>
     <color name="colorAccent">@color/md_green_A700</color>
 
+    <color name="white_overlay_15">#26FFFFFF</color>
+    <color name="white_overlay_25">#40FFFFFF</color>
+    <color name="white_overlay_35">#59FFFFFF</color>
+    <color name="white_overlay_45">#73FFFFFF</color>
+    <color name="white_overlay_50">#80FFFFFF</color>
+    <color name="white_overlay_65">#A6FFFFFF</color>
+    <color name="white_overlay_70">#B3FFFFFF</color>
+    <color name="white_overlay_75">#BFFFFFFF</color>
+
     <color name="black_overlay_15">#26000000</color>
     <color name="black_overlay_25">#40000000</color>
     <color name="black_overlay_35">#59000000</color>
@@ -11,7 +20,12 @@
     <color name="black_overlay_50">#80000000</color>
     <color name="black_overlay_65">#a6000000</color>
     <color name="black_overlay_70">#B3000000</color>
+<<<<<<< HEAD
     <color name="black_overlay_75">#bf000000</color>
+=======
+    <color name="black_overlay_75">#BF000000</color>
+
+>>>>>>> 0f41541bed4fb75187c97553250e1609ffdfef95
     <color name="colorButton_G">@color/md_green_A700</color>
 
 </resources>

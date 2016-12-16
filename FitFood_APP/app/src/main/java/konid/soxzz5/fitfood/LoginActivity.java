@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 
         final TextView text_TP_register = (TextView) findViewById(R.id.text_TP_register);
 
-        //NECESSAIRE AU TOAST
+        //NECESSAIRE AU TOAST, ON RECUPERE LE CONTEXT ET ON DEFINIT LA DUREE DU TOAST
         final Context context = getApplicationContext();
         final int duration = Toast.LENGTH_SHORT;
 

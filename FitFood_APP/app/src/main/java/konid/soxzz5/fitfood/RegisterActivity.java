@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -49,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
         final TextView response_register = (TextView) findViewById(R.id.response_register);
         final TextView error_mail = (TextView) findViewById(R.id.error_mail);
         final TextView error_password = (TextView) findViewById(R.id.error_password);
+        final RelativeLayout progressbarlayout = (RelativeLayout) findViewById(R.id.progressbarlayout);
         final TextView error_password_confirm = (TextView) findViewById(R.id.error_password_confirm);
 
         //NOUVELLE INSTANCE DE FIREBASE
@@ -57,6 +59,11 @@ public class RegisterActivity extends AppCompatActivity {
 
         text_password_strength = (TextView) findViewById(R.id.text_password_strength);
         progressbar_password = (ProgressBar) findViewById(R.id.progressbar_password);
+
+        //Progress Bar invisible et Message d'erreur visible
+        progressbarlayout.setVisibility(View.GONE);
+        error_password.setVisibility(View.VISIBLE);
+
         progressDialog = new ProgressDialog(this);
 
         edit_mail.addTextChangedListener(new TextWatcher() {
@@ -105,17 +112,22 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(edit_password.getText().length()<=6)
+                if(edit_password.getText().length()<5) //Mot de passe trop court (inférieur à 6 caractères)
                 {
                     progressbar_password.setProgress(0);
                     text_password_strength.setText("");
-                    error_password.setText("");
+                    if(edit_password.getText().length()==0) error_password.setText("");
+                        else error_password.setText("Mot de passe trop court");
+                    progressbarlayout.setVisibility(View.GONE);
+                    error_password.setVisibility(View.VISIBLE);
                 }
-                else if(utils.findMatch(edit_password.getText().toString(),"((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})"))
-                {
+                else if(utils.findMatch(edit_password.getText().toString(),"^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{5,}$"))
+                { // ORIGINAL REGEX : "^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$"))
                     checkPassword(edit_password.getText().toString());
                     validat_form = true;
                     error_password.setText("");
+                    error_password.setVisibility(View.GONE);
+                    progressbarlayout.setVisibility(View.VISIBLE);
                 }
                 else
                 {
@@ -123,6 +135,8 @@ public class RegisterActivity extends AppCompatActivity {
                     text_password_strength.setText("");
                     validat_form = false;
                     error_password.setText(R.string.register_error_password);
+                    progressbarlayout.setVisibility(View.GONE);
+                    error_password.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -140,7 +154,7 @@ public class RegisterActivity extends AppCompatActivity {
                     error_password_confirm.setText("");
 
                 }
-                else  if(utils.findMatch(edit_password_confirm.getText().toString(),"((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})") && edit_password.getText().toString().equals(edit_password_confirm.getText().toString()))
+                else  if(utils.findMatch(edit_password_confirm.getText().toString(),"^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{5,}$") && edit_password.getText().toString().equals(edit_password_confirm.getText().toString()))
                 {
                     validat_form = true;
                     error_password_confirm.setText(R.string.register_valid_confirm_password);
