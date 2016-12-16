@@ -25,12 +25,10 @@
     <string name="login_title">Login</string>
     <string name="login_hint_password">Mot de passe</string>
     <string name="login_bt_connection">Connexion</string>
-    <string name="login_tp_register">S\'inscrire</string>
     <string name="login_text_error_mail">Merci d\'entrer un email</string>
     <string name="login_text_error_password">Merci d\'entrer un mot de passe valide</string>
     <string name="login_tp_register">Pas de compte ? Inscrivez-vous !</string>
     <string name="login_text_error_pseudo">Ce pseudo n\'existe pas</string>
-    <string name="login_text_error_password">Mauvais mot de passe</string>
     <string name="login_text_after_register">Inscription réussie ! Vous pouvez désormais vous connecter</string>
 
     <string name="after_login_tv_title">Bienvenue sur FitFood !</string>
