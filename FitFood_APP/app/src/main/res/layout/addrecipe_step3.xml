@@ -8,29 +8,20 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/step_pager_tab_height"
-        android:background="@color/material_drawer_dark_selected"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"></LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="50dp"
-        android:background="@color/material_drawer_dark_selected">
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/step3_tv_nbwho"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:layout_marginLeft="15dp"
             android:textStyle="normal|bold"
             android:textColor="@color/md_green_A700"
-            android:textAlignment="viewStart"
+            android:textAlignment="center"
             android:layout_marginTop="10dp"
             android:text="@string/step3_tv_nbwho" />
 
@@ -78,11 +69,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/step3_tv_prepare"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:layout_marginLeft="15dp"
             android:textStyle="normal|bold"
             android:textColor="@color/md_green_A700"
-            android:textAlignment="viewStart"
+            android:textAlignment="center"
             android:text="@string/step3_tv_prepare" />
 
         <LinearLayout
@@ -142,11 +133,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/step3_tv_heat"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:layout_marginLeft="15dp"
             android:textStyle="normal|bold"
             android:textColor="@color/md_green_A700"
-            android:textAlignment="viewStart"
+            android:textAlignment="center"
             android:layout_marginTop="10dp"
             android:text="@string/step3_tv_heat" />
 
@@ -203,19 +194,20 @@
                 android:textAlignment="center" />
         </LinearLayout>
 
-    </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/step3_info_forwho"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textSize="12sp"
+            android:textColor="@color/md_green_A700"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textAlignment="center"
+            android:layout_marginTop="10dp"
+            android:text="@string/step3_info_forwho"
+            android:layout_marginBottom="5dp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/step3_info_forwho"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textSize="12sp"
-        android:textColor="@color/md_green_A700"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:textAlignment="center"
-        android:layout_marginTop="10dp"
-        android:text="@string/step3_info_forwho" />
+    </LinearLayout>
 
 </LinearLayout>
