@@ -47,7 +47,15 @@
                 android:layout_weight="1"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:weightSum="6">
+                android:weightSum="6.5">
+
+                <ImageView
+                    android:id="@+id/fillElement"
+                    android:layout_weight="0.5"
+                    android:clickable="true"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_marginRight="10dp" />
 
                 <EditText
                     android:layout_width="0dp"
@@ -86,9 +94,7 @@
                     android:clickable="true"
                     android:layout_height="match_parent"
                     android:layout_width="0dp"
-                    android:layout_marginLeft="10dp"
-                    android:paddingTop="3dp"
-                    android:paddingBottom="3dp" />
+                    android:layout_marginLeft="10dp" />
 
             </LinearLayout>
 

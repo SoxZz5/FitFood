@@ -143,5 +143,6 @@
     <string name="step4_tv_de">De</string>
     <string name="step4_et_ingredient">Produits</string>
     <string name="step4_info_ingredient">Exemple: 2cl de lait, 200g de farine, 2 oeufs ...</string>
+    <string name="step4_tv_directions">Préparation</string>
 </resources>
 

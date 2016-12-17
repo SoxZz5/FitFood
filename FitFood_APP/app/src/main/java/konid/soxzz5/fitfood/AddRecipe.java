@@ -278,10 +278,10 @@ public class AddRecipe extends AppCompatActivity {
                         break;
 
                     case 3:
-                        boolean validate_prepare = true;
-                        boolean validate_heat = true;
-                        boolean validate_forwho = true;
-/*
+                        boolean validate_prepare = false;
+                        boolean validate_heat = false;
+                        boolean validate_forwho = false;
+
                         if(step3.getHeatminute() != -1)
                         {
                             iHeatHour = 0;
@@ -320,7 +320,7 @@ public class AddRecipe extends AppCompatActivity {
                         else
                         {
                             info_error.setText(getString(R.string.step_error_forwho));
-                        }*/
+                        }
                         if(validate_prepare && validate_heat && validate_forwho)
                         {
                             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -387,9 +387,9 @@ public class AddRecipe extends AppCompatActivity {
             }
         });
 
-        step=3;
+        /*step=4;
         next.callOnClick();
-        backgroundWizard.setImageResource(R.drawable.recipeadd_step3_background);
+        backgroundWizard.setImageResource(R.drawable.recipeadd_step3_background);*/
 
         valid_final.setOnClickListener(new View.OnClickListener() {
             @Override
