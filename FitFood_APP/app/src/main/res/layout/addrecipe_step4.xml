@@ -8,29 +8,20 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/step_pager_tab_height"
-        android:background="@color/material_drawer_dark_selected"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"></LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="50dp"
-        android:background="@color/material_drawer_dark_selected">
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/step4_tv_ingredient"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:layout_marginLeft="15dp"
             android:textStyle="normal|bold"
             android:textColor="@color/md_green_A700"
-            android:textAlignment="viewStart"
+            android:textAlignment="center"
             android:layout_marginTop="10dp"
             android:text="@string/step4_tv_ingredient" />
 

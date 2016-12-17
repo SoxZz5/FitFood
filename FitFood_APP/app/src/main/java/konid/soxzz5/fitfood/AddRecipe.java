@@ -12,6 +12,7 @@ import android.view.Window;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -105,6 +106,7 @@ public class AddRecipe extends AppCompatActivity {
         final LinearLayout layout_steper = (LinearLayout) findViewById(R.id.step_layout_steper);
         final LinearLayout layout_title = (LinearLayout) findViewById(R.id.step_layout_title);
         final LinearLayout step_container = (LinearLayout) findViewById(R.id.step_container);
+        final ImageView backgroundWizard = (ImageView) findViewById(R.id.backgroundWizard);
 
         final TextView title = (TextView) findViewById(R.id.recipeadd_wizard_title);
         final Button next = (Button) findViewById(R.id.wizard_bt_next);
@@ -150,8 +152,10 @@ public class AddRecipe extends AppCompatActivity {
                         transaction.commit();
                         step1.setCategory(iCategory);
                         step1.setTitle(sTitle);
+                        backgroundWizard.setImageResource(R.drawable.recipeadd_step_background);
                         break;
                     case 3:
+                        //backgroundWizard.setImageResource(R.drawable.recipeadd_step3_background);
                         info_error.setText("");
                         transaction = getSupportFragmentManager().beginTransaction();
                         transaction.replace(R.id.step_container, step2);
@@ -162,6 +166,7 @@ public class AddRecipe extends AppCompatActivity {
                         transaction.commit();
                         step2.setLevel(iLevel);
                         step2.setType(iType);
+                        backgroundWizard.setImageResource(R.drawable.recipeadd_step2_background);
                         break;
                     case 4:
                         info_error.setText("");
@@ -178,6 +183,7 @@ public class AddRecipe extends AppCompatActivity {
                         step3.setPrephour(iPrepareHour);
                         step3.setForwho(sWho);
                         step3.setNbwho(iNbWho);
+                        backgroundWizard.setImageResource(R.drawable.recipeadd_step3_background);
                         break;
                     case 5:
                         info_error.setText("");
@@ -223,6 +229,7 @@ public class AddRecipe extends AppCompatActivity {
 
                     if (validate_category && validate_title)
                     {
+                        backgroundWizard.setImageResource(R.drawable.recipeadd_step2_background);
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                         transaction.replace(R.id.step_container, step2);
                         step = 2;
@@ -258,6 +265,8 @@ public class AddRecipe extends AppCompatActivity {
 
                         if(validate_type && validate_difficulty)
                         {
+
+                            backgroundWizard.setImageResource(R.drawable.recipeadd_step3_background);
                             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                             transaction.replace(R.id.step_container, step3);
                             step = 3;
