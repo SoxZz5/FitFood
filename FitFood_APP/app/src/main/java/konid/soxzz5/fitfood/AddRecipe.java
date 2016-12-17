@@ -68,10 +68,7 @@ public class AddRecipe extends AppCompatActivity {
 
     ProgressDialog mProgressDialog;
 
-    boolean validate_recipe = false;
     boolean validate_upload = false;
-    boolean validate_recipe_image = false;
-    boolean validate_user_recipe = false;
 
 
     @Override
@@ -386,7 +383,7 @@ public class AddRecipe extends AppCompatActivity {
 
                 if(step == 6)
                 {
-                    if(step_final.getFilePath() != null)
+                    if(step_final.getBitmap() != null)
                     {
                         mProgressDialog.setMessage("Uploading ...");
                         mProgressDialog.show();
