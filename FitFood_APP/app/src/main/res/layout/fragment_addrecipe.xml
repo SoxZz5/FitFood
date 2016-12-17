@@ -20,20 +20,27 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="150dp"
-            android:layout_marginTop="150dp"
-            android:padding="10dp"
-            android:background="@color/black_overlay_75">
+        android:padding="10dp"
+        android:elevation="1dp"
+        android:weightSum="20"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4.5"></LinearLayout>
 
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp">
+                android:layout_height="0dp"
+                android:layout_weight="2.2"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="right|center_vertical">
 
                 <com.mikepenz.iconics.view.IconicsImageView
                     android:layout_width="32dp"
@@ -46,27 +53,28 @@
                     android:layout_marginRight="5dp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="@string/recipeadd_text_selecttitle"
                     android:id="@+id/recipeadd_text_selecttitle"
                     android:layout_weight="1"
-                    android:textAlignment="textStart"
                     android:textStyle="normal|bold|italic"
                     android:textAllCaps="false"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp" />
+                    android:textSize="13sp"
+                    android:gravity="right|center_vertical"
+                    android:textAlignment="textStart" />
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:layout_weight="2.2"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
+                android:layout_marginBottom="5dp"
+                android:gravity="center_vertical">
 
                 <com.mikepenz.iconics.view.IconicsImageView
                     android:layout_width="32dp"
@@ -80,25 +88,26 @@
 
                 <TextView
                     android:text="@string/recipeadd_text_selectinfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:id="@+id/recipeadd_text_selectinfo"
                     android:layout_weight="1"
                     android:textAlignment="textStart"
                     android:textStyle="normal|bold|italic"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp" />
+                    android:textSize="13sp"
+                    android:gravity="center_vertical" />
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:layout_weight="2.2"
                 android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical">
 
                 <com.mikepenz.iconics.view.IconicsImageView
                     android:layout_width="32dp"
@@ -112,24 +121,35 @@
 
                 <TextView
                     android:text="@string/recipeadd_text_selectverif"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:id="@+id/recipeadd_text_selectverif"
                     android:layout_weight="1"
                     android:textAlignment="textStart"
                     android:textStyle="normal|bold|italic"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp" />
+                    android:textSize="13sp"
+                    android:gravity="center_vertical" />
             </LinearLayout>
 
             <Button
                 android:text="@string/recipeadd_bt_add"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:id="@+id/recipeadd_bt_submit"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="@drawable/loginroundedbutton"
+                android:layout_marginRight="110dp"
+                android:layout_marginLeft="110dp"
+                android:layout_marginBottom="50dp" />
 
-        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6.5"></LinearLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>
