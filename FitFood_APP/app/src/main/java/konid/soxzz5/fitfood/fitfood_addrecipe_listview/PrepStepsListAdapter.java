@@ -17,16 +17,16 @@ import konid.soxzz5.fitfood.R;
  * Created by Soxzer on 14/12/2016.
  */
 
-public class ListAdapter extends ArrayAdapter<Item> {
+public class PrepStepsListAdapter extends ArrayAdapter<Item> {
     private View.OnClickListener clickListener;
     private List<Item> items;
     private View convertView;
-    public ListAdapter(Context context, List<Item> items)
+    public PrepStepsListAdapter(Context context, List<Item> items)
     {
         super(context,0,items);
     }
 
-    public ListAdapter(Context context,List<Item> items, OnClickListener clickListener)
+    public PrepStepsListAdapter(Context context, List<Item> items, OnClickListener clickListener)
     {
         super(context,0,items);
         this.items = items;
@@ -43,12 +43,14 @@ public class ListAdapter extends ArrayAdapter<Item> {
         if(itemHolder == null)
         {
             itemHolder = new ItemViewHolder();
+            itemHolder.nbRowPrep = (TextView) convertView.findViewById(R.id.nbRowPrep);
             itemHolder.name = (TextView) convertView.findViewById(R.id.text);
             itemHolder.delete = (ImageView) convertView.findViewById(R.id.handler);
             convertView.setTag(itemHolder);
         }
 
         Item item = getItem(position);
+        itemHolder.nbRowPrep.setText(String.valueOf(item.getPosition()));
         itemHolder.name.setText(item.getName());
 
         setClickListeners(itemHolder.delete);
@@ -71,6 +73,7 @@ public class ListAdapter extends ArrayAdapter<Item> {
 }
 
 class ItemViewHolder{
+    public TextView nbRowPrep;
     public TextView name;
     public ImageView delete;
 }
