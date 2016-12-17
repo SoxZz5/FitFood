@@ -9,12 +9,12 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srcCompat="@drawable/login_background"
         android:id="@+id/imageView"
         android:scaleType="centerCrop"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        app:srcCompat="@drawable/recipeadd_step_background" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -22,7 +22,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/step_layout_steper"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -102,17 +103,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/recipeadd_wizard_title"
-            android:textColor="@color/colorAccent"
-            android:textSize="18sp"
+            android:textColor="@color/md_green_A700"
+            android:textSize="30sp"
             android:layout_marginLeft="2.5dp"
-            android:layout_marginTop="2.5dp" />
+            android:layout_marginTop="2.5dp"
+            android:text="kj"
+            android:textAlignment="center"
+            android:layout_marginBottom="8dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/recipeadd_info_error"
-            android:textColor="@color/md_deep_orange_A700"
-            android:layout_marginBottom="2.5dp" />
+            android:textColor="@color/invalidMessageRegister"
+            android:layout_marginBottom="2.5dp"
+            android:textAlignment="center" />
     </LinearLayout>
 
     <LinearLayout

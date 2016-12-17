@@ -8,145 +8,155 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/step_pager_tab_height"
-        android:background="@color/material_drawer_dark_selected"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"></LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="50dp"
-        android:background="@color/material_drawer_dark_selected">
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/step2_tv_title"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:layout_marginLeft="15dp"
             android:textStyle="normal|bold"
             android:textColor="@color/md_green_A700"
-            android:textAlignment="viewStart"
+            android:textAlignment="center"
             android:layout_marginTop="10dp"
             android:text="@string/step2_tv_title" />
 
-        <RadioGroup
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="15dp"
-            android:id="@+id/step2_rg_typedish"
-            android:orientation="vertical">
+            android:weightSum="1"
+            android:gravity="center_horizontal">
 
-            <RadioButton
+            <RadioGroup
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/step2_rb_starter"
-                android:layout_weight="1"
-                android:text="@string/step2_rb_starter"
-                android:textSize="12sp"
-                android:textColor="@color/material_drawer_dark_primary_text" />
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:id="@+id/step2_rg_typedish"
+                android:orientation="vertical">
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/step2_rb_maincourse"
-                android:layout_weight="1"
-                android:text="@string/step2_rb_maincourse"
-                android:textSize="12sp"
-                android:textColor="@color/material_drawer_dark_primary_text" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/step2_rb_starter"
+                    android:layout_weight="1"
+                    android:text="@string/step2_rb_starter"
+                    android:textSize="12sp"
+                    android:textColor="@color/material_drawer_dark_primary_text" />
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/step2_rb_dessert"
-                android:layout_weight="1"
-                android:text="@string/step2_rb_dessert"
-                android:textSize="12sp"
-                android:textColor="@color/material_drawer_dark_primary_text" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/step2_rb_maincourse"
+                    android:layout_weight="1"
+                    android:text="@string/step2_rb_maincourse"
+                    android:textSize="12sp"
+                    android:textColor="@color/material_drawer_dark_primary_text" />
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/step2_rb_sidedish"
-                android:layout_weight="1"
-                android:text="@string/step2_rb_sidedish"
-                android:textSize="12sp"
-                android:textColor="@color/material_drawer_dark_primary_text" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/step2_rb_dessert"
+                    android:layout_weight="1"
+                    android:text="@string/step2_rb_dessert"
+                    android:textSize="12sp"
+                    android:textColor="@color/material_drawer_dark_primary_text" />
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/step2_rb_appetizer"
-                android:layout_weight="1"
-                android:text="@string/step2_rb_appetizer"
-                android:textSize="12sp"
-                android:textColor="@color/material_drawer_dark_primary_text" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/step2_rb_sidedish"
+                    android:layout_weight="1"
+                    android:text="@string/step2_rb_sidedish"
+                    android:textSize="12sp"
+                    android:textColor="@color/material_drawer_dark_primary_text" />
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/step2_rb_drink"
-                android:layout_weight="1"
-                android:text="@string/step2_rb_drink"
-                android:textSize="12sp"
-                android:textColor="@color/material_drawer_dark_primary_text" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/step2_rb_appetizer"
+                    android:layout_weight="1"
+                    android:text="@string/step2_rb_appetizer"
+                    android:textSize="12sp"
+                    android:textColor="@color/material_drawer_dark_primary_text" />
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/step2_rb_sweets"
-                android:layout_weight="1"
-                android:text="@string/step2_rb_sweets"
-                android:textSize="12sp"
-                android:textColor="@color/material_drawer_dark_primary_text" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/step2_rb_drink"
+                    android:layout_weight="1"
+                    android:text="@string/step2_rb_drink"
+                    android:textSize="12sp"
+                    android:textColor="@color/material_drawer_dark_primary_text" />
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/step2_rb_sauce"
-                android:layout_weight="1"
-                android:text="@string/step2_rb_sauce"
-                android:textSize="12sp"
-                android:textColor="@color/material_drawer_dark_primary_text" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/step2_rb_sweets"
+                    android:layout_weight="1"
+                    android:text="@string/step2_rb_sweets"
+                    android:textSize="12sp"
+                    android:textColor="@color/material_drawer_dark_primary_text" />
 
-        </RadioGroup>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/step2_rb_sauce"
+                    android:layout_weight="1"
+                    android:text="@string/step2_rb_sauce"
+                    android:textSize="12sp"
+                    android:textColor="@color/material_drawer_dark_primary_text" />
 
-        <TextView
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/step2_tv_difficulty"
-            android:textSize="18sp"
-            android:layout_marginLeft="15dp"
-            android:textStyle="normal|bold"
-            android:textColor="@color/md_green_A700"
-            android:textAlignment="viewStart"
-            android:layout_marginTop="10dp"
-            android:text="@string/step2_tv_difficulty"
-            android:layout_weight="1" />
+            android:layout_height="match_parent"
+            android:weightSum="5"
+            android:elevation="2dp"
+            android:background="@drawable/roundbackground1">
 
-        <SeekBar
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="4"
-            android:progress="0"
-            android:id="@+id/step2_sb_difficulty"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/step2_tv_difficulty"
+                android:textSize="24sp"
+                android:layout_marginLeft="15dp"
+                android:textStyle="normal|bold"
+                android:textColor="@color/md_green_A700"
+                android:textAlignment="center"
+                android:layout_marginTop="10dp"
+                android:text="@string/step2_tv_difficulty"
+                android:layout_weight="2.5" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/step2_tv_info_difficulty"
-            android:textAlignment="center"
-            android:layout_marginBottom="15dp"
-            android:textColor="@color/material_drawer_dark_primary_text"
-            android:text="@string/step2_tv_info_0" />
+            <SeekBar
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:max="4"
+                android:progress="0"
+                android:id="@+id/step2_sb_difficulty"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/step2_tv_info_difficulty"
+                android:textAlignment="center"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/material_drawer_dark_primary_text"
+                android:text="@string/step2_tv_info_0"
+                android:layout_weight="1.5" />
+        </LinearLayout>
 
     </LinearLayout>
 
