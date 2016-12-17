@@ -108,10 +108,10 @@ public class LoginActivity extends AppCompatActivity {
                    }
 
                    button_login.setVisibility(View.GONE);
-                   edit_mail.setVisibility(View.GONE);
-                   edit_password.setVisibility(View.GONE);
-                   text_TP_register.setVisibility(View.GONE);
-                   fitfoodText.setVisibility(View.GONE);
+               edit_mail.setVisibility(View.GONE);
+               edit_password.setVisibility(View.GONE);
+               text_TP_register.setVisibility(View.GONE);
+               fitfoodText.setVisibility(View.GONE);
                    progressbar_login.setVisibility(View.VISIBLE);
 
                //ON APPELLE FIREBASE ET LA FONCTION SIGN IN AVEC UN ON COMPLETE LISTENER
@@ -129,6 +129,13 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                                 else
                                 {
+                                    button_login.setVisibility(View.VISIBLE);
+                                    edit_mail.setVisibility(View.VISIBLE);
+                                    edit_password.setVisibility(View.VISIBLE);
+                                    text_TP_register.setVisibility(View.VISIBLE);
+                                    fitfoodText.setVisibility(View.VISIBLE);
+                                    block_form.setVisibility(View.VISIBLE);
+                                    progressbar_login.setVisibility(View.GONE);
                                     Toast.makeText(LoginActivity.this,"Erreur",Toast.LENGTH_LONG);
                                 }
                             }
