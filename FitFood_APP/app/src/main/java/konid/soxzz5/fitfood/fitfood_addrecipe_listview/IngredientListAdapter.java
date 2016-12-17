@@ -46,6 +46,7 @@ public class IngredientListAdapter extends ArrayAdapter<Ingredient> {
         if(ingredientHolder == null)
         {
             ingredientHolder = new IngredientViewHolder();
+            ingredientHolder.nbRowIngredient = (TextView) convertView.findViewById(R.id.nbRowIngredient);
             ingredientHolder.quantity = (TextView) convertView.findViewById(R.id.quantity);
             ingredientHolder.ingredient = (TextView) convertView.findViewById(R.id.ingredient);
             ingredientHolder.delete = (ImageView) convertView.findViewById(R.id.handler);
@@ -54,6 +55,7 @@ public class IngredientListAdapter extends ArrayAdapter<Ingredient> {
 
         //ON MODIFIE LE HOLDER DE NOTRE ITEM
         Ingredient ingredient = getItem(position);
+        ingredientHolder.nbRowIngredient.setText(String.valueOf(ingredient.getPosition()));
         ingredientHolder.quantity.setText(ingredient.getName());
         ingredientHolder.ingredient.setText(ingredient.getQuantity());
 
@@ -85,6 +87,7 @@ public class IngredientListAdapter extends ArrayAdapter<Ingredient> {
 }
 
 class IngredientViewHolder{
+    public TextView nbRowIngredient;
     public TextView quantity;
     public TextView ingredient;
     public ImageView delete;

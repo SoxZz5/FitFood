@@ -9,8 +9,6 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="10dp">
 
         <TextView
@@ -22,7 +20,7 @@
             android:textColor="@color/md_green_A700"
             android:textAlignment="center"
             android:layout_marginTop="10dp"
-            android:text="@string/step4_tv_ingredient" />
+            android:text="@string/step4_tv_directions" />
 
         <LinearLayout
             android:orientation="vertical"

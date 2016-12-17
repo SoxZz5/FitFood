@@ -9,8 +9,6 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="10dp">
 
         <TextView
@@ -34,55 +32,69 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/step4_listview"
-                android:layout_margin="15dp"
-                android:padding="10dp"
                 android:layout_weight="2"
-                android:divider="@color/black_overlay_15" />
+                android:dividerHeight="0dp"
+                android:background="@drawable/listview"
+                android:elevation="0dp"
+                android:divider="#00ffffff"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:weightSum="6.5">
+
+                <ImageView
+                    android:id="@+id/fillElement"
+                    android:layout_weight="0.5"
+                    android:clickable="true"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_marginRight="10dp" />
 
                 <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:inputType="textPersonName"
                     android:id="@+id/step4_et_quantity"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="15dp"
-                    android:hint="@string/step4_et_quantity" />
+                    android:layout_weight="2.5"
+                    android:hint="@string/step4_et_quantity"
+                    android:textAlignment="center" />
 
                 <TextView
                     android:text="@string/step4_tv_de"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:id="@+id/step4_tv_de"
-                    android:layout_weight="1"
+                    android:layout_weight="0.5"
                     android:textColor="@color/material_drawer_dark_primary_text"
                     android:textAlignment="center"
                     android:textStyle="normal|bold"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:gravity="center_vertical" />
 
                 <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:inputType="textPersonName"
                     android:id="@+id/step4_et_ingredient"
-                    android:layout_weight="1"
-                    android:hint="@string/step4_et_ingredient" />
+                    android:layout_weight="2.5"
+                    android:hint="@string/step4_et_ingredient"
+                    android:textAlignment="center" />
 
                 <ImageView
                     app:srcCompat="@android:drawable/ic_menu_add"
                     android:id="@+id/step4_bt_add"
-                    android:layout_weight="1"
+                    android:layout_weight="0.5"
                     android:clickable="true"
                     android:layout_height="match_parent"
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:paddingTop="3dp"
-                    android:paddingBottom="3dp" />
+                    android:layout_width="0dp"
+                    android:layout_marginLeft="10dp" />
 
             </LinearLayout>
 

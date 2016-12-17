@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -54,6 +55,7 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
         final EditText et_quantity = (EditText) v.findViewById(R.id.step4_et_quantity);
         final EditText et_ingredient = (EditText) v.findViewById(R.id.step4_et_ingredient);
         final ImageView bt_add = (ImageView) v.findViewById(R.id.step4_bt_add);
+        final TextView nbRowIngredient = (TextView) v.findViewById(R.id.nbRowIngredient);
 
         ingredients = new ArrayList<Ingredient>();
         first_item =false;
@@ -110,7 +112,7 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
             @Override
             public void onClick(View view) {
                 if(valid_quantity && valid_ingredient) {
-                    ingredients.add(new Ingredient(quantity, ingredient));
+                    ingredients.add(new Ingredient(quantity, ingredient, getNbIngredient()+1));
                     et_quantity.setText("");
                     et_ingredient.setText("");
                     addToList();
@@ -121,12 +123,6 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
         });
         return v;
 
-    }
-
-    public void addIngredient(String quantity, String name)
-    {
-        ingredients.add(new Ingredient(quantity, name));
-        addToList();
     }
 
     public void onClick(View v){

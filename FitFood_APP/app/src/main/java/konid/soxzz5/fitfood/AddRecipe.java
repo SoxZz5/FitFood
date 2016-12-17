@@ -387,6 +387,10 @@ public class AddRecipe extends AppCompatActivity {
             }
         });
 
+        /*step=4;
+        next.callOnClick();
+        backgroundWizard.setImageResource(R.drawable.recipeadd_step3_background);*/
+
         valid_final.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
