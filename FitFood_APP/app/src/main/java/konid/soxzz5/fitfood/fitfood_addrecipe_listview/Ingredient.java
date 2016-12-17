@@ -7,14 +7,20 @@ package konid.soxzz5.fitfood.fitfood_addrecipe_listview;
 public class Ingredient {
     private String name;
     private String quantity;
+    private int position;
 
-    public Ingredient(String name, String quantity){
+    public Ingredient(String name, String quantity, int position){
+        this.position=position;
         this.name=name;
         this.quantity=quantity;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     public String getQuantity() {
