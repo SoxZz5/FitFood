@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.FragmentTransaction;
+import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
@@ -25,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.mikepenz.iconics.context.IconicsLayoutInflater;
 
 import java.util.List;
 
@@ -76,7 +78,6 @@ public class AddRecipe extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-
         setContentView(R.layout.addrecipe_wizard);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -94,7 +95,7 @@ public class AddRecipe extends AppCompatActivity {
         final LinearLayout layout_steper = (LinearLayout) findViewById(R.id.step_layout_steper);
         final LinearLayout layout_title = (LinearLayout) findViewById(R.id.step_layout_title);
         final LinearLayout step_container = (LinearLayout) findViewById(R.id.step_container);
-        final ImageView backgroundWizard = (ImageView) findViewById(R.id.backgroundWizard);
+        //final ImageView backgroundWizard = (ImageView) findViewById(R.id.backgroundWizard);
 
         final TextView title = (TextView) findViewById(R.id.recipeadd_wizard_title);
         final Button next = (Button) findViewById(R.id.wizard_bt_next);
@@ -132,6 +133,7 @@ public class AddRecipe extends AppCompatActivity {
                     case 2:
                         info_error.setText("");
                         transaction = getFragmentManager().beginTransaction();
+                        transaction.setCustomAnimations(R.animator.slide_in_right, R.animator.slide_out_left, 0, 0);
                         transaction.replace(R.id.step_container, step1);
                         step = 1;
                         title.setText(R.string.step1_title);
@@ -140,12 +142,13 @@ public class AddRecipe extends AppCompatActivity {
                         transaction.commit();
                         step1.setCategory(iCategory);
                         step1.setTitle(sTitle);
-                        backgroundWizard.setImageResource(R.drawable.recipeadd_step_background);
+                        //backgroundWizard.setImageResource(R.drawable.recipeadd_step_background);
                         break;
                     case 3:
                         //backgroundWizard.setImageResource(R.drawable.recipeadd_step3_background);
                         info_error.setText("");
                         transaction = getFragmentManager().beginTransaction();
+                        transaction.setCustomAnimations(R.animator.slide_in_right, R.animator.slide_out_left, 0, 0);
                         transaction.replace(R.id.step_container, step2);
                         step = 2;
                         title.setText(R.string.step2_title);
@@ -154,11 +157,12 @@ public class AddRecipe extends AppCompatActivity {
                         transaction.commit();
                         step2.setLevel(iLevel);
                         step2.setType(iType);
-                        backgroundWizard.setImageResource(R.drawable.recipeadd_step2_background);
+                        //backgroundWizard.setImageResource(R.drawable.recipeadd_step2_background);
                         break;
                     case 4:
                         info_error.setText("");
                         transaction = getFragmentManager().beginTransaction();
+                        transaction.setCustomAnimations(R.animator.slide_in_right, R.animator.slide_out_left, 0, 0);
                         transaction.replace(R.id.step_container, step3);
                         step = 3;
                         title.setText(R.string.step3_title);
@@ -171,17 +175,28 @@ public class AddRecipe extends AppCompatActivity {
                         step3.setPrephour(iPrepareHour);
                         step3.setForwho(sWho);
                         step3.setNbwho(iNbWho);
-                        backgroundWizard.setImageResource(R.drawable.recipeadd_step3_background);
+                        //backgroundWizard.setImageResource(R.drawable.recipeadd_step3_background);
                         break;
                     case 5:
                         info_error.setText("");
                         transaction = getFragmentManager().beginTransaction();
+                        transaction.setCustomAnimations(R.animator.slide_in_right, R.animator.slide_out_left, 0, 0);
                         transaction.replace(R.id.step_container, step4);
                         step=4;
                         title.setText(R.string.step4_title);
                         stepinfo5.setBackgroundResource(R.color.material_drawer_dark_selected);
                         stepinfo4.setBackgroundResource(R.color.colorAccent);
                         transaction.commit();
+                        break;
+                    case 6:
+                        layout_title.setVisibility(View.VISIBLE);
+                        next.setVisibility(View.VISIBLE);
+                        valid_final.setVisibility(View.GONE);
+                        stepinfo1.setBackgroundResource(R.color.material_drawer_dark_selected);
+                        stepinfo2.setBackgroundResource(R.color.material_drawer_dark_selected);
+                        stepinfo3.setBackgroundResource(R.color.material_drawer_dark_selected);
+                        stepinfo4.setBackgroundResource(R.color.material_drawer_dark_selected);
+                        stepinfo5.setBackgroundResource(R.color.colorAccent);
                         break;
                 }
             }
@@ -217,8 +232,9 @@ public class AddRecipe extends AppCompatActivity {
 
                     if (validate_category && validate_title)
                     {
-                        backgroundWizard.setImageResource(R.drawable.recipeadd_step2_background);
+                        //backgroundWizard.setImageResource(R.drawable.recipeadd_step2_background);
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
                         transaction.replace(R.id.step_container, step2);
                         step = 2;
                         title.setText(R.string.step2_title);
@@ -253,9 +269,9 @@ public class AddRecipe extends AppCompatActivity {
 
                         if(validate_type && validate_difficulty)
                         {
-
-                            backgroundWizard.setImageResource(R.drawable.recipeadd_step3_background);
+                            //backgroundWizard.setImageResource(R.drawable.recipeadd_step3_background);
                             FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
                             transaction.replace(R.id.step_container, step3);
                             step = 3;
                             title.setText(R.string.step3_title);
@@ -312,6 +328,7 @@ public class AddRecipe extends AppCompatActivity {
                         if(validate_prepare && validate_heat && validate_forwho)
                         {
                             FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
                             transaction.replace(R.id.step_container, step4);
                             step = 4;
                             title.setText(R.string.step4_title);
@@ -322,7 +339,7 @@ public class AddRecipe extends AppCompatActivity {
                         break;
 
                     case 4:
-                        boolean validate_ingredient=true;
+                        boolean validate_ingredient=false;
                         alIngredients = step4.getIngredients();
                         nbIngredients = step4.getNbIngredient();
                         if(alIngredients != null)
@@ -333,11 +350,12 @@ public class AddRecipe extends AppCompatActivity {
                         if(validate_ingredient)
                         {
                             FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
                             transaction.replace(R.id.step_container, step5);
                             step = 5;
                             title.setText(R.string.step5_title);
-                            //stepinfo4.setBackgroundResource(R.color.material_drawer_dark_selected);
-                            //stepinfo5.setBackgroundResource(R.color.colorAccent);
+                            stepinfo4.setBackgroundResource(R.color.material_drawer_dark_selected);
+                            stepinfo5.setBackgroundResource(R.color.colorAccent);
                             transaction.commit();
                         }
                         else
@@ -357,13 +375,18 @@ public class AddRecipe extends AppCompatActivity {
                         if(validate_steps)
                         {
                             FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                            transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right);
-                            transaction.replace(R.id.step_container, step_final, "detailFragment");
+                            transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
+                            transaction.replace(R.id.step_container, step_final);
                             step = 6;
                             next.setVisibility(View.GONE);
-                            layout_steper.setVisibility(View.GONE);
+                            //layout_steper.setVisibility(View.GONE);
+                            //prev.setVisibility(View.GONE);
+                            stepinfo1.setBackgroundResource(R.color.colorAccent);
+                            stepinfo2.setBackgroundResource(R.color.colorAccent);
+                            stepinfo3.setBackgroundResource(R.color.colorAccent);
+                            stepinfo4.setBackgroundResource(R.color.colorAccent);
+                            stepinfo5.setBackgroundResource(R.color.colorAccent);
                             layout_title.setVisibility(View.GONE);
-                            prev.setVisibility(View.GONE);
                             valid_final.setVisibility(View.VISIBLE);
                             transaction.commit();
                         }
@@ -373,9 +396,9 @@ public class AddRecipe extends AppCompatActivity {
             }
         });
 
-        step=4;
+        /*step=4;
         next.callOnClick();
-        backgroundWizard.setImageResource(R.drawable.recipeadd_step3_background);
+        backgroundWizard.setImageResource(R.drawable.recipeadd_step3_background);*/
 
         valid_final.setOnClickListener(new View.OnClickListener() {
             @Override
