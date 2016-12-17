@@ -77,10 +77,7 @@ public class AddRecipe extends AppCompatActivity {
 
     ProgressDialog mProgressDialog;
 
-    boolean validate_recipe = false;
     boolean validate_upload = false;
-    boolean validate_recipe_image = false;
-    boolean validate_user_recipe = false;
 
 
     @Override
