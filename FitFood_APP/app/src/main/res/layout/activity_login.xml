@@ -60,7 +60,7 @@
                 android:layout_weight="3"
                 android:text="@string/login_bt_connection"
                 android:gravity="center_vertical|center_horizontal"
-                android:textColor="@color/colorButton_G"
+                android:textColor="@color/md_light_green_50"
                 android:textSize="36sp"
                 android:elevation="0dp" />
 
@@ -135,7 +135,8 @@
                     android:layout_height="match_parent"
                     android:id="@+id/button_login"
                     android:background="@drawable/loginroundedbutton"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:elevation="1dp" />
             </FrameLayout>
 
             <TextView

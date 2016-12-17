@@ -3,7 +3,7 @@
     <item android:state_pressed="true" >
         <shape>
             <solid
-                android:color="@color/colorButton_G" />
+                android:color="@color/colorButton_GLight" />
             <corners
                 android:radius="6dp" />
         </shape>
@@ -11,7 +11,7 @@
     <item>
         <shape>
             <solid
-                android:color="@color/colorButton_G" />
+                android:color="@color/colorButton_GLight" />
             <corners
                 android:radius="6dp" />
         </shape>

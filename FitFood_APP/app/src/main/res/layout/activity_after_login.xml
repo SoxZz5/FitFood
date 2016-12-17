@@ -29,71 +29,77 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/after_login_tv_title"
-            android:textSize="24sp"
-            android:textStyle="normal|bold|italic"
+            android:textSize="30sp"
             android:textAlignment="center"
             android:text="@string/after_login_tv_title"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColor="@color/md_light_green_50" />
 
         <TextView
             android:text="@string/after_login_tv_moreinfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/after_login_tv_moreinfo"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:padding="10dp"
             android:textSize="12sp"
-            android:textColor="@color/colorButton_G" />
+            android:textColor="@color/colorButton_G"
+            android:textAlignment="center" />
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/form_content"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:weightSum="15"
             android:layout_marginBottom="20dp"
-            android:layout_marginTop="15dp">
+            android:paddingBottom="50dp">
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.10">
+                android:layout_height="0dp"
+                android:layout_weight="1.3">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:id="@+id/after_login_errorname"
                     android:layout_weight="1"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/invalidMessageRegister"
+                    android:gravity="top|center_vertical" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:id="@+id/after_login_errorsurname"
                     android:layout_weight="1"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/invalidMessageRegister"
+                    android:gravity="center_vertical" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.20"
-                android:layout_marginBottom="15dp">
+                android:layout_height="0dp"
+                android:layout_weight="2">
 
                 <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:inputType="textPersonName"
                     android:id="@+id/after_login_et_name"
                     android:layout_weight="1"
@@ -102,11 +108,11 @@
                     android:layout_marginRight="10dp"
                     android:textSize="18sp"
                     android:hint="@string/after_login_et_name"
-                    android:paddingLeft="10dp" />
+                    android:gravity="center_vertical|center_horizontal" />
 
                 <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:inputType="textPersonName"
                     android:id="@+id/after_login_et_surname"
                     android:layout_weight="1"
@@ -115,22 +121,24 @@
                     android:layout_marginRight="10dp"
                     android:textSize="18sp"
                     android:hint="@string/after_login_et_surname"
-                    android:paddingLeft="10dp" />
+                    android:gravity="center_vertical|center_horizontal" />
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/after_login_errorpseudo"
+                android:layout_weight="0.10"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/invalidMessageRegister"
+                android:gravity="center_horizontal" />
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.30">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/after_login_errorpseudo"
-                    android:layout_weight="0.10"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp" />
+                android:layout_height="0dp"
+                android:layout_weight="2">
 
                 <EditText
                     android:layout_width="match_parent"
@@ -139,33 +147,34 @@
                     android:id="@+id/after_login_et_pseudo"
                     android:layout_weight="0.40"
                     android:background="@drawable/edittextcustom"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
                     android:textSize="18sp"
                     android:hint="@string/after_login_et_pseudo"
-                    android:paddingLeft="10dp" />
+                    android:gravity="center_vertical|center_horizontal" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:id="@+id/after_login_tv_diet"
-                android:layout_weight="0.10"
+                android:layout_weight="1.5"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:textColor="@color/colorButton_G"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="normal|bold"
-                android:text="@string/after_login_tv_diet" />
+                android:text="@string/after_login_tv_diet"
+                android:gravity="center_horizontal" />
 
 
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:layout_weight="5"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp">
                     <RadioGroup
@@ -180,7 +189,7 @@
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical|center_horizontal"
                         android:text="@string/after_login_bt_omnivore"
-                        android:button="?android:attr/listChoiceIndicatorMultiple" />
+                        android:button="?android:attr/listChoiceIndicatorSingle" />
 
                     <RadioButton
                         android:layout_width="match_parent"
@@ -188,7 +197,8 @@
                         android:id="@+id/after_login_bt_vegetarian"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical|center_horizontal"
-                        android:text="@string/after_login_bt_vegetarian" />
+                        android:text="@string/after_login_bt_vegetarian"
+                        android:button="?android:attr/listChoiceIndicatorSingle" />
 
                     <RadioButton
                         android:layout_width="match_parent"
@@ -197,20 +207,21 @@
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical|center_horizontal"
                         android:text="@string/after_login_bt_vegan"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:button="?android:attr/listChoiceIndicatorSingle" />
                     </RadioGroup>
                 </LinearLayout>
 
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:id="@+id/after_login_bt_valid"
-                android:layout_weight="0.10"
+                android:layout_weight="2"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:padding="15dp"
-                android:text="@string/after_login_bt_valid" />
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
+                android:text="@string/after_login_bt_valid"
+                android:background="@drawable/loginroundedbutton" />
 
         </LinearLayout>
 

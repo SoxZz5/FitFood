@@ -45,7 +45,7 @@
                 android:textAlignment="gravity"
                 android:gravity="bottom|center_horizontal"
                 android:layout_weight="2"
-                android:textColor="@color/colorButton_G"
+                android:textColor="@color/md_light_green_50"
                 android:textSize="36sp" />
 
             <TextView

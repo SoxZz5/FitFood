@@ -32,7 +32,7 @@
     <string name="login_text_after_register">Inscription réussie ! Vous pouvez désormais vous connecter</string>
 
     <string name="after_login_tv_title">Bienvenue sur FitFood !</string>
-    <string name="after_login_tv_moreinfo">Dernière étape, nous avons besoin d\'ajouter des informations à votre profile</string>
+    <string name="after_login_tv_moreinfo">Dernière étape, nous avons besoin d\'ajouter des informations à votre profil</string>
     <string name="after_login_et_name">Nom</string>
     <string name="after_login_et_surname">Prénom</string>
     <string name="after_login_et_pseudo">Pseudo</string>
@@ -71,7 +71,7 @@
 
     <string name="recipeadd_text_title">Proposer une recette</string>
     <string name="recipeadd_text_selecttitle">Choisissez un titre pertinent décrivant votre recette avec clarté à la communauté.</string>
-    <string name="recipeadd_text_selectinfo">N\'oubliez pas de renseigner les mesures de vos ingrédients ainsi que les allergènes.</string>
+    <string name="recipeadd_text_selectinfo">N\'oubliez pas de renseigner les mesures de vos ingrédients ainsi que les éventuels allergènes.</string>
     <string name="recipeadd_text_selectverif">Avant de proposer une recette, vérifiez bien que celle-ci n\'existe pas déjà sur notre plateforme.</string>
     <string name="recipeadd_bt_add">proposer</string>
 
