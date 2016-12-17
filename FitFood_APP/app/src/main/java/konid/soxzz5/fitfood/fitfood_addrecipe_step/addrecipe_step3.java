@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import konid.soxzz5.fitfood.R;
 import konid.soxzz5.fitfood.utils.utils;
@@ -60,8 +62,9 @@ public class addrecipe_step3 extends Fragment{
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(et_prephour.getText().toString()!="") {
-                    if (Integer.parseInt(et_prephour.getText().toString()) >= 0) {
+                if(!TextUtils.isEmpty(et_prephour.getText().toString())) {
+                    if (Integer.parseInt(et_prephour.getText().toString()) >= 0)
+                    {
                         prephour = Integer.parseInt(et_prephour.getText().toString());
                     }
                 }
@@ -81,7 +84,7 @@ public class addrecipe_step3 extends Fragment{
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(et_prepminute.getText().toString() != "") {
+                if(!TextUtils.isEmpty(et_prepminute.getText().toString())) {
                     if (Integer.parseInt(et_prepminute.getText().toString()) >= 0) {
                         prepminute = Integer.parseInt(et_prepminute.getText().toString());
                     }
@@ -102,7 +105,7 @@ public class addrecipe_step3 extends Fragment{
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(et_heathour.getText().toString()!= "") {
+                if(!TextUtils.isEmpty(et_heathour.getText().toString())) {
                     if (Integer.parseInt(et_heathour.getText().toString()) >= 0) {
                         heathour = Integer.parseInt(et_heathour.getText().toString());
                     }
@@ -123,7 +126,7 @@ public class addrecipe_step3 extends Fragment{
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(et_heatminute.getText().toString()!="") {
+                if(!TextUtils.isEmpty(et_heatminute.getText().toString())) {
                     if (Integer.parseInt(et_heatminute.getText().toString()) >= 0) {
                         heatminute = Integer.parseInt(et_heatminute.getText().toString());
                     }
@@ -149,8 +152,8 @@ public class addrecipe_step3 extends Fragment{
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(et_nbwho.getText().toString() != " ")
-                {//TODO CORRECT VERIF HERE ! USE utils FINDMATCH :)
+                if(!TextUtils.isEmpty(et_nbwho.getText().toString()))
+                {
                     if (Integer.parseInt(et_nbwho.getText().toString()) >= 0)
                     {
                         nbwho = Integer.parseInt(et_nbwho.getText().toString());
@@ -167,7 +170,7 @@ public class addrecipe_step3 extends Fragment{
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(et_forwho.getText().toString()!="") {
+                if(!TextUtils.isEmpty(et_forwho.getText().toString())) {
                     if (utils.findMatch(et_forwho.getText().toString(), "^[\\s\\w]{4,30}$")) {
                         forwho = et_forwho.getText().toString();
                     }
