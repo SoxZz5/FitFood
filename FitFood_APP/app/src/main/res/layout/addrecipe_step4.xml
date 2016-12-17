@@ -18,7 +18,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/step4_tv_ingredient"
             android:textSize="24sp"
-            android:layout_marginLeft="15dp"
             android:textStyle="normal|bold"
             android:textColor="@color/md_green_A700"
             android:textAlignment="center"

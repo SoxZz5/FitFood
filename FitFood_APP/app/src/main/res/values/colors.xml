@@ -24,6 +24,7 @@
 
     <color name="colorButton_G">@color/md_green_A700</color>
     <color name="colorButton_GLight">#41a541</color>
+    <color name="colorButton_GAlpha">#a31fa618</color>
     <color name="invalidMessageRegister">#ff000e</color>
 
 </resources>
