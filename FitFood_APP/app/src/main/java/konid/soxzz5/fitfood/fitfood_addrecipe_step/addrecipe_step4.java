@@ -28,6 +28,8 @@ import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Ingredient;
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.IngredientListAdapter;
 import konid.soxzz5.fitfood.utils.utils;
 
+import static konid.soxzz5.fitfood.utils.utils.accentedCharacters;
+
 /**
  * Created by Soxzer on 12/12/2016.
  */
@@ -96,11 +98,8 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(utils.findMatch(et_quantity.getText().toString(),"^([0-9])+([\\s]{1}[\\s\\w]{1,30})$"))
-                {
-                    quantity = et_quantity.getText().toString();
-                    valid_quantity=true;
-                }else if (utils.findMatch(et_quantity.getText().toString(),"^[0-9]{1,3}$"))
+                String regex_match = "^(([0-9]+)([\\s]{1})([\\sA-z" + accentedCharacters + "]{3,30})|([0-9]{1,3}))$";
+                if(utils.findMatch(et_quantity.getText().toString(),regex_match))
                 {
                     quantity = et_quantity.getText().toString();
                     valid_quantity=true;
@@ -110,7 +109,8 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
         bt_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(valid_quantity && valid_ingredient) {
+                if(valid_quantity && valid_ingredient)
+                {
                     ingredients.add(new Ingredient(quantity, ingredient, getNbIngredient()+1));
                     et_quantity.setText("");
                     et_ingredient.setText("");
