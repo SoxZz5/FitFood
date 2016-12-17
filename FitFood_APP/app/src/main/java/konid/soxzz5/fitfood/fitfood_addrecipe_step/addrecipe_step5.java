@@ -1,43 +1,27 @@
 package konid.soxzz5.fitfood.fitfood_addrecipe_step;
 
-import android.app.Activity;
-import android.app.ListActivity;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.database.CharArrayBuffer;
-import android.database.ContentObserver;
-import android.database.Cursor;
-import android.database.DataSetObserver;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.app.Fragment;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import konid.soxzz5.fitfood.R;
-import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Item;
-import konid.soxzz5.fitfood.fitfood_addrecipe_listview.ListAdapter;
+import konid.soxzz5.fitfood.fitfood_addrecipe_listview.PrepStep;
+import konid.soxzz5.fitfood.fitfood_addrecipe_listview.PrepStepsListAdapter;
 import konid.soxzz5.fitfood.utils.utils;
 import android.widget.AdapterView.OnItemClickListener;
 import android.view.View.OnClickListener;
-import static android.R.attr.data;
 
 
 /**
@@ -51,20 +35,21 @@ import static android.R.attr.data;
 public class addrecipe_step5 extends Fragment implements OnClickListener, OnItemClickListener {
 
     ListView mListView;
-    List<Item> items;
+    List<PrepStep> prepSteps;
     String step;
     boolean first_item;
-    ListAdapter adapter;
+    PrepStepsListAdapter adapter;
     boolean valid_step;
+    int nbItem;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.addrecipe_step5, container, false);
-
+        nbItem = 0;
         mListView = (ListView) v.findViewById(R.id.step5_listview);
         final EditText et_step = (EditText) v.findViewById(R.id.step5_et_step);
         final ImageView bt_add = (ImageView) v.findViewById(R.id.step5_bt_add);
-        items = new ArrayList<Item>();
+        prepSteps = new ArrayList<PrepStep>();
         first_item =false;
 
         valid_step=false;
@@ -92,7 +77,7 @@ public class addrecipe_step5 extends Fragment implements OnClickListener, OnItem
             @Override
             public void onClick(View view) {
                 if(valid_step) {
-                    items.add(new Item(step));
+                    prepSteps.add(new PrepStep(step,getnbItem()+1));
                     addToList();
                     valid_step=false;
                     et_step.setText("");
@@ -104,9 +89,10 @@ public class addrecipe_step5 extends Fragment implements OnClickListener, OnItem
 
     private void addToList()
     {
+        nbItem++;
         if(!first_item)
         {
-            adapter = new ListAdapter(getContext(),items,this);
+            adapter = new PrepStepsListAdapter(getContext(), prepSteps,this);
             mListView.setAdapter(adapter);
             first_item=true;
         }
@@ -116,11 +102,13 @@ public class addrecipe_step5 extends Fragment implements OnClickListener, OnItem
         }
     }
 
+    //Actualisation de la liste
     @Override
     public void onClick(View v) {
         int position = (Integer) v.getTag(R.id.key_position);
         if(v.getId() == R.id.handler){
-            items.remove(position);
+            nbItem--;
+            prepSteps.remove(position);
             adapter.notifyDataSetChanged();
         }
     }
@@ -130,8 +118,12 @@ public class addrecipe_step5 extends Fragment implements OnClickListener, OnItem
         //NOTHING TO DO
     }
 
-    public List<Item> getItems() {
-        return items;
+    public List<PrepStep> getPrepSteps() {
+        return prepSteps;
+    }
+
+    public int getnbItem() {
+        return nbItem;
     }
 }
 

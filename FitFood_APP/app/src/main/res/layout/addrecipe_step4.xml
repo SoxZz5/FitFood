@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/container">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/recipeadd_step4_background"
+        android:id="@+id/background"
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -26,13 +36,13 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="2">
+            android:weightSum="10">
 
             <ListView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:id="@+id/step4_listview"
-                android:layout_weight="2"
+                android:layout_weight="8.7"
                 android:dividerHeight="0dp"
                 android:background="@drawable/listview"
                 android:elevation="0dp"
@@ -43,19 +53,11 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:weightSum="6.5">
-
-                <ImageView
-                    android:id="@+id/fillElement"
-                    android:layout_weight="0.5"
-                    android:clickable="true"
-                    android:layout_height="match_parent"
-                    android:layout_width="0dp"
-                    android:layout_marginRight="10dp" />
 
                 <EditText
                     android:layout_width="0dp"
@@ -71,7 +73,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:id="@+id/step4_tv_de"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.8"
                     android:textColor="@color/material_drawer_dark_primary_text"
                     android:textAlignment="center"
                     android:textStyle="normal|bold"
@@ -90,17 +92,16 @@
                 <ImageView
                     app:srcCompat="@android:drawable/ic_menu_add"
                     android:id="@+id/step4_bt_add"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.7"
                     android:clickable="true"
-                    android:layout_height="match_parent"
                     android:layout_width="0dp"
-                    android:layout_marginLeft="10dp" />
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:id="@+id/step4_info_ingredient"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textSize="12sp"
@@ -110,10 +111,10 @@
                 android:textAlignment="center"
                 android:layout_marginTop="10dp"
                 android:text="@string/step4_info_ingredient"
-                android:layout_weight="1"
+                android:layout_weight="0.5"
                 android:layout_marginBottom="10dp" />
         </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

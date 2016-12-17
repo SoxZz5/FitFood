@@ -2,8 +2,8 @@ package konid.soxzz5.fitfood.fitfood_addrecipe_step;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.app.Fragment;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -55,7 +55,6 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
         final EditText et_quantity = (EditText) v.findViewById(R.id.step4_et_quantity);
         final EditText et_ingredient = (EditText) v.findViewById(R.id.step4_et_ingredient);
         final ImageView bt_add = (ImageView) v.findViewById(R.id.step4_bt_add);
-        final TextView nbRowIngredient = (TextView) v.findViewById(R.id.nbRowIngredient);
 
         ingredients = new ArrayList<Ingredient>();
         first_item =false;
@@ -128,10 +127,12 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
     public void onClick(View v){
         int position = (Integer) v.getTag(R.id.key_position);
         if(v.getId() == R.id.handler){
+            nbIngredient--;
             ingredients.remove(position);
             adapter.notifyDataSetChanged();
         }
     }
+    //Actualisation de la liste
     private void addToList()
     {
         nbIngredient++;

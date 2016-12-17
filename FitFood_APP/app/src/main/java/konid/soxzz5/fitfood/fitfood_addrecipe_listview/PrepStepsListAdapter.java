@@ -17,19 +17,19 @@ import konid.soxzz5.fitfood.R;
  * Created by Soxzer on 14/12/2016.
  */
 
-public class ListAdapter extends ArrayAdapter<Item> {
+public class PrepStepsListAdapter extends ArrayAdapter<PrepStep> {
     private View.OnClickListener clickListener;
-    private List<Item> items;
+    private List<PrepStep> prepSteps;
     private View convertView;
-    public ListAdapter(Context context, List<Item> items)
+    public PrepStepsListAdapter(Context context, List<PrepStep> prepSteps)
     {
-        super(context,0,items);
+        super(context,0, prepSteps);
     }
 
-    public ListAdapter(Context context,List<Item> items, OnClickListener clickListener)
+    public PrepStepsListAdapter(Context context, List<PrepStep> prepSteps, OnClickListener clickListener)
     {
-        super(context,0,items);
-        this.items = items;
+        super(context,0, prepSteps);
+        this.prepSteps = prepSteps;
         this.clickListener = clickListener;
     }
 
@@ -39,17 +39,19 @@ public class ListAdapter extends ArrayAdapter<Item> {
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.addrecipe_step5_listitem,parent, false);
         }
-        ItemViewHolder itemHolder = (ItemViewHolder) convertView.getTag();
+        PrepstepsViewHolder itemHolder = (PrepstepsViewHolder) convertView.getTag();
         if(itemHolder == null)
         {
-            itemHolder = new ItemViewHolder();
+            itemHolder = new PrepstepsViewHolder();
+            itemHolder.nbRowPrep = (TextView) convertView.findViewById(R.id.nbRowPrep);
             itemHolder.name = (TextView) convertView.findViewById(R.id.text);
             itemHolder.delete = (ImageView) convertView.findViewById(R.id.handler);
             convertView.setTag(itemHolder);
         }
 
-        Item item = getItem(position);
-        itemHolder.name.setText(item.getName());
+        PrepStep prepStep = getItem(position);
+        itemHolder.nbRowPrep.setText(String.valueOf(prepStep.getPosition()));
+        itemHolder.name.setText(prepStep.getName());
 
         setClickListeners(itemHolder.delete);
 
@@ -70,7 +72,8 @@ public class ListAdapter extends ArrayAdapter<Item> {
 
 }
 
-class ItemViewHolder{
+class PrepstepsViewHolder {
+    public TextView nbRowPrep;
     public TextView name;
     public ImageView delete;
 }
