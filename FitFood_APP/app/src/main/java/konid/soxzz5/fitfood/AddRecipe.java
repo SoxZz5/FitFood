@@ -393,7 +393,7 @@ public class AddRecipe extends AppCompatActivity {
 
                 if(step == 6)
                 {
-                    if(step_final.getFilePath() != null)
+                    if(step_final.getBitmap() != null)
                     {
                         mProgressDialog.setMessage("Uploading ...");
                         mProgressDialog.show();

@@ -1,0 +1,27 @@
+"recipe_type": 
+  {
+    "1": {
+      "name": "starter",
+    },
+    "2": {
+      "name": "main_dish",
+    },
+	"3": {
+      "name": "dessert",
+    }
+	"4": {
+      "name": "side_dish",
+    }
+	"5": {
+      "name": "appetizer",
+    }
+	"6": {
+      "name": "drink",
+    }
+	"7": {
+      "name": "sweet",
+    }
+	"8": {
+      "name": "sauce",
+    }
+  }

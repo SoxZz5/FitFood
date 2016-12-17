@@ -1,0 +1,5 @@
+{
+  "allergen" : [ null, "oeufs", "arrachide", "poisson", "lait", "soja", "boeuf", "crustacés", "moutarde", "noisettes", "noix de coco", "porc", "poulet", "ail", "tournesol", "carotte", "amande", "pêche", "blé", "tomate" ],
+  "diet" : [ null, "omnivorous", "vegetarian", "vegan" ],
+  "recipe_type" : [ null, "starter", "main_dish", "dessert", "side_dish", "appetizer", "drink", "sweet", "sauce" ],
+}
