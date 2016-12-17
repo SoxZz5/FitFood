@@ -89,6 +89,7 @@ public class addrecipe_final extends Fragment implements View.OnClickListener{
         }
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            filePath = data.getData();
             Bundle extras = data.getExtras();
             Bitmap b = (Bitmap) extras.get("data");
             Bitmap resized = get_Resized_Bitmap(b,(int)(b.getWidth()*0.9),(int)(b.getHeight()*0.9));
