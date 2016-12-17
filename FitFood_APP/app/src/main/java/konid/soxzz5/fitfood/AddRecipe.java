@@ -25,8 +25,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -390,82 +393,36 @@ public class AddRecipe extends AppCompatActivity {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                 mProgressDialog.hide();
-                                Toast.makeText(AddRecipe.this,"Upload Recipe",Toast.LENGTH_LONG).show();
                                 mProgressDialog.setMessage("Sending recipe image ...");
                                 mProgressDialog.hide();
+                                validate_upload=true;
                             }
                         });
 
                         DatabaseReference recipe_ref = databaseReference.child("recipe");
                         DatabaseReference user_recipe_ref = databaseReference.child("user_recipe");
                         DatabaseReference recipe_image_ref = databaseReference.child("recipe_image").push();
+                        mProgressDialog.setMessage("Sending recipe image ...");
                         mProgressDialog.show();
-                        recipe_image_ref.setValue(new_filepath.getPath(), new Firebase.CompletionListener() {
-                            @Override
-                            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
-                                if (firebaseError == null)
-                                {
-                                    validate_recipe_image = true;
-
-                                }
-                                if(!validate_recipe_image)
-                                {
-                                    mProgressDialog.hide();
-                                    Toast.makeText(AddRecipe.this,"Error recipe_image",Toast.LENGTH_SHORT).show();
-                                    validate_upload=false;
-                                }
-                            }
-                        });
-
-
+                        recipe_image_ref.setValue(new_filepath.getPath());
+                        mProgressDialog.hide();
                         mProgressDialog.setMessage("Sending user to recipe ...");
                         mProgressDialog.show();
                         String newKey = recipe_image_ref.getKey().toString();
-                        user_recipe_ref.child(newKey).setValue(firebaseUser.getUid(), new Firebase.CompletionListener() {
-                            @Override
-                            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
-                                if (firebaseError == null)
-                                {
-                                    validate_user_recipe=true;
-                                }
-                                if(!validate_user_recipe)
-                                {
-                                    mProgressDialog.hide();
-                                    Toast.makeText(AddRecipe.this,"Error user_recipe",Toast.LENGTH_SHORT).show();
-                                    validate_upload = false;
-                                }
-                            }
-                        });
-
+                        user_recipe_ref.child(newKey).setValue(firebaseUser.getUid());
+                        mProgressDialog.hide();
                         mProgressDialog.setMessage("Sending recipe ...");
                         mProgressDialog.show();
                         Recipe recipe = new Recipe(sTitle, iCategory, iLevel, iType, iPrepareHour, iPrepareMinute, iHeatHour, iHeatMinute, sForWho, alIngredients, alSteps);
-                        recipe_ref.child(newKey).setValue(recipe, new Firebase.CompletionListener() {
-                            @Override
-                            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
-                                if (firebaseError == null)
-                                {
-                                    validate_recipe = true;
-                                }
-                                if(!validate_recipe)
-                                {
-                                    mProgressDialog.hide();
-                                    Toast.makeText(AddRecipe.this,"Error recipe",Toast.LENGTH_SHORT).show();
-                                    validate_upload = false;
-                                }
-                                if(validate_upload)
-                                {
-                                    mProgressDialog.hide();
-                                    Toast.makeText(AddRecipe.this,"Recette ajouter à la BDD",Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(AddRecipe.this,MainActivity.class);
-                                    startActivity(intent);
-                                }
-                            }
-                        });
+                        recipe_ref.child(newKey).setValue(recipe);
+                        recipe_ref.child(newKey).child("validate").setValue(false);
+                        mProgressDialog.hide();
+                        Toast.makeText(AddRecipe.this,"Recette ajouter à la BDD",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(AddRecipe.this,MainActivity.class);
+                        startActivity(intent);
+                    }
                     }
                 }
-            }
-        });
-
+            });
     }
 }
