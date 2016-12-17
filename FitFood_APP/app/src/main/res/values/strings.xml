@@ -143,7 +143,9 @@
     <string name="step4_et_ingredient">Ingredient</string>
     <string name="step4_info_ingredient">Example: 2cl of milk, 200g of flour, 2 eggs ...</string>
 
-    <string name="step4_tv_directions">Directions</string>
+    <string name="step5_tv_directions">Directions</string>
+    <string name="step5_et_directions_steps">Preparation steps</string>
+    <string name="step5_info_prep">Example: Season chicken with salt and pepper, roast in the preheated oven ...</string>
 
 
 </resources>

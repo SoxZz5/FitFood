@@ -3,7 +3,7 @@ package konid.soxzz5.fitfood.firebase_fitfood;
 import java.util.List;
 
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Ingredient;
-import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Item;
+import konid.soxzz5.fitfood.fitfood_addrecipe_listview.PrepStep;
 
 /**
  * Created by Soxzer on 16/12/2016.
@@ -20,13 +20,13 @@ public class Recipe {
     public int RheatMinute;
     public String RforWho;
     public List<Ingredient> Ringredients;
-    public List<Item> Rsteps;
+    public List<PrepStep> Rsteps;
 
     public Recipe(){
 
     }
 
-    public Recipe(String rtitle, int rcategory, int rlevel, int rtype, int rprepareHour, int rprepareMinute, int rheatHour, int rheatMinute, String rforWho, List<Ingredient> ringredients, List<Item> rsteps) {
+    public Recipe(String rtitle, int rcategory, int rlevel, int rtype, int rprepareHour, int rprepareMinute, int rheatHour, int rheatMinute, String rforWho, List<Ingredient> ringredients, List<PrepStep> rsteps) {
         Rtitle = rtitle;
         Rcategory = rcategory;
         Rlevel = rlevel;
