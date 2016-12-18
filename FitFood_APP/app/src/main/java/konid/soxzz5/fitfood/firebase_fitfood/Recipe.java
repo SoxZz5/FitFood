@@ -42,6 +42,21 @@ public class Recipe {
 
     }
 
+    public Recipe(String rtitle, int rcategory, int rlevel, int rtype, int rprepareHour, int rprepareMinute, int rheatHour, int rheatMinute, String rforWho, String rdate, boolean rvalidate, String rrecipe_download_img_link) {
+        Rtitle = rtitle;
+        Rcategory = rcategory;
+        Rlevel = rlevel;
+        Rtype = rtype;
+        RprepareHour = rprepareHour;
+        RprepareMinute = rprepareMinute;
+        RheatHour = rheatHour;
+        RheatMinute = rheatMinute;
+        RforWho = rforWho;
+        Rdate = rdate;
+        Rvalidate = rvalidate;
+        Rrecipe_download_img_link = rrecipe_download_img_link;
+    }
+
     public Recipe(String rtitle, int rcategory, int rlevel, int rtype, int rprepareHour, int rprepareMinute, int rheatHour, int rheatMinute, String rforWho, List<Ingredient> ringredients, List<PrepStep> rsteps, boolean validate, String date, String recipe_download_img_link) {
 
         Rtitle = rtitle;
@@ -59,6 +74,24 @@ public class Recipe {
         Rdate = date;
         Rrecipe_download_img_link = recipe_download_img_link;
 
+    }
+
+    public Recipe(Recipe new_recipe)
+    {
+        Rtitle = new_recipe.getRtitle();
+        Rcategory = new_recipe.getRcategory();
+        Rlevel = new_recipe.getRlevel();
+        Rtype = new_recipe.getRtype();
+        RprepareHour = new_recipe.getRprepareHour();
+        RprepareMinute = new_recipe.getRprepareMinute();
+        RheatHour = new_recipe.getRheatHour();
+        RheatMinute = new_recipe.getRheatMinute();
+        RforWho = new_recipe.getRforWho();
+        Ringredients = new_recipe.getRingredients();
+        Rsteps = new_recipe.getRsteps();
+        Rvalidate=new_recipe.getRvalidate();
+        Rdate = new_recipe.getRdate();
+        Rrecipe_download_img_link = new_recipe.getRrecipe_download_img_link();
     }
 
     public int getRcategory() {return Rcategory;}
@@ -173,5 +206,10 @@ public class Recipe {
 
     public String getURL() {
         return URL;
+    }
+
+    public boolean getRvalidate()
+    {
+        return Rvalidate;
     }
 }
