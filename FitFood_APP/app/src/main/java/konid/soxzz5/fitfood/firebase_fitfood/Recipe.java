@@ -22,26 +22,27 @@ import konid.soxzz5.fitfood.fitfood_addrecipe_listview.PrepStep;
  */
 
 public class Recipe {
-    public String Rtitle;
-    public int Rcategory;
-    public int Rlevel;
-    public int Rtype;
-    public int RprepareHour;
-    public int RprepareMinute;
-    public int RheatHour;
-    public int RheatMinute;
-    public String RforWho;
-    public List<Ingredient> Ringredients;
-    public List<PrepStep> Rsteps;
-    public String Rdate;
-    public boolean Rvalidate;
-    public String Rrecipe_download_img_link;
+    private String Rtitle;
+    private int Rcategory;
+    private int Rlevel;
+    private int Rtype;
+    private int RprepareHour;
+    private int RprepareMinute;
+    private int RheatHour;
+    private int RheatMinute;
+    private String RforWho;
+    private List<Ingredient> Ringredients;
+    private List<PrepStep> Rsteps;
+    private String Rdate;
+    private boolean Rvalidate;
+    private String Rrecipe_download_img_link;
 
     public Recipe(){
 
     }
 
     public Recipe(String rtitle, int rcategory, int rlevel, int rtype, int rprepareHour, int rprepareMinute, int rheatHour, int rheatMinute, String rforWho, List<Ingredient> ringredients, List<PrepStep> rsteps, boolean validate, String date, String recipe_download_img_link) {
+
         Rtitle = rtitle;
         Rcategory = rcategory;
         Rlevel = rlevel;
@@ -59,9 +60,7 @@ public class Recipe {
 
     }
 
-    public int getRcategory() {
-        return Rcategory;
-    }
+    public int getRcategory() {return Rcategory;}
 
     public int getRheatHour() {
         return RheatHour;
@@ -107,109 +106,8 @@ public class Recipe {
         return Rtitle;
     }
 
-    public void setRcategory(int rcategory) {
-        Rcategory = rcategory;
+    public String getRrecipe_download_img_link() {
+        return Rrecipe_download_img_link;
     }
 
-    public void setRdate(String rdate) {
-        Rdate = rdate;
-    }
-
-    public void setRforWho(String rforWho) {
-        RforWho = rforWho;
-    }
-
-    public void setRheatHour(int rheatHour) {
-        RheatHour = rheatHour;
-    }
-
-    public void setRheatMinute(int rheatMinute) {
-        RheatMinute = rheatMinute;
-    }
-
-    public void setRingredients(List<Ingredient> ringredients) {
-        Ringredients = ringredients;
-    }
-
-    public void setRlevel(int rlevel) {
-        Rlevel = rlevel;
-    }
-
-    public void setRprepareHour(int rprepareHour) {
-        RprepareHour = rprepareHour;
-    }
-
-    public void setRprepareMinute(int rprepareMinute) {
-        RprepareMinute = rprepareMinute;
-    }
-
-    public void setRsteps(List<PrepStep> rsteps) {
-        Rsteps = rsteps;
-    }
-
-    public void setRtitle(String rtitle) {
-        Rtitle = rtitle;
-    }
-
-    public void setRtype(int rtype) {
-        Rtype = rtype;
-    }
-
-    public void setRvalidate(boolean rvalidate) {
-        Rvalidate = rvalidate;
-    }
-
-    public Bitmap getBitmapFromImage()
-    {
-        DatabaseReference recipeImgReference = FirebaseDatabase.getInstance().getReference().child("recipe_img");
-        StorageReference firebaseStorage;
-        if(getRecipeKey() != "")
-        {
-            recipe_key = getRecipeKey();
-        }
-        recipeImgReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                if(recipe_key.equals(dataSnapshot.getKey()))
-                {
-
-                }
-            }
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {}
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        });
-
-
-    }
-
-    public String getRecipeKey()
-    {
-        DatabaseReference recipeReference = FirebaseDatabase.getInstance().getReference().child("recipe");
-        recipe_key = "";
-        recipeReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                if(Rtitle.toLowerCase().equals(dataSnapshot.getKey().toLowerCase()))
-                {
-                    recipe_key = dataSnapshot.getKey();
-                }
-            }
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            }
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {}
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        });
-        return  recipe_key;
-    }
 }

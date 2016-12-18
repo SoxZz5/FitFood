@@ -29,7 +29,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="3"
+            android:layout_weight="2.5"
             android:gravity="bottom|center_horizontal"
             android:weightSum="2">
 
@@ -59,7 +59,6 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"
             android:id="@+id/wizard_iv_final"
             android:layout_marginTop="25dp"
             android:layout_marginLeft="5dp"
@@ -67,7 +66,8 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/roundbackground4"
             android:visibility="invisible"
-            android:padding="4dp" />
+            android:padding="4dp"
+            android:layout_weight="6" />
 
     </LinearLayout>
 

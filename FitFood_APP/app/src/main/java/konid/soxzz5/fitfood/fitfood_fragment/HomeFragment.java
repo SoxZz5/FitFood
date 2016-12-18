@@ -16,9 +16,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ViewFlipper;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
+
 import konid.soxzz5.fitfood.R;
+import konid.soxzz5.fitfood.firebase_fitfood.Recipe;
 
 /**
  * Created by Soxzer on 14/12/2016.
@@ -34,6 +41,9 @@ public class HomeFragment extends Fragment {
     private Context mContext;
     private boolean isStarted = false;
     private Handler mHandler;
+    private ListView listview_container;
+    private List<Recipe> recipeList;
+    private DatabaseReference databaseReference;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,6 +54,10 @@ public class HomeFragment extends Fragment {
         detector = new GestureDetector(getContext(), new SwipeGestureDetector());
         mContext = getContext();
         mViewFlipper = (ViewFlipper) v.findViewById(R.id.slider_view_flipper);
+        listview_container = (ListView) v.findViewById(R.id.home_listview_container);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("recipe");
+
 
 
         mHandler = new Handler() {
@@ -86,6 +100,8 @@ public class HomeFragment extends Fragment {
                 runFlipper();
             }
         });
+
+
 
         return v;
     }
