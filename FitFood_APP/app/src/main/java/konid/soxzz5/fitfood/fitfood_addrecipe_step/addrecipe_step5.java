@@ -78,7 +78,7 @@ public class addrecipe_step5 extends Fragment implements OnClickListener, OnItem
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(utils.findMatch(et_step.getText().toString(),"^[\\s\\w]{10,100}$")){
+                if(utils.findMatch(et_step.getText().toString(),"^[\\s\\w\\.,!\\-'\"\\+*:]{10,100}$")){
                     step = et_step.getText().toString();
                     valid_step=true;
                     info_error.setText("");
