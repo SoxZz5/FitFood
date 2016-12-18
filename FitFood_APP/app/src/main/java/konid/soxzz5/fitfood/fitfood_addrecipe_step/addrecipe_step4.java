@@ -99,7 +99,7 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
 
             @Override
             public void afterTextChanged(Editable editable) {
-                String regex_match = "^(([0-9]+)([\\s]{1})([\\sA-z" + accentedCharacters + "]{3,30})|([0-9]{1,3}))$";
+                String regex_match = "^(([0-9]+)([ A-z" + accentedCharacters + "]){3,30})|([0-9]{1,3})$";
                 if(utils.findMatch(et_quantity.getText().toString(),regex_match))
                 {
                     quantity = et_quantity.getText().toString();

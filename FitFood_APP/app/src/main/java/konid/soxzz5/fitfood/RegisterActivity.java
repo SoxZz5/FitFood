@@ -206,6 +206,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     progressDialog.hide();
                                     sessionManager.setPreferences(RegisterActivity.this,"first_sign","1");
                                     sessionManager.setPreferences(RegisterActivity.this,"mail_sign",mail);
+                                    progressDialog.cancel();
                                     finish();
                                 }
                                 else

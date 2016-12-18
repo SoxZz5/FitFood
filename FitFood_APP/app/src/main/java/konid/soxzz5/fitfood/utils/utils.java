@@ -14,7 +14,9 @@ import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.Random;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -78,5 +80,11 @@ public class utils {
             e.printStackTrace();
         }
         return image;
+    }
+
+    public static String shortUUID() {
+        UUID uuid = UUID.randomUUID();
+        long l = ByteBuffer.wrap(uuid.toString().getBytes()).getLong();
+        return Long.toString(l, Character.MAX_RADIX);
     }
 }

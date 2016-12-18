@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,7 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -29,6 +30,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.UUID;
 
 import konid.soxzz5.fitfood.Manifest;
 import konid.soxzz5.fitfood.R;
@@ -53,7 +55,10 @@ public class addrecipe_final extends Fragment implements View.OnClickListener {
     private StorageReference storageReference;
     private Uri filePath;
     private String path;
-
+    private Uri cameraPath;
+    private String path_camera;
+    private Uri outputFileUri;
+    private File outputFile;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -96,14 +101,29 @@ public class addrecipe_final extends Fragment implements View.OnClickListener {
         }
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            filePath = data.getData();
-            Bundle extras = data.getExtras();
-            Bitmap b = (Bitmap) extras.get("data");
-            Bitmap resized = get_Resized_Bitmap(b,(int)(b.getWidth()*0.9),(int)(b.getHeight()*0.9));
-            bitmap = resized;
-            imageView.setImageBitmap(b);
-            imageView.setVisibility(View.VISIBLE);
-        }
+                if (bitmap != null) {
+                    bitmap = null;
+                    bitmap.recycle();
+                }
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inSampleSize = 3;
+                    bitmap = BitmapFactory.decodeFile(outputFile.getAbsolutePath(), options);
+                    imageView.setImageBitmap(bitmap);
+                    try {
+                        FileOutputStream outFile= new FileOutputStream(outputFile);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 95, outFile);
+                        MediaScannerConnection.scanFile(getContext(), new String[] { path_camera }, new String[] { "image/jpeg" }, null);
+                        outFile.flush();
+                        outFile.close();
+                    }catch (FileNotFoundException e) {
+                        Toast toast = Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT);
+                        toast.show();
+                    } catch (IOException e) {
+                        Toast toast = Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                    filePath = Uri.parse("file://"+path_camera);
+            }
     }
 
     @Override
@@ -117,7 +137,16 @@ public class addrecipe_final extends Fragment implements View.OnClickListener {
     }
 
     public void dispatchTakePictureIntent() {
+        File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString() + File.separator + "Fitfood");
+        if(!folder.exists())
+        {
+            folder.mkdirs();
+        }
+        path_camera = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString() + File.separator + "Fitfood" + File.separator + "FITFOOD_IMG_"+utils.shortUUID()+".jpg";
+        outputFile = new File(path_camera);
+        outputFileUri = Uri.fromFile(outputFile);
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
         if (takePictureIntent.resolveActivity(getContext().getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
@@ -199,5 +228,6 @@ public class addrecipe_final extends Fragment implements View.OnClickListener {
         Bitmap newBitmap = Bitmap.createBitmap(bmp, 0, 0, width, height, matrix, false);
         return newBitmap ;
     }
+
 
 }
