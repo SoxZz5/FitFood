@@ -410,9 +410,6 @@ public class AddRecipe extends AppCompatActivity {
             }
         });
 
-        step=3;
-        next.callOnClick();
-
         valid_final.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -13,11 +13,11 @@ import konid.soxzz5.fitfood.firebase_fitfood.Recipe;
  * Created by Soxzer on 18/12/2016.
  */
 
-public class RecipeShowHomeAdapter  extends ArrayAdapter<RecipeShowHome> {
+/*public class RecipeShowHomeAdapter  extends ArrayAdapter<RecipeShowHome> {
     RecipeShowHomeViewHolder recipeShowHomeHolder;
     private Context mContext;
-    private List<RecipeShowHome>
-    public RecipeShowHomeAdapter(Context context,)
+    private List<RecipeShowHome>;
+    public RecipeShowHomeAdapter(Context context,);
 
     class RecipeShowHomeViewHolder{
         public TextView nbRowIngredient;
@@ -25,4 +25,4 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<RecipeShowHome> {
         public TextView ingredient;
         public ImageView delete;
     }
-}
+}*/
