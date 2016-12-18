@@ -121,7 +121,10 @@ public class addrecipe_final extends Fragment implements View.OnClickListener {
                     bitmap = BitmapFactory.decodeFile(outputFile.getAbsolutePath(), options);
                     try {
                         FileOutputStream outFile= new FileOutputStream(outputFile);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, outFile);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 95, outFile);
+                        Bitmap resized = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.8),(int)(bitmap.getHeight()*0.8), true);
+                        imageView.setImageBitmap(resized);
+                        imageView.setVisibility(View.VISIBLE);
                         MediaScannerConnection.scanFile(getContext(), new String[] { path_camera }, new String[] { "image/jpeg" }, null);
                         outFile.flush();
                         outFile.close();
@@ -132,14 +135,7 @@ public class addrecipe_final extends Fragment implements View.OnClickListener {
                         Toast toast = Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT);
                         toast.show();
                     }
-                    filePath = Uri.parse(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString() + File.separator + "Fitfood" + File.separator + image_name_path);
-                    try{
-                        Bitmap showbitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),Uri.parse("file://"+filePath));
-                        imageView.setImageBitmap(showbitmap);
-                    } catch (IOException e) {
-                        Toast toast = Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT);
-                        toast.show();
-                    }
+                    filePath = Uri.parse("file://"+path_camera);
             }
     }
 
