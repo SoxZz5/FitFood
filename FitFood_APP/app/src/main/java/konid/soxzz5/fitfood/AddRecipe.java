@@ -86,7 +86,6 @@ public class AddRecipe extends AppCompatActivity {
         firebaseUser = firebaseAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         firebaseStorage = FirebaseStorage.getInstance().getReference();
-        mProgressDialog = new ProgressDialog(this);
         //STEPINFO POUR SAVOIR A QUELLE ETAPE ON EST
         final FrameLayout stepinfo1 = (FrameLayout) findViewById(R.id.stepinfo1);
         final FrameLayout stepinfo2 = (FrameLayout) findViewById(R.id.stepinfo2);
@@ -421,33 +420,39 @@ public class AddRecipe extends AppCompatActivity {
                 {
                     if(step_final.getBitmap() != null)
                     {
-                        mProgressDialog.show(getApplicationContext(),"Uploading ...","Please wait");
+                        mProgressDialog = new ProgressDialog(AddRecipe.this);
+                        mProgressDialog.setMessage("Uploading ...");
+                        mProgressDialog.show();
                         Log.d("TEST",step_final.getFilePath().getLastPathSegment());
                         StorageReference new_filepath = firebaseStorage.child("Recipe_Image").child(firebaseUser.getUid()).child(step_final.getFilePath().getLastPathSegment());
                         new_filepath.putFile(step_final.getFilePath()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                mProgressDialog.cancel();
+                                mProgressDialog.hide();
                                 validate_upload=true;
+                                if(validate_upload) {
+                                    mProgressDialog.setMessage("Sending recipe ...");
+                                    mProgressDialog.show();
+                                    DatabaseReference recipe_ref = databaseReference.child("recipe").push();
+                                    DatabaseReference user_recipe_ref = databaseReference.child("user_recipe");
+                                    String newKey = recipe_ref.getKey().toString();
+                                    user_recipe_ref.child(newKey).setValue(firebaseUser.getUid());
+                                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy_HH:mm");
+                                    sdf.setTimeZone(TimeZone.getTimeZone("GMT+1"));
+                                    String currentDateandTime = sdf.format(new Date());
+                                    Recipe recipe = new Recipe(sTitle, iCategory, iLevel, iType, iPrepareHour, iPrepareMinute, iHeatHour, iHeatMinute, sForWho, allIngredients, allSteps, false, currentDateandTime, (String) ("gs://firebase-fitfood.appspot.com/Recipe_Image/" + step_final.getFilePath().getLastPathSegment()));
+                                    recipe_ref.setValue(recipe);
+                                    Toast.makeText(AddRecipe.this, "Recette ajouter à la BDD", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(AddRecipe.this, MainActivity.class);
+                                    mProgressDialog.dismiss();
+                                    startActivity(intent);
+                                    finish();
+                                }
                             }
                         });
-
-                        DatabaseReference recipe_ref = databaseReference.child("recipe").push();
-                        DatabaseReference user_recipe_ref = databaseReference.child("user_recipe");
-                        String newKey = recipe_ref.getKey().toString();
-                        user_recipe_ref.child(newKey).setValue(firebaseUser.getUid());
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy_HH:mm");
-                        sdf.setTimeZone(TimeZone.getTimeZone("GMT+1"));
-                        String currentDateandTime = sdf.format(new Date());
-                        Recipe recipe = new Recipe(sTitle, iCategory, iLevel, iType, iPrepareHour, iPrepareMinute, iHeatHour, iHeatMinute, sForWho, allIngredients, allSteps,false,currentDateandTime,(String)("gs://firebase-fitfood.appspot.com/Recipe_Image/" + step_final.getFilePath().getLastPathSegment()));
-                        recipe_ref.setValue(recipe);
-                        Toast.makeText(AddRecipe.this,"Recette ajouter à la BDD",Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(AddRecipe.this,MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
                     }
                 }
+            }
             });
     }
 }
