@@ -86,7 +86,7 @@ Lors de l'appuye sur le bouton connexion on utilise une fonction propre à fireb
 });
 ```
 
-Une fonction est appeller le reste est très graphique ``sh LoginUser() ``
+Une fonction est appeller le reste est très graphique ``LoginUser() ``
 - Retourne la bonne Intent en fonction d'une variable de préférences afin de tester si c'est la première connexion de l'utilisateur suite à son enregistrement pour lui afficher l'activity AfterLogin.
 ```sh
 private Intent LoginUser(){
@@ -125,7 +125,7 @@ Le champ mot de passe est lui vérifier avec une fonction de calcul de puissance
 
 <img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/register_password.png" alt="alt text" hspace="15">
 
-La fonction de test utilise une regex via ``sh findMatch(String myString , String RegexPattern)`` qui retourne true or false:
+La fonction de test utilise une regex via ``findMatch(String myString , String RegexPattern)`` qui retourne true or false:
 ```sh
 String match = "";
 Pattern regEx = Pattern.compile(pattern); //On compile le pattern
@@ -158,7 +158,7 @@ firebaseAuth.createUserWithEmailAndPassword(mail,password)
 [![](https://img.youtube.com/vi/U5aeM5dvUpA/0.jpg)](https://www.youtube.com/watch?v=U5aeM5dvUpA)
 <img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/afterlogin_layout.png" alt="alt text" width="216" height="384" hspace="15">
 
-On va venir récupérer à notre habitude les variables de firebase en ajoutant une ``sh DatabaseReference ``
+On va venir récupérer à notre habitude les variables de firebase en ajoutant une ``DatabaseReference ``
 
 ```sh
 firebaseAuth = FirebaseAuth.getInstance();
@@ -212,7 +212,8 @@ if(valid_pseudo)
 }
 ```
 
-Suite à ça si toutes les informations sont valides et que le pseudo est disponible on appelle la fonction ``sh saveUserInformation()``
+Suite à ça si toutes les informations sont valides et que le pseudo est disponible on appelle la fonction 
+``saveUserInformation()``
 ```sh
 public void saveUserInformation(){
     String email = user.getEmail().toString().trim();
