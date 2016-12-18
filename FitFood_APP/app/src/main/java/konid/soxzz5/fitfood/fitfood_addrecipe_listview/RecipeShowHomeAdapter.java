@@ -146,6 +146,7 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
         recipeShowHomeHolder.recipe_finalhour.setText(Integer.toString(finalhour));
         recipeShowHomeHolder.recipe_finalminute.setText(Integer.toString(finalminute));
         Log.d("dll :" ,recipe.getRrecipe_download_img_link());
+        //TODO DEBUG IMAGE HERE
         Picasso.with(getContext())
                 .load(recipe.getRrecipe_download_img_link())
                 .resize(600, 200)
