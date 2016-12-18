@@ -135,7 +135,7 @@ public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 }
 ```
 Le champ mot de passe est lui vérifier avec une fonction de calcul de puissance de mot de passe universel
-<img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/register_password.png" alt="alt text">
+<img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/register_password.png" alt="alt text" hspace="15">
 La fonction de test utilise une regex via une fonction appeler ``sh findMatch(String myString , String RegexPattern)`` qui retourne true or false:
 ```sh
 String match = "";
