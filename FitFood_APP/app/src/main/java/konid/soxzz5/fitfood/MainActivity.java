@@ -1,29 +1,18 @@
 package konid.soxzz5.fitfood;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.speech.RecognizerIntent;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -36,13 +25,10 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-
 import java.util.ArrayList;
-import java.util.List;
-
-
 import konid.soxzz5.fitfood.fitfood_fragment.AddRecipeFragment;
 import konid.soxzz5.fitfood.fitfood_fragment.HomeFragment;
+import konid.soxzz5.fitfood.fitfood_fragment.SearchFragment;
 import konid.soxzz5.fitfood.fitfood_fragment.SingleRecipeDisplay;
 import konid.soxzz5.fitfood.fitfood_session.SessionManager;
 
@@ -67,7 +53,7 @@ public class MainActivity extends AppCompatActivity{
         user = firebaseAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         sessionManager = new SessionManager();
-        Fragment HomeFragment = (Fragment) new HomeFragment();
+        final Fragment HomeFragment = (Fragment) new HomeFragment();
 
         if(user == null)
         {
@@ -157,6 +143,11 @@ public class MainActivity extends AppCompatActivity{
                                 if(drawableTag!=1)
                                 {
                                     drawableTag=1;
+                                    HomeFragment newFragment = new HomeFragment();
+                                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                    transaction.replace(R.id.fragment_container, newFragment);
+                                    transaction.commit();
+                                    toolbar.setTitle(R.string.drawer_item_home_cook);
                                 }
                             }
 
@@ -226,7 +217,14 @@ public class MainActivity extends AppCompatActivity{
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //Do some magic
+                SearchFragment newFragment = new SearchFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("seek", query);
+                newFragment.setArguments(bundle);
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, newFragment);
+                transaction.commit();
+                toolbar.setTitle(query);
                 return false;
             }
 

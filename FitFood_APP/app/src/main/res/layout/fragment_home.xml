@@ -4,98 +4,108 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/relative_slider">
+        android:layout_height="160dp"
+        android:id="@+id/slider_layout_container"
+        android:animateLayoutChanges="true">
 
-        <ViewFlipper
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:id="@+id/slider_view_flipper"
-            android:autoStart="false">
+            android:layout_height="match_parent"
+            android:id="@+id/relative_slider">
 
-            <ImageView
+            <ViewFlipper
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/slider_view_flipper"
+                android:autoStart="false">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/slider_image_1"
+                    android:background="@drawable/login_background" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/slider_image_2"
+                    android:background="@drawable/recipeadd_background" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/slider_image_3"
+                    android:background="@drawable/recipeadd_step2_background" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/slider_image_4"
+                    android:background="@drawable/recipeadd_step3_background" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/slider_image_5"
+                    android:background="@drawable/recipeadd_step5_background" />
+            </ViewFlipper>
+
+            <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/slider_image_1"
-                android:background="@drawable/login_background" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/slider_image_2"
-                android:background="@drawable/recipeadd_background" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/slider_image_3"
-                android:background="@drawable/recipeadd_step2_background" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/slider_image_4"
-                android:background="@drawable/recipeadd_step3_background" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/slider_image_5"
-                android:background="@drawable/recipeadd_step5_background" />
-        </ViewFlipper>
-
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/black_overlay_45"
-            android:layout_centerHorizontal="false"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                app:srcCompat="@mipmap/left_arrow"
-                android:id="@+id/slider_bt_prev"
+                android:background="@color/black_overlay_45"
                 android:layout_centerHorizontal="false"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:clickable="true" />
-        </FrameLayout>
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp">
 
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:background="@color/black_overlay_45"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    app:srcCompat="@mipmap/left_arrow"
+                    android:id="@+id/slider_bt_prev"
+                    android:layout_centerHorizontal="false"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:clickable="true" />
+            </FrameLayout>
 
-            <ImageView
+            <FrameLayout
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                app:srcCompat="@mipmap/right_arrow"
-                android:id="@+id/slider_bt_next"
-                android:layout_centerHorizontal="false"
+                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:clickable="true" />
-        </FrameLayout>
+                android:background="@color/black_overlay_45"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp">
 
-    </RelativeLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    app:srcCompat="@mipmap/right_arrow"
+                    android:id="@+id/slider_bt_next"
+                    android:layout_centerHorizontal="false"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:clickable="true" />
+            </FrameLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/home_listview_container" />
+        android:id="@+id/home_listview_container"
+        android:layout_marginTop="10dp" />
 
 </LinearLayout>

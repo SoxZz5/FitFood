@@ -428,6 +428,7 @@ public class AddRecipe extends AppCompatActivity {
                         new_filepath.putFile(step_final.getFilePath()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                String path =taskSnapshot.getDownloadUrl().toString();
                                 mProgressDialog.hide();
                                 validate_upload=true;
                                 if(validate_upload) {
@@ -440,7 +441,7 @@ public class AddRecipe extends AppCompatActivity {
                                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy_HH:mm");
                                     sdf.setTimeZone(TimeZone.getTimeZone("GMT+1"));
                                     String currentDateandTime = sdf.format(new Date());
-                                    Recipe recipe = new Recipe(sTitle, iCategory, iLevel, iType, iPrepareHour, iPrepareMinute, iHeatHour, iHeatMinute, sForWho, allIngredients, allSteps, false, currentDateandTime, (String) ("gs://firebase-fitfood.appspot.com/Recipe_Image/" + firebaseUser.getUid() +"/"+ step_final.getFilePath().getLastPathSegment()));
+                                    Recipe recipe = new Recipe(sTitle, iCategory, iLevel, iType, iPrepareHour, iPrepareMinute, iHeatHour, iHeatMinute, sForWho, allIngredients, allSteps, false, currentDateandTime,path);
                                     recipe_ref.setValue(recipe);
                                     Toast.makeText(AddRecipe.this, "Recette ajouter à la BDD", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(AddRecipe.this, MainActivity.class);

@@ -1,6 +1,7 @@
 package konid.soxzz5.fitfood.fitfood_fragment;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +16,12 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ViewFlipper;
 
@@ -32,11 +36,14 @@ import com.google.firebase.storage.FirebaseStorage;
 import java.util.ArrayList;
 import java.util.List;
 
+import konid.soxzz5.fitfood.AddRecipe;
+import konid.soxzz5.fitfood.LoginActivity;
 import konid.soxzz5.fitfood.R;
 import konid.soxzz5.fitfood.firebase_fitfood.Recipe;
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Ingredient;
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.IngredientListAdapter;
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.RecipeShowHomeAdapter;
+import konid.soxzz5.fitfood.utils.utils;
 
 /**
  * Created by Soxzer on 14/12/2016.
@@ -56,7 +63,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
     private List<Recipe> recipeList;
     private DatabaseReference databaseReference;
     private RecipeShowHomeAdapter recipeShowHomeAdapter;
-    private  boolean valid_recipe = false;
+    View.OnClickListener mClickListener;
+    private int mLastFirstVisibleItem;
+    private boolean valid_firstItem=false;
+    private int FirstVisibleItem;
+    private LinearLayout slider;
+    public boolean valid_recipe = false;
+    public boolean iscollapsed = false;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,9 +81,49 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
         mContext = getContext();
         mViewFlipper = (ViewFlipper) v.findViewById(R.id.slider_view_flipper);
         recipeList = new ArrayList<>();
+        recipeShowHomeAdapter = new RecipeShowHomeAdapter(mContext, recipeList,this);
         listview_container = (ListView) v.findViewById(R.id.home_listview_container);
+        slider = (LinearLayout) v.findViewById(R.id.slider_layout_container);
+        listview_container.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+                /*if(iscollapsed)
+                {
+                    iscollapsed=false;
+                    utils.expand(slider);
+                }*/
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if(mLastFirstVisibleItem<firstVisibleItem)
+                {
+                    /*if(!iscollapsed) {
+                        iscollapsed = true;
+                        slider.setVisibility(View.GONE);
+                    }*/
+                }
+                if(mLastFirstVisibleItem>firstVisibleItem)
+                {
+                    /*if(!iscollapsed) {
+                        iscollapsed = true;
+                        slider.setVisibility(View.GONE);
+                    }*/
+                }
+                if(FirstVisibleItem == firstVisibleItem)
+                {
+                    /*if(iscollapsed)
+                    {
+                        iscollapsed=false;
+                        slider.setVisibility(View.VISIBLE);
+                    }*/
+                }
+                mLastFirstVisibleItem=firstVisibleItem;
+            }
+        });
+        mClickListener = this;
         databaseReference = FirebaseDatabase.getInstance().getReference().child("recipe");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -88,21 +141,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
                     boolean temp_valide = (Boolean) snapshot.child("rvalidate").getValue();
                     recipeList.add(new Recipe(temp_title,temp_category,temp_level,temp_type,temp_prepareHour,temp_prepareMinute,temp_heatHour,temp_heatMinute,temp_forWho,temp_date,temp_valide,temp_dll_link));
                 }
-                valid_recipe = true;
+                listview_container.setAdapter(recipeShowHomeAdapter);
+                recipeShowHomeAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                    listview_container.setVisibility(View.GONE);
+                ProgressDialog mProgressDialog = new ProgressDialog(getContext());
+                mProgressDialog.setMessage("Tentative de reconnexion");
+                mProgressDialog.show();
             }
         });
 
-        if (valid_recipe = true)
-        {
-            recipeShowHomeAdapter = new RecipeShowHomeAdapter(mContext, recipeList,this);
-            listview_container.setAdapter(recipeShowHomeAdapter);
-            recipeShowHomeAdapter.notifyDataSetChanged();
-        }
+
 
         mHandler = new Handler() {
             @Override
@@ -206,7 +258,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
 
     @Override
     public void onClick(View view) {
-        //DO
+        //TODO GO SINGLE RECIPE
+        //View étant l'imageview cliquer :)
     }
 
     @Override
