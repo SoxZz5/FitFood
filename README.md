@@ -19,6 +19,7 @@ Les fonctions à venir:
 ## Fitfood est sous licences CC-4.0
 <img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/creative1.png" alt="alt text" width="394" height="94">
 
+Nous distribuons le code gratuitement afin qu'il puissent vous aidez à titre d'exemple pour vos projets android
 
 ## Fonctionnalité
 
@@ -154,4 +155,71 @@ firebaseAuth.createUserWithEmailAndPassword(mail,password)
 ```
 
 ### AfterLogin via l'option database de firebase
-[![](https://img.youtube.com/vi/U5aeM5dvUpA/0.jpg)](https://www.youtube.com/watch?v=U5aeM5dvUpA)<img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/afterlogin_layout.png" alt="alt text" width="216" height="384" hspace="15">
+[![](https://img.youtube.com/vi/U5aeM5dvUpA/0.jpg)](https://www.youtube.com/watch?v=U5aeM5dvUpA)
+<img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/afterlogin_layout.png" alt="alt text" width="216" height="384" hspace="15">
+
+On va venir récupérer à notre habitude les variables de firebase en ajoutant une ``sh DatabaseReference ``
+
+```sh
+firebaseAuth = FirebaseAuth.getInstance();
+databaseReference = FirebaseDatabase.getInstance().getReference();
+sessionManager = new SessionManager();
+user = firebaseAuth.getCurrentUser();
+```
+
+On va venir aussi récupérer les pseudo déjà présent dans notre base de données pour éviter la duplication
+
+```sh
+mUsername = new ArrayList<>();
+Firebase.setAndroidContext(AfterLogin.this);
+mref= new Firebase("https://fir-fitfood.firebaseio.com/username");
+mref.addChildEventListener(new ChildEventListener() {
+    @Override
+    public void onChildAdded(com.firebase.client.DataSnapshot dataSnapshot, String s) {
+        String value = dataSnapshot.getValue(String.class);
+        mUsername.add(value);
+    }
+    @Override
+    public void onChildChanged(com.firebase.client.DataSnapshot dataSnapshot, String s) {}
+    @Override
+    public void onChildRemoved(com.firebase.client.DataSnapshot dataSnapshot) {}
+    @Override
+    public void onChildMoved(com.firebase.client.DataSnapshot dataSnapshot, String s) {}
+    @Override
+    public void onCancelled(FirebaseError firebaseError) {}
+});
+```
+
+On utilise la même façon de faire via findMatch afin de tester les entrées des editText, puis à la validation nous testons alors si le pseudo est déjà présent dans la liste
+```sh
+if(valid_pseudo)
+{
+    pseudo = et_pseudo.getText().toString().trim();
+    String pseudo_lowercase = pseudo.toLowerCase();
+    Log.d("username","pseudo_lowercase = " + pseudo_lowercase);
+    if(mUsername != null){
+        for(int i = 0 ; i < mUsername.size(); i++){
+            if(pseudo_lowercase.equals(mUsername.get(i).toString().toLowerCase())){
+                isExist = true;
+            }
+        }
+    }
+    if(isExist){
+        //On affiche un message
+        validat_form=false;
+        isExist=false;
+    }
+}
+```
+
+Suite à ça si toutes les informations sont valides et que le pseudo est disponible on appelle la fonction ``sh saveUserInformation()``
+```sh
+public void saveUserInformation(){
+    String email = user.getEmail().toString().trim();
+    UserInformation userInformation = new UserInformation(name,surname,pseudo,diet,email);
+    databaseReference.child("users").child(user.getUid()).setValue(userInformation);
+    databaseReference.child("username").child(user.getUid()).setValue(pseudo);
+    sessionManager.setPreferences(AfterLogin.this,"first_sign","0");
+    //On affiche un message
+}
+```
