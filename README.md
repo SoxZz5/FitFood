@@ -45,8 +45,7 @@ firebaseAuth = FirebaseAuth.getInstance();
 Ensuite on utilise un session manager afin de conserver l'email de l'utilisateur dans les préférences.
 ```sh
 SessionManager sessionManager = new SessionManager();
-if(sessionManager.getPreferences(LoginActivity.this,"mail_sign") != null)
-{
+if(sessionManager.getPreferences(LoginActivity.this,"mail_sign") != null){
     edit_mail.setText(sessionManager.getPreferences(LoginActivity.this,"mail_sign"));
     edit_password.requestFocus();
 }
@@ -56,11 +55,9 @@ Si l'utilisateur arrive sur cette activité via Register il aura alors des extra
 ```sh
 Intent intent_tmp = getIntent();
 Bundle bundle_tmp = intent_tmp.getExtras();
-    if(bundle_tmp != null)
-    {
+    if(bundle_tmp != null){
         String response_register = getString(R.string.login_text_after_register) + " " + bundle_tmp.getString("response");
-        if(!response_register.isEmpty())
-        {
+        if(!response_register.isEmpty()){
             Toast toast = Toast.makeText(context, response_register, duration);
             toast.show();
         }
@@ -75,16 +72,13 @@ Lors de l'appuye sur le bouton connexion on utilise une fonction propre à fireb
     
      @Override
      public void onComplete(@NonNull Task<AuthResult> task) {
-        if(task.isSuccessful())
-        {
+        if(task.isSuccessful()){
             Intent intent = LoginUser();
             startActivity(intent);
-            block_form.setVisibility(View.GONE);
-            progressbar_login.setVisibility(View.GONE);
+            //On termine l'affichage des progress etc
             finish();
         }
-        else
-        {
+        else{
             //Error
         }
     }
@@ -98,12 +92,10 @@ private Intent LoginUser(){
         user = firebaseAuth.getCurrentUser();
         Intent intent;
         String first_sign = sessionManager.getPreferences(LoginActivity.this,"first_sign");
-        if(first_sign.equals("1"))
-        {
+        if(first_sign.equals("1")){
             intent = new Intent(LoginActivity.this, AfterLogin.class);
         }
-        else
-        {
+        else{
             intent = new Intent(LoginActivity.this, MainActivity.class);
         }
         return intent;
@@ -115,22 +107,16 @@ Tous les editText comporte un TextChangeListener permettant de tester chaque inp
 ```sh
 @Override
 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-    if(edit_mail.getText().length()<=0)
-    {
-        error_mail.setText("");
-        edit_mail.setTextColor(Color.parseColor("#FFFFFF"));
+    if(edit_mail.getText().length()<=0){
+        //Erreur champ non remplie
     }
-    else if(utils.findMatch(edit_mail.getText().toString(),"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-z0-9.-]+$"))
-    {
+    else if(utils.findMatch(edit_mail.getText().toString(),"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-z0-9.-]+$")){
         validat_form = true;
-        error_mail.setText("");
-        edit_mail.setTextColor(Color.parseColor("#96CA2D"));
+        //Afficher texte valide
     }
-    else
-    {
+    else{
         validat_form = false;
-        error_mail.setText(R.string.register_error_mail);
-        edit_mail.setTextColor(Color.parseColor("#FFFFFF"));
+        //Erreur dans l'editText
     }
 }
 ```
@@ -141,15 +127,12 @@ Le champ mot de passe est lui vérifier avec une fonction de calcul de puissance
 La fonction de test utilise une regex via ``sh findMatch(String myString , String RegexPattern)`` qui retourne true or false:
 ```sh
 String match = "";
-
 Pattern regEx = Pattern.compile(pattern); //On compile le pattern
-
 Matcher m = regEx.matcher(myString); //On match en fonction du pattern
     if (m.find()) {
         return true;
     }
-    else
-    {
+    else{
         return false;
     }
 ```
@@ -163,10 +146,12 @@ firebaseAuth.createUserWithEmailAndPassword(mail,password)
             if(task.isSuccessful()){
                 //ON VA A LOGIN
             }
-            else
-            {
+            else{
                 //ON AFFICHE UNE ERREUR
             }
         }
     });
 ```
+
+### AfterLogin via l'option database de firebase
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/U5aeM5dvUpA&t=3s/0.jpg)](https://www.youtube.com/watch?v=U5aeM5dvUpA&t=3s)
