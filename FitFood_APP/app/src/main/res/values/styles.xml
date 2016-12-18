@@ -76,7 +76,7 @@
     </style>
 
     <style name="ButtonBarButton">
-        <item name="android:minHeight">@dimen/list_item_height_small</item>
+        <item name="android:minHeight">40dp</item>
     </style>
 
 </resources>
