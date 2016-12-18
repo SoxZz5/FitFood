@@ -35,6 +35,113 @@ dependencies {
 ```
 <img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/login_layout.png" alt="alt text" width="216" height="384" hspace="15"><img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/register_layout.png" alt="alt text" width="216" height="384" hspace="15">
 
+On commence par définir Firebase dans chaque script.
 ```sh
-T
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user; //Utiliser plus loin
+    firebaseAuth = FirebaseAuth.getInstance();
 ```
+
+Ensuite on utilise un session manager afin de conserver l'email de l'utilisateur dans les préférences.
+```sh
+     sessionManager = new SessionManager();
+      if(sessionManager.getPreferences(LoginActivity.this,"mail_sign") != null)
+        {
+            edit_mail.setText(sessionManager.getPreferences(LoginActivity.this,"mail_sign"));
+            edit_password.requestFocus();
+        }
+```
+
+Si l'utilisateur arrive sur cette activité via Register il aura alors des extras dans son Bundle afin d'afficher un message de remerciement après l'inscription avec son email.
+```sh
+        Intent intent_tmp = getIntent();
+        Bundle bundle_tmp = intent_tmp.getExtras();
+        if(bundle_tmp != null)
+        {
+            String response_register = getString(R.string.login_text_after_register) + " " + bundle_tmp.getString("response");
+            if(!response_register.isEmpty())
+            {
+                Toast toast = Toast.makeText(context, response_register, duration);
+                toast.show();
+            }
+        }
+```
+
+Lors de l'appuye sur le bouton connexion on utilise une fonction propre à firebase:
+- On envoye une requete de login à firebase dans le onComplete on récupére la réponse
+```sh
+ firebaseAuth.signInWithEmailAndPassword(email,password)
+                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful())
+                                {
+                                    Intent intent = LoginUser();
+                                    startActivity(intent);
+                                    block_form.setVisibility(View.GONE);
+                                    progressbar_login.setVisibility(View.GONE);
+                                    finish();
+                                }
+                                else
+                                {
+                                    button_login.setVisibility(View.VISIBLE);
+                                    edit_mail.setVisibility(View.VISIBLE);
+                                    edit_password.setVisibility(View.VISIBLE);
+                                    text_TP_register.setVisibility(View.VISIBLE);
+                                    fitfoodText.setVisibility(View.VISIBLE);
+                                    block_form.setVisibility(View.VISIBLE);
+                                    progressbar_login.setVisibility(View.GONE);
+                                    Toast.makeText(LoginActivity.this,"Erreur",Toast.LENGTH_LONG);
+                                }
+                            }
+                        });
+```
+
+Une fonction est appeller le reste est très graphique `sh LoginUser() `
+- Retourne la bonne Intent en fonction d'une variable de préférences afin de tester si c'est la première connexion de l'utilisateur suite à son enregistrement pour lui afficher l'activity AfterLogin.
+```sh
+private Intent LoginUser(){
+        user = firebaseAuth.getCurrentUser();
+        Intent intent;
+        String first_sign = sessionManager.getPreferences(LoginActivity.this,"first_sign");
+        if(first_sign.equals("1"))
+        {
+            intent = new Intent(LoginActivity.this, AfterLogin.class);
+        }
+        else
+        {
+            intent = new Intent(LoginActivity.this, MainActivity.class);
+        }
+        return intent;
+    }
+```
+
+Passons maintenant à Register.
+Tous les editText comporte un TextChangeListener permettant de tester chaque input et ceux pour chaque editText de notre code exemple:
+```sh
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(edit_mail.getText().length()<=0)
+                {
+                    error_mail.setText("");
+                    edit_mail.setTextColor(Color.parseColor("#FFFFFF"));
+                }
+                else if(utils.findMatch(edit_mail.getText().toString(),"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-z0-9.-]+$"))
+                {
+                    validat_form = true;
+                    error_mail.setText("");
+                    edit_mail.setTextColor(Color.parseColor("#96CA2D"));
+                }
+                else
+                {
+                    validat_form = false;
+                    error_mail.setText(R.string.register_error_mail);
+                    edit_mail.setTextColor(Color.parseColor("#FFFFFF"));
+                }
+            }
+```
+
+La fonction de test utilise une regex via une fonction appeler `sh findMatch(String myString , String RegexPattern)`
+
+
+
