@@ -6,9 +6,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,14 +21,25 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import konid.soxzz5.fitfood.R;
 import konid.soxzz5.fitfood.firebase_fitfood.Recipe;
+import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Ingredient;
+import konid.soxzz5.fitfood.fitfood_addrecipe_listview.PrepStep;
 
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 import static java.lang.Math.toIntExact;
 
@@ -43,6 +56,7 @@ public class SingleRecipeDisplay extends Fragment {
     private TextView recipeTitle;
     private TextView recipeAuthor;
     private TextView recipe_info_tag;
+    private TextView recipe_info_date;
     private TextView recipe_info_level;
     private TextView recipe_info_forwho;
     private TextView recipe_tv_heathour;
@@ -77,17 +91,19 @@ public class SingleRecipeDisplay extends Fragment {
         recipe_tv_finalminute = (TextView) v.findViewById(R.id.recipe_tv_finalminute);
         info_typedish = (TextView) v.findViewById(R.id.info_typedish);
         recipe_info_level = (TextView) v.findViewById(R.id.recipe_info_level);
+        recipe_info_date = (TextView) v.findViewById(R.id.recipe_info_date);
         recipe_imageView = (ImageView) v.findViewById(R.id.recipe_imageView);
 
         storage = FirebaseStorage.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("recipe").child("-KZIkIUUDZ_9QADpjyu1");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("recipe").child("-KZJ6t1o9jAVh30yyLvC");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child("rtitle").getValue()!=null) {
+                if(dataSnapshot.child("rvalidate").getValue()!=null && String.valueOf(dataSnapshot.child("rvalidate").getValue())!="false") {
                     loadedRecipe.setRtitle(String.valueOf(dataSnapshot.child("rtitle").getValue()));
                     loadedRecipe.setRforWho(String.valueOf(dataSnapshot.child("rforWho").getValue()));
                     loadedRecipe.setURL(String.valueOf(dataSnapshot.child("rrecipe_download_img_link").getValue()));
+                    loadedRecipe.setRdate((String.valueOf(dataSnapshot.child("rdate").getValue())).substring(0,10));
                     long Rlevel = (Long.parseLong(String.valueOf(dataSnapshot.child("rlevel").getValue())));
                     long Rtypedish = (Long.parseLong(String.valueOf(dataSnapshot.child("rtype").getValue())));
                     long Rcategorie = (Long.parseLong(String.valueOf(dataSnapshot.child("rcategory").getValue())));
@@ -95,10 +111,29 @@ public class SingleRecipeDisplay extends Fragment {
                     long Rheatminute = (Long.parseLong(String.valueOf(dataSnapshot.child("rheatMinute").getValue())));
                     long Rprephour = (Long.parseLong(String.valueOf(dataSnapshot.child("rprepareHour").getValue())));
                     long Rprepminute = (Long.parseLong(String.valueOf(dataSnapshot.child("rprepareMinute").getValue())));
-                    long Rfinalhour = Rheathour + Rprephour;
-                    long Rfinalminute = Rheatminute + Rprepminute;
                     System.out.println("URL:" + String.valueOf(dataSnapshot.child("rrecipe_download_img_link").getValue()));
 
+                    List<PrepStep> allSteps;
+
+                    //Récupération de la liste des ingrédients
+                    GenericTypeIndicator<List<Ingredient>> temp = new GenericTypeIndicator<List<Ingredient>>() {};
+                    List<Ingredient> allIngredients = dataSnapshot.child("ringredients").getValue(temp);
+
+                    System.out.println("LISTE: " + allIngredients.get(0).getName());
+                    System.out.println("LISTE: " + allIngredients.get(0).getQuantity());
+                    System.out.println("LISTE: " + allIngredients.get(0).getPosition());
+
+                    String[] numbers = new String[] {
+                            "A", "B", "C", "D", "E",
+                            "F", "G", "H", "I", "J",
+                            "K", "L", "M", "N", "O",
+                            "P", "Q", "R", "S", "T",
+                            "U", "V", "W", "X", "Y", "Z"};
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,v.recipe_display_full_info, numbers);
+                    ingredientsGRID.setAdapter(adapter);
+
+                    //Type de plat
                     switch ((int)(long)(Rtypedish))
                     {
                         case 1:
@@ -127,6 +162,7 @@ public class SingleRecipeDisplay extends Fragment {
                             break;
                     }
 
+                    //Omni/Vege/Vegan
                     switch ((int)(long)(Rcategorie))
                     {
                         case 1:
@@ -140,30 +176,40 @@ public class SingleRecipeDisplay extends Fragment {
                             break;
                     }
 
+                    //Niveau de difficulté
                     switch ((int)(long)Rlevel)
                     {
                         case 1:
                             recipe_info_level.setText(R.string.step2_tv_info_0);
-                            recipe_info_level.setTextColor(getResources().getColor(R.color.FromGreenToRed1));
+                            recipe_info_level.setTextColor(ContextCompat.getColor(context,R.color.FromGreenToRed1));
                             break;
                         case 2:
                             recipe_info_level.setText(R.string.step2_tv_info_1);
-                            recipe_info_level.setTextColor(getResources().getColor(R.color.FromGreenToRed2));
+                            recipe_info_level.setTextColor(ContextCompat.getColor(context,R.color.FromGreenToRed2));
                             break;
                         case 3:
                             recipe_info_level.setText(R.string.step2_tv_info_2);
-                            recipe_info_level.setTextColor(getResources().getColor(R.color.FromGreenToRed3));
+                            recipe_info_level.setTextColor(ContextCompat.getColor(context,R.color.FromGreenToRed3));
                             break;
                         case 4:
                             recipe_info_level.setText(R.string.step2_tv_info_3);
-                            recipe_info_level.setTextColor(getResources().getColor(R.color.FromGreenToRed4));
+                            recipe_info_level.setTextColor(ContextCompat.getColor(context,R.color.FromGreenToRed4));
                             break;
                         case 5:
                             recipe_info_level.setText(R.string.step2_tv_info_4);
-                            recipe_info_level.setTextColor(getResources().getColor(R.color.FromGreenToRed5));
+                            recipe_info_level.setTextColor(ContextCompat.getColor(context,R.color.FromGreenToRed5));
                             break;
                     }
 
+                    //Temps de préparation
+                    Calendar finalTime = Calendar.getInstance();
+                    finalTime.set(Calendar.HOUR_OF_DAY,(int)(long)Rprephour);
+                    finalTime.set(Calendar.MINUTE,(int)(long)Rprepminute);
+                    finalTime.add(Calendar.HOUR_OF_DAY,(int)(long)Rheathour);
+                    finalTime.add(Calendar.MINUTE,(int)(long)Rheatminute);
+
+                    //Date
+                    recipe_info_date.setText(loadedRecipe.getRdate());
                     //TITRE
                     recipeTitle.setText(loadedRecipe.getRtitle());
                     //Pour combien de personnes
@@ -177,9 +223,9 @@ public class SingleRecipeDisplay extends Fragment {
                     //Minutes de préparation
                     recipe_tv_prepminute.setText(String.valueOf(Rprepminute));
                     //Heures au total
-                    recipe_tv_finalhour.setText(String.valueOf(Rfinalhour));
+                    recipe_tv_finalhour.setText(String.valueOf(finalTime.get(Calendar.HOUR_OF_DAY)));
                     //Minuts au total
-                    recipe_tv_finalminute.setText(String.valueOf(Rfinalminute));
+                    recipe_tv_finalminute.setText(String.valueOf(finalTime.get(Calendar.MINUTE)));
 
                     //Téléchargement et affichage de l'image de la recette
                     StorageReference storageRef = storage.getReferenceFromUrl(loadedRecipe.getURL());
