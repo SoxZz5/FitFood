@@ -16,13 +16,13 @@ import java.util.List;
 import konid.soxzz5.fitfood.R;
 import konid.soxzz5.fitfood.firebase_fitfood.Recipe;
 
+
 public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
     RecipeShowHomeViewHolder recipeShowHomeHolder;
     private Context mContext;
     private List<Recipe> mRecipeList;
+    private OnClickListener clickListener;
     private View mConvertView;
-    OnClickListener clickListener;
-
     public RecipeShowHomeAdapter(Context context, List<Recipe> recipeList, OnClickListener clickListener) {
         super(context, 0, recipeList);
         mContext = context;
@@ -58,12 +58,7 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
         //ON MODIFIE LE HOLDER DE NOTRE ITEM
         Recipe recipe = getItem(position);
         recipeShowHomeHolder.recipe_title.setText(recipe.g);
-        recipeShowHomeHolder.quantity.setText(ingredient.getName());
-        recipeShowHomeHolder.ingredient.setText(ingredient.getQuantity());
 
-        setClickListeners(recipeShowHomeHolder.delete);
-
-        setTagsToViews(recipeShowHomeHolder.delete, position);
         return convertView;
     }
 
@@ -97,3 +92,5 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
         public TextView recipe_finalminute;
         public ImageView recipe_image;
     }
+
+
