@@ -33,7 +33,7 @@ dependencies {
      compile 'com.google.firebase:firebase-database:10.0.1'
 }
 ```
-![](https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/layout_login.png)
+![](https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/login_layout.png)
 
 ```sh
 T
