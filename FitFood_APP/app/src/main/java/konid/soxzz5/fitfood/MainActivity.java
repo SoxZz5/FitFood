@@ -28,6 +28,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import java.util.ArrayList;
 import konid.soxzz5.fitfood.fitfood_fragment.AddRecipeFragment;
 import konid.soxzz5.fitfood.fitfood_fragment.HomeFragment;
+import konid.soxzz5.fitfood.fitfood_fragment.LastRecipeFragment;
 import konid.soxzz5.fitfood.fitfood_fragment.SearchFragment;
 import konid.soxzz5.fitfood.fitfood_fragment.SingleRecipeDisplay;
 import konid.soxzz5.fitfood.fitfood_session.SessionManager;
@@ -90,17 +91,17 @@ public class MainActivity extends AppCompatActivity{
         //DEFINITION ITEM MENU
         PrimaryDrawerItem home_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_home_cook).withIcon(GoogleMaterial.Icon.gmd_home).withIdentifier(1);
         SectionDrawerItem cook = new SectionDrawerItem().withName(R.string.drawer_item_cook).withTextColor(Color.GREEN);
-        PrimaryDrawerItem day_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_day_cook).withIcon(GoogleMaterial.Icon.gmd_cake).withIdentifier(2);
-        PrimaryDrawerItem top_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_top_cook).withIcon(GoogleMaterial.Icon.gmd_local_play).withIdentifier(3);
+        PrimaryDrawerItem day_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_day_cook).withIcon(GoogleMaterial.Icon.gmd_cake).withIdentifier(2).withSelectable(false);
+        PrimaryDrawerItem top_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_top_cook).withIcon(GoogleMaterial.Icon.gmd_local_play).withIdentifier(3).withSelectable(false);
         PrimaryDrawerItem last_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_last_cook).withIcon(GoogleMaterial.Icon.gmd_style).withIdentifier(4);
         PrimaryDrawerItem seek_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_seek_cook).withIcon(GoogleMaterial.Icon.gmd_loupe).withIdentifier(5);
         PrimaryDrawerItem add_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_add_cook).withIcon(GoogleMaterial.Icon.gmd_note_add).withIdentifier(6);
         SectionDrawerItem book = new SectionDrawerItem().withName(R.string.drawer_item_book).withTextColor(Color.GREEN);
-        PrimaryDrawerItem mycook_book = new PrimaryDrawerItem().withName(R.string.drawer_item_mycook_book).withIcon(GoogleMaterial.Icon.gmd_restaurant).withIdentifier(7);
-        PrimaryDrawerItem list_book = new PrimaryDrawerItem().withName(R.string.drawer_item_list_book).withIcon(GoogleMaterial.Icon.gmd_event_note).withIdentifier(8);
-        PrimaryDrawerItem historic_book = new PrimaryDrawerItem().withName(R.string.drawer_item_historic_book).withIcon(GoogleMaterial.Icon.gmd_done).withIdentifier(9);
-        PrimaryDrawerItem param_book = new PrimaryDrawerItem().withName(R.string.drawer_item_param_book).withIcon(GoogleMaterial.Icon.gmd_settings).withIdentifier(10);
-        PrimaryDrawerItem account = new PrimaryDrawerItem().withName(R.string.drawer_item_account).withIcon(GoogleMaterial.Icon.gmd_account_box).withIdentifier(11);
+        PrimaryDrawerItem mycook_book = new PrimaryDrawerItem().withName(R.string.drawer_item_mycook_book).withIcon(GoogleMaterial.Icon.gmd_restaurant).withIdentifier(7).withSelectable(false);
+        PrimaryDrawerItem list_book = new PrimaryDrawerItem().withName(R.string.drawer_item_list_book).withIcon(GoogleMaterial.Icon.gmd_event_note).withIdentifier(8).withSelectable(false);
+        PrimaryDrawerItem historic_book = new PrimaryDrawerItem().withName(R.string.drawer_item_historic_book).withIcon(GoogleMaterial.Icon.gmd_done).withIdentifier(9).withSelectable(false);
+        PrimaryDrawerItem param_book = new PrimaryDrawerItem().withName(R.string.drawer_item_param_book).withIcon(GoogleMaterial.Icon.gmd_settings).withIdentifier(10).withSelectable(false);
+        PrimaryDrawerItem account = new PrimaryDrawerItem().withName(R.string.drawer_item_account).withIcon(GoogleMaterial.Icon.gmd_account_box).withIdentifier(11).withSelectable(false);
         PrimaryDrawerItem disconnect = new PrimaryDrawerItem().withName(R.string.drawer_item_disconnect).withIcon(GoogleMaterial.Icon.gmd_highlight_off).withIdentifier(12);
 
         //CONSTRUCTION DU MENU
@@ -150,7 +151,17 @@ public class MainActivity extends AppCompatActivity{
                                     toolbar.setTitle(R.string.drawer_item_home_cook);
                                 }
                             }
-
+                            if(drawerItem.getIdentifier() == 4)
+                            {
+                                if(drawableTag!=4) {
+                                    drawableTag = 4;
+                                    LastRecipeFragment newFragment = new LastRecipeFragment();
+                                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                    transaction.replace(R.id.fragment_container, newFragment);
+                                    transaction.commit();
+                                    toolbar.setTitle(R.string.drawer_item_last_cook);
+                                }
+                            }
                             if(drawerItem.getIdentifier() == 5)
                             {
                                 if(drawableTag!=5)
@@ -225,6 +236,7 @@ public class MainActivity extends AppCompatActivity{
                 transaction.replace(R.id.fragment_container, newFragment);
                 transaction.commit();
                 toolbar.setTitle(query);
+                drawableTag=-1;
                 return false;
             }
 

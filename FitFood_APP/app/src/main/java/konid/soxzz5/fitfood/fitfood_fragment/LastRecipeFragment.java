@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import konid.soxzz5.fitfood.R;
@@ -30,7 +31,7 @@ import konid.soxzz5.fitfood.fitfood_addrecipe_listview.RecipeShowHomeAdapter;
  * Created by Soxzer on 18/12/2016.
  */
 
-public class SearchFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class LastRecipeFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
     private Context mContext;
     private ListView listview_container;
     private List<Recipe> recipeList;
@@ -46,16 +47,11 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Ad
         recipeList = new ArrayList<>();
         recipeShowHomeAdapter = new RecipeShowHomeAdapter(mContext, recipeList,this);
         listview_container = (ListView) v.findViewById(R.id.search_list_view);
-        Bundle bundle_tmp = this.getArguments();
-        if(bundle_tmp != null) {
-            final String query = bundle_tmp.getString("seek");
             databaseReference = FirebaseDatabase.getInstance().getReference().child("recipe");
-            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            databaseReference.orderByChild("rdate").limitToLast(20).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        System.out.println("rtitle :" + snapshot.child("rtitle").getValue().toString().toLowerCase() + " / " + query.toLowerCase());
-                        if(snapshot.child("rtitle").getValue().toString().toLowerCase().equals(query.toLowerCase()))  {
                             int temp_category = Integer.parseInt(snapshot.child("rcategory").getValue().toString());
                             String temp_date = snapshot.child("rdate").getValue().toString();
                             String temp_forWho = snapshot.child("rforWho").getValue().toString();
@@ -69,8 +65,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Ad
                             int temp_type = Integer.parseInt(snapshot.child("rtype").getValue().toString());
                             boolean temp_valide = (Boolean) snapshot.child("rvalidate").getValue();
                             recipeList.add(new Recipe(temp_title, temp_category, temp_level, temp_type, temp_prepareHour, temp_prepareMinute, temp_heatHour, temp_heatMinute, temp_forWho, temp_date, temp_valide, temp_dll_link));
-                        }
                     }
+                    Collections.reverse(recipeList);
                     listview_container.setAdapter(recipeShowHomeAdapter);
                     recipeShowHomeAdapter.notifyDataSetChanged();
                 }
@@ -83,7 +79,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Ad
                     mProgressDialog.show();
                 }
             });
-        }
         return v;
     }
 

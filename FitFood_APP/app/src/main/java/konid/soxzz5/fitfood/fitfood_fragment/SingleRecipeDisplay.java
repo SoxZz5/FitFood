@@ -130,8 +130,8 @@ public class SingleRecipeDisplay extends Fragment {
                             "P", "Q", "R", "S", "T",
                             "U", "V", "W", "X", "Y", "Z"};
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,v.recipe_display_full_info, numbers);
-                    ingredientsGRID.setAdapter(adapter);
+                    /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,v.recipe_display_full_info, numbers);
+                    ingredientsGRID.setAdapter(adapter);*/
 
                     //Type de plat
                     switch ((int)(long)(Rtypedish))
