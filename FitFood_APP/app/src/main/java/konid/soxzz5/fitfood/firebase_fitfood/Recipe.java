@@ -159,57 +159,11 @@ public class Recipe {
         Rvalidate = rvalidate;
     }
 
-    public Bitmap getBitmapFromImage()
-    {
-        DatabaseReference recipeImgReference = FirebaseDatabase.getInstance().getReference().child("recipe_img");
-        StorageReference firebaseStorage;
-        if(getRecipeKey() != "")
-        {
-            recipe_key = getRecipeKey();
-        }
-        recipeImgReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                if(recipe_key.equals(dataSnapshot.getKey()))
-                {
-
-                }
-            }
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {}
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        });
-
-
+    public String getRrecipe_download_img_link() {
+        return Rrecipe_download_img_link;
     }
 
-    public String getRecipeKey()
-    {
-        DatabaseReference recipeReference = FirebaseDatabase.getInstance().getReference().child("recipe");
-        recipe_key = "";
-        recipeReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                if(Rtitle.toLowerCase().equals(dataSnapshot.getKey().toLowerCase()))
-                {
-                    recipe_key = dataSnapshot.getKey();
-                }
-            }
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            }
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {}
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        });
-        return  recipe_key;
+    public void setRrecipe_download_img_link(String rrecipe_download_img_link) {
+        Rrecipe_download_img_link = rrecipe_download_img_link;
     }
 }

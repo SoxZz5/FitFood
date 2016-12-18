@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import konid.soxzz5.fitfood.R;
@@ -60,16 +62,22 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
         //ON MODIFIE LE HOLDER DE NOTRE ITEM
         Recipe recipe = getItem(position);
         recipeShowHomeHolder.recipe_title.setText(recipe.getRtitle());
-        recipeShowHomeHolder.recipe_tag.setText(recipe.getRtitle());
-        recipeShowHomeHolder.recipe_forwho.setText(recipe.getRtitle());
-        recipeShowHomeHolder.recipe_heathour.setText(recipe.getRtitle());
-        recipeShowHomeHolder.recipe_heatminute.setText(recipe.getRtitle());
-        recipeShowHomeHolder.recipe_prephour.setText(recipe.getRtitle());
-        recipeShowHomeHolder.recipe_prepminute.setText(recipe.getRtitle());
-        recipeShowHomeHolder.recipe_finalhour.setText(recipe.getRtitle());
-        recipeShowHomeHolder.recipe_finalminute.setText(recipe.getRtitle());
+        String tag = recipe.getRcategory() + " / " + recipe.getRtype() + " / " + recipe.getRlevel();
+        recipeShowHomeHolder.recipe_tag.setText(tag);
+        String forwho = getContext().getString(R.string.step3_tv_forwho) + " " + recipe.getRforWho();
+        recipeShowHomeHolder.recipe_forwho.setText(forwho);
+        recipeShowHomeHolder.recipe_heathour.setText(recipe.getRheatHour());
+        recipeShowHomeHolder.recipe_heatminute.setText(recipe.getRheatMinute());
+        recipeShowHomeHolder.recipe_prephour.setText(recipe.getRprepareHour());
+        recipeShowHomeHolder.recipe_prepminute.setText(recipe.getRprepareMinute());
 
-        //recipeShowHomeHolder.recipe_image.setImageBitmap();
+        String timeDisplay = "00:00";
+        int totalHourInMin = ((recipe.getRheatHour()*60)+recipe.getRheatMinute())+((recipe.getRprepareHour()*60)+recipe.getRprepareMinute());
+        int finalhour = ((totalHourInMin/60)+Integer.parseInt(timeDisplay.substring(0,1)));
+        int finalminute = ((totalHourInMin%60)+Integer.parseInt(timeDisplay.substring(3,4)));
+        recipeShowHomeHolder.recipe_finalhour.setText(finalhour);
+        recipeShowHomeHolder.recipe_finalminute.setText(finalminute);
+        Picasso.with(getContext()).load(recipe.getRrecipe_download_img_link()).centerCrop().into(recipeShowHomeHolder.recipe_image);
 
         return convertView;
     }
