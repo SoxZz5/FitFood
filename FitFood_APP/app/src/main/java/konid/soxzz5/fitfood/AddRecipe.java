@@ -433,12 +433,9 @@ public class AddRecipe extends AppCompatActivity {
                             }
                         });
 
-                        DatabaseReference recipe_ref = databaseReference.child("recipe");
+                        DatabaseReference recipe_ref = databaseReference.child("recipe").push();
                         DatabaseReference user_recipe_ref = databaseReference.child("user_recipe");
-                        DatabaseReference recipe_image_ref = databaseReference.child("recipe_image").push();
-                        recipe_image_ref.setValue(new_filepath.getPath());
-
-                        String newKey = recipe_image_ref.getKey().toString();
+                        String newKey = recipe_ref.getKey().toString();
                         user_recipe_ref.child(newKey).setValue(firebaseUser.getUid());
                         mProgressDialog.hide();
                         mProgressDialog.setMessage("Sending recipe ...");
