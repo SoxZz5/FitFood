@@ -151,5 +151,9 @@
     <string name="step5_info_prep">Example: Season chicken with salt and pepper, roast in the preheated oven ...</string>
     <string name="step5_invalid_step">Invalid step (min 10 characters)</string>
 
-
+    <string name="recipe_tv_prep_label">Preparation</string>
+    <string name="recipe_tv_heat_label">Cooking</string>
+    <string name="recipe_tv_final_label">Ready in</string>
+    <string name="recipe_tv_hour_label">h</string>
+    <string name="recipe_tv_minute_label">min</string>
 </resources>

@@ -150,5 +150,12 @@
     <string name="step4_invalid_ingredient">Ingrédient invalide</string>
     <string name="step4_invalid_quantity">Quantité invalide</string>
     <string name="step5_invalid_step">Étape invalide (minimum 10 caractères)</string>
+
+
+    <string name="recipe_tv_prep_label">Préparation</string>
+    <string name="recipe_tv_heat_label">Cuisson</string>
+    <string name="recipe_tv_final_label">Prêt en</string>
+    <string name="recipe_tv_hour_label">h</string>
+    <string name="recipe_tv_minute_label">min</string>
 </resources>
 
