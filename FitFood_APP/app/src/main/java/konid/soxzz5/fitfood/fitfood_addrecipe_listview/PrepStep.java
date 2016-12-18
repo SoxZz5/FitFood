@@ -8,6 +8,11 @@ public class PrepStep {
     private String name;
     private int position;
 
+    public PrepStep()
+    {
+
+    }
+
     public PrepStep(String name, int position)
     {
         this.name=name;

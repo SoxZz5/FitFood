@@ -31,10 +31,8 @@
                 android:layout_alignParentLeft="true" />
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/info_typedish"
                 android:layout_above="@+id/imageHolder"
                 android:layout_alignParentLeft="true"
                 android:layout_marginBottom="1dp"
@@ -86,7 +84,7 @@
                         android:text="AUTEUR: kOnI et SoxZz"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:id="@+id/recipe_author"
+                        android:id="@+id/info_typedish"
                         android:layout_weight="1"
                         android:gravity="center_vertical|center_horizontal"
                         android:textSize="18sp"
@@ -555,15 +553,16 @@
 
             </LinearLayout>
 
-            <GridView
+            <TextView
                 android:layout_width="match_parent"
-                android:id="@+id/ingredients_grid"
-                android:numColumns="2"
+                android:id="@+id/ingredients_text"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ingredientstitle"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:background="@color/md_blue_grey_500" />
+                android:background="?attr/colorButtonNormal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
 
             <LinearLayout
                 android:orientation="vertical"
@@ -571,7 +570,7 @@
                 android:layout_weight="1"
                 android:background="@color/material_drawer_dark_background"
                 android:weightSum="1"
-                android:layout_below="@+id/ingredients_grid"
+                android:layout_below="@+id/ingredients_text"
                 android:layout_height="40dp"
                 android:id="@+id/stepstitle">
 
@@ -597,15 +596,17 @@
 
             </LinearLayout>
 
-            <GridView
+            <TextView
                 android:layout_width="match_parent"
-                android:id="@+id/steps_grid"
+                android:id="@+id/steps_text"
                 android:layout_below="@+id/stepstitle"
                 android:numColumns="1"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:background="@color/md_blue_grey_500" />
+                android:background="?attr/colorButtonNormal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
 
         </RelativeLayout>
     </ScrollView>

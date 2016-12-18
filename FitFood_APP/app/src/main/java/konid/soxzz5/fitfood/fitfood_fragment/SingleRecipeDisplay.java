@@ -10,7 +10,6 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,17 +30,9 @@ import konid.soxzz5.fitfood.fitfood_addrecipe_listview.PrepStep;
 
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-
-import static java.lang.Math.toIntExact;
 
 /**
  * Created by CORTELLA and GIFFARD on 18/12/2016.
@@ -51,8 +42,8 @@ public class SingleRecipeDisplay extends Fragment {
 
     private DatabaseReference databaseReference;
     FirebaseStorage storage;
-    private GridView ingredientsGRID;
-    private GridView stepsGRID;
+    private TextView ingredients_text;
+    private TextView steps_text;
     private TextView recipeTitle;
     private TextView recipeAuthor;
     private TextView recipe_info_tag;
@@ -77,10 +68,10 @@ public class SingleRecipeDisplay extends Fragment {
         context = getActivity();
         //DO SOMETHING WITH
         View v = inflater.inflate(R.layout.recipe_display_full_info, container, false);
-        ingredientsGRID = (GridView) v.findViewById(R.id.ingredients_grid);
-        stepsGRID = (GridView) v.findViewById(R.id.steps_grid);
+        ingredients_text = (TextView) v.findViewById(R.id.ingredients_text);
+        steps_text = (TextView) v.findViewById(R.id.steps_text);
         recipeTitle = (TextView) v.findViewById(R.id.recip_title);
-        recipeAuthor = (TextView) v.findViewById(R.id.recipe_author);
+        //recipeAuthor = (TextView) v.findViewById(R.id.recipe_author);
         recipe_info_tag = (TextView) v.findViewById(R.id.recipe_info_tag);
         recipe_info_forwho = (TextView) v.findViewById(R.id.recipe_info_forwho);
         recipe_tv_heathour = (TextView) v.findViewById(R.id.recipe_tv_heathour);
@@ -113,25 +104,31 @@ public class SingleRecipeDisplay extends Fragment {
                     long Rprepminute = (Long.parseLong(String.valueOf(dataSnapshot.child("rprepareMinute").getValue())));
                     System.out.println("URL:" + String.valueOf(dataSnapshot.child("rrecipe_download_img_link").getValue()));
 
-                    List<PrepStep> allSteps;
-
                     //Récupération de la liste des ingrédients
                     GenericTypeIndicator<List<Ingredient>> temp = new GenericTypeIndicator<List<Ingredient>>() {};
                     List<Ingredient> allIngredients = dataSnapshot.child("ringredients").getValue(temp);
 
-                    System.out.println("LISTE: " + allIngredients.get(0).getName());
-                    System.out.println("LISTE: " + allIngredients.get(0).getQuantity());
-                    System.out.println("LISTE: " + allIngredients.get(0).getPosition());
+                    String ingredientsString = "";
+                    int i=0;
+                    for(i=0;i<allIngredients.size();i++) {
+                        ingredientsString += (i+1) + ") " + allIngredients.get(i).getName() + " " + allIngredients.get(i).getQuantity();
+                        if(i!=allIngredients.size()-1) ingredientsString += "\n";
+                    }
+                    ingredients_text.setText(ingredientsString);
 
-                    String[] numbers = new String[] {
-                            "A", "B", "C", "D", "E",
-                            "F", "G", "H", "I", "J",
-                            "K", "L", "M", "N", "O",
-                            "P", "Q", "R", "S", "T",
-                            "U", "V", "W", "X", "Y", "Z"};
+                    //Récupération de la liste des étapes
+                    GenericTypeIndicator<List<PrepStep>> temp2 = new GenericTypeIndicator<List<PrepStep>>() {};
+                    List<PrepStep> allSteps = dataSnapshot.child("rsteps").getValue(temp2);
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,v.recipe_display_full_info, numbers);
-                    ingredientsGRID.setAdapter(adapter);
+                    System.out.println("LISTE: " + allSteps.get(0).getName());
+
+                    String stepsString = "";
+                    for(i=0;i<allSteps.size();i++) {
+                        stepsString += (i+1) + ") " + allSteps.get(i).getName();
+                        if(i!=allSteps.size()-1) stepsString += "\n";
+                    }
+                    steps_text.setText(stepsString);
+
 
                     //Type de plat
                     switch ((int)(long)(Rtypedish))
