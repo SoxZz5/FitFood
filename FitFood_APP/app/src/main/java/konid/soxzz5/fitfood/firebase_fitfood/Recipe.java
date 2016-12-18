@@ -36,6 +36,7 @@ public class Recipe {
     private String Rdate;
     private boolean Rvalidate;
     private String Rrecipe_download_img_link;
+    private String URL;
 
     public Recipe(){
 
@@ -110,4 +111,67 @@ public class Recipe {
         return Rrecipe_download_img_link;
     }
 
+    public void setRcategory(int rcategory) {
+        Rcategory = rcategory;
+    }
+
+    public void setRdate(String rdate) {
+        Rdate = rdate;
+    }
+
+    public void setRforWho(String rforWho) {
+        RforWho = rforWho;
+    }
+
+    public void setRheatHour(int rheatHour) {
+        RheatHour = rheatHour;
+    }
+
+    public void setRheatMinute(int rheatMinute) {
+        RheatMinute = rheatMinute;
+    }
+
+    public void setRingredients(List<Ingredient> ringredients) {
+        Ringredients = ringredients;
+    }
+
+    public void setRlevel(int rlevel) {
+        Rlevel = rlevel;
+    }
+
+    public void setRprepareHour(int rprepareHour) {
+        RprepareHour = rprepareHour;
+    }
+
+    public void setRprepareMinute(int rprepareMinute) {
+        RprepareMinute = rprepareMinute;
+    }
+
+    public void setRrecipe_download_img_link(String rrecipe_download_img_link) {
+        Rrecipe_download_img_link = rrecipe_download_img_link;
+    }
+
+    public void setRsteps(List<PrepStep> rsteps) {
+        Rsteps = rsteps;
+    }
+
+    public void setRtitle(String rtitle) {
+        Rtitle = rtitle;
+    }
+
+    public void setRtype(int rtype) {
+        Rtype = rtype;
+    }
+
+    public void setRvalidate(boolean rvalidate) {
+        Rvalidate = rvalidate;
+    }
+
+    public void setURL(String URL) {
+        this.URL = URL;
+    }
+
+    public String getURL() {
+        return URL;
+    }
 }

@@ -88,7 +88,7 @@ public class HomeFragment extends Fragment {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        })
+        });
 
 
         mHandler = new Handler() {
