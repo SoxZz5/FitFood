@@ -417,8 +417,8 @@ public class AddRecipe extends AppCompatActivity {
                         new_filepath.putFile(step_final.getFilePath()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                mProgressDialog.setMessage("Sending recipe ...");
                                 mProgressDialog.hide();
+                                mProgressDialog.cancel();
                                 validate_upload=true;
                             }
                         });
@@ -426,28 +426,27 @@ public class AddRecipe extends AppCompatActivity {
                         DatabaseReference recipe_ref = databaseReference.child("recipe");
                         DatabaseReference user_recipe_ref = databaseReference.child("user_recipe");
                         DatabaseReference recipe_image_ref = databaseReference.child("recipe_image").push();
-                        mProgressDialog.setMessage("Sending recipe image ...");
-                        mProgressDialog.show();
+
+
                         recipe_image_ref.setValue(new_filepath.getPath());
-                        mProgressDialog.hide();
-                        mProgressDialog.setMessage("Sending user to recipe ...");
-                        mProgressDialog.show();
+
                         String newKey = recipe_image_ref.getKey().toString();
                         user_recipe_ref.child(newKey).setValue(firebaseUser.getUid());
-                        mProgressDialog.hide();
-                        mProgressDialog.setMessage("Sending recipe ...");
-                        mProgressDialog.show();
+
                         Recipe recipe = new Recipe(sTitle, iCategory, iLevel, iType, iPrepareHour, iPrepareMinute, iHeatHour, iHeatMinute, sForWho, alIngredients, alSteps);
                         recipe_ref.child(newKey).setValue(recipe);
                         recipe_ref.child(newKey).child("validate").setValue(false);
+
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy_HH:mm");
                         sdf.setTimeZone(TimeZone.getTimeZone("GMT+1"));
                         String currentDateandTime = sdf.format(new Date());
+
                         recipe_ref.child(newKey).child("date").setValue(currentDateandTime);
-                        mProgressDialog.hide();
+
                         Toast.makeText(AddRecipe.this,"Recette ajouter à la BDD",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(AddRecipe.this,MainActivity.class);
                         startActivity(intent);
+                        finish();
                     }
                     }
                 }
