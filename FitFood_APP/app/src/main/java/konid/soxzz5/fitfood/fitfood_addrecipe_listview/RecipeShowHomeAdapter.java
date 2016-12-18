@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,6 +37,8 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
     private Bitmap mBitmap;
     private StorageReference firebaseStorage;
     FirebaseStorage storage;
+    Recipe recipe;
+    Uri path_dll;
     public RecipeShowHomeAdapter(Context context, List<Recipe> recipeList, OnClickListener clickListener) {
         super(context, 0, recipeList);
         mContext = context;
@@ -69,7 +72,7 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
         }
 
         //ON MODIFIE LE HOLDER DE NOTRE ITEM
-        Recipe recipe = getItem(position);
+        recipe = getItem(position);
         recipeShowHomeHolder.recipe_title.setText(recipe.getRtitle());
         String type ="";
         switch (recipe.getRcategory())
@@ -149,24 +152,13 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
         int finalminute = ((totalHourInMin%60)+Integer.parseInt(timeDisplay.substring(3,4)));
         recipeShowHomeHolder.recipe_finalhour.setText(Integer.toString(finalhour));
         recipeShowHomeHolder.recipe_finalminute.setText(Integer.toString(finalminute));
-
-        //Téléchargement et affichage de l'image de la recette
-        storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReferenceFromUrl(recipe.getRrecipe_download_img_link());
-        final long ONE_MEGABYTE = 1024 * 1024;
-        storageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                recipeShowHomeHolder.recipe_image.setImageBitmap(bitmap);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });
-
+        firebaseStorage = FirebaseStorage.getInstance().getReferenceFromUrl(recipe.getRrecipe_download_img_link().toString());
+        Picasso.with(mContext).setLoggingEnabled(true);
+        Picasso.with(mContext)
+                .load(recipe.getRrecipe_download_img_link().toString())
+                .fit()
+                .centerCrop()
+                .into(recipeShowHomeHolder.recipe_image);
 
 
         return convertView;

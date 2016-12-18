@@ -129,7 +129,6 @@ public class SingleRecipeDisplay extends Fragment {
                     }
                     steps_text.setText(stepsString);
 
-
                     //Type de plat
                     switch ((int)(long)(Rtypedish))
                     {
