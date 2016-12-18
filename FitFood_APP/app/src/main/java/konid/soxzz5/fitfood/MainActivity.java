@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -41,6 +42,7 @@ import java.util.List;
 
 
 import konid.soxzz5.fitfood.fitfood_fragment.AddRecipeFragment;
+import konid.soxzz5.fitfood.fitfood_fragment.HomeFragment;
 import konid.soxzz5.fitfood.fitfood_session.SessionManager;
 
 
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity{
     DatabaseReference databaseReference;
     FirebaseUser user;
     SessionManager sessionManager;
-
+    String first_sign;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity{
         user = firebaseAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         sessionManager = new SessionManager();
-
+        Fragment HomeFragment = (Fragment) new HomeFragment();
 
         if(user == null)
         {
@@ -74,12 +76,18 @@ public class MainActivity extends AppCompatActivity{
         }
         else
         {
-            String first_sign = sessionManager.getPreferences(MainActivity.this,"first_sign");
+            first_sign = sessionManager.getPreferences(MainActivity.this,"first_sign");
             if(first_sign.equals("1"))
             {
                 Intent intent = new Intent(MainActivity.this,AfterLogin.class);
                 startActivity(intent);
                 finish();
+            }
+            else
+            {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, HomeFragment);
+                transaction.commit();
             }
         }
 

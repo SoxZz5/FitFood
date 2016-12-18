@@ -268,4 +268,12 @@ public class AfterLogin extends AppCompatActivity {
         sessionManager.setPreferences(AfterLogin.this,"first_sign","0");
         Toast.makeText(AfterLogin.this, getString(R.string.after_login_text_validate), Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this,LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
