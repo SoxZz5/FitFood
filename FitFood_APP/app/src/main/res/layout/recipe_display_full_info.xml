@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                android:weightSum="10"
+                    android:background="@color/materialize_primary"
+                android:layout_height="350dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/main_info">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/recip_title"
+                    android:text="Roti de veau à l'échalotte"
+                    android:textColor="@color/accent"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="normal|bold"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical" />
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="6"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@color/material_drawer_dark_background"
+                            android:weightSum="5.6">
+
+                            <TextView
+                                android:text="AUTEUR: kOnI et SoxZz"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:id="@+id/recipe_author"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical|center_horizontal" />
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.2"
+                                android:id="@+id/delimiterFirst"
+                                android:background="@color/colorPrimary">
+
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:id="@+id/regime">
+
+                                <ImageView
+                                    app:srcCompat="@drawable/recipe_forwho"
+                                    android:id="@+id/imageView7"
+                                    android:layout_width="16dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_marginBottom="2dp"
+                                    android:backgroundTint="@color/accent"
+                                    android:backgroundTintMode="src_over"
+                                    android:layout_below="@+id/recipe_iv_tag"
+                                    android:layout_marginLeft="5dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/recipe_info_tag"
+                                    android:text="Plat principal / Facile / Omnivore"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/material_drawer_dark_secondary_text"
+                                    android:layout_toRightOf="@+id/recipe_iv_tag"
+                                    android:layout_below="@+id/recipe_iv_tag"
+                                    android:gravity="center_vertical|center_horizontal"
+                                    android:layout_marginLeft="25dp" />
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_vertical|center_horizontal"
+                                android:id="@+id/portionsHolder">
+
+                                <ImageView
+                                    android:layout_width="16dp"
+                                    android:layout_height="match_parent"
+                                    app:srcCompat="@drawable/recipe_tag"
+                                    android:id="@+id/recipe_iv_tag"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_alignParentLeft="false"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_marginBottom="2dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:backgroundTint="@color/accent"
+                                    android:backgroundTintMode="src_over"
+                                    android:layout_weight="1" />
+
+                                <TextView
+                                    android:text="Pour 2 portions"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/recipe_info_forwho"
+                                    android:layout_alignParentRight="false"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/material_drawer_dark_secondary_text"
+                                    android:layout_marginLeft="25dp"
+                                    android:layout_marginRight="5dp"
+                                    android:textAlignment="center"
+                                    android:gravity="center_vertical" />
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.2"
+                                android:id="@+id/delimiter2"
+                                android:background="@color/colorPrimary">
+
+                            </FrameLayout>
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="2"
+                                android:weightSum="2">
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:weightSum="2">
+
+                                    <FrameLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:id="@+id/time_info_holder"
+                                        android:layout_weight="0.98">
+
+                                        <ImageView
+                                            app:srcCompat="@drawable/time_icon"
+                                            android:id="@+id/recipe_iv_heattime"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_width="16dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="5dp"
+                                            android:layout_marginTop="2dp"
+                                            android:layout_marginBottom="2dp" />
+
+                                        <LinearLayout
+                                            android:orientation="vertical"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/recipe_layout_prep"
+                                            android:layout_weight="1"
+                                            android:layout_marginLeft="25dp"
+                                            android:layout_marginTop="2dp">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:id="@+id/recip_tv_prep_label"
+                                                android:layout_weight="1"
+                                                android:layout_gravity="center_vertical|center_horizontal"
+                                                android:text="Preparation"
+                                                android:textSize="12sp"
+                                                android:textColor="@color/material_drawer_dark_primary_text" />
+
+                                            <LinearLayout
+                                                android:orientation="horizontal"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1"
+                                                android:id="@+id/recipe_layout_preptime"
+                                                android:layout_gravity="center_horizontal">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:id="@+id/recipe_tv_prephour"
+                                                    android:textSize="12sp"
+                                                    android:textStyle="normal|bold"
+                                                    android:textAlignment="center"
+                                                    android:text="30"
+                                                    android:textColor="@color/material_drawer_dark_primary_text"
+                                                    android:layout_marginLeft="2dp"
+                                                    android:layout_marginRight="3dp" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:id="@+id/recipe_tv_label_prephour"
+                                                    android:text="h"
+                                                    android:textSize="12sp"
+                                                    android:textColor="@color/material_drawer_dark_secondary_text"
+                                                    android:textAlignment="center"
+                                                    android:layout_marginLeft="2dp"
+                                                    android:layout_marginRight="2dp" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:id="@+id/recipe_tv_prepminute"
+                                                    android:textSize="12sp"
+                                                    android:textStyle="normal|bold"
+                                                    android:text="30"
+                                                    android:textColor="@color/material_drawer_dark_primary_text"
+                                                    android:textAlignment="center"
+                                                    android:layout_marginLeft="2dp"
+                                                    android:layout_marginRight="3dp" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:id="@+id/recipve_tv_label_prepminute"
+                                                    android:text="min"
+                                                    android:textSize="12sp"
+                                                    android:textColor="@color/material_drawer_dark_secondary_text"
+                                                    android:textAlignment="center"
+                                                    android:layout_marginLeft="2dp"
+                                                    android:layout_marginRight="2dp" />
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+                                    </FrameLayout>
+
+                                    <FrameLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.04"
+                                        android:background="@color/colorPrimary">
+
+                                    </FrameLayout>
+
+                                    <FrameLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.98">
+
+                                        <LinearLayout
+                                            android:orientation="vertical"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:id="@+id/recipe_layout_heat"
+                                            android:layout_weight="1"
+                                            android:layout_marginTop="2dp">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:id="@+id/recip_tv_heat_label"
+                                                android:layout_weight="1"
+                                                android:layout_gravity="center_vertical|center_horizontal"
+                                                android:text="Cuisson"
+                                                android:textSize="12sp"
+                                                android:textColor="@color/material_drawer_dark_primary_text" />
+
+                                            <LinearLayout
+                                                android:orientation="horizontal"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1"
+                                                android:id="@+id/recipe_layout_heattime"
+                                                android:layout_gravity="center_horizontal">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:id="@+id/recipe_tv_heathour"
+                                                    android:textSize="12sp"
+                                                    android:textStyle="normal|bold"
+                                                    android:textAlignment="center"
+                                                    android:text="30"
+                                                    android:textColor="@color/material_drawer_dark_primary_text"
+                                                    android:layout_marginLeft="2dp"
+                                                    android:layout_marginRight="3dp" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:id="@+id/recipe_tv_label_heathour"
+                                                    android:text="h"
+                                                    android:textSize="12sp"
+                                                    android:textColor="@color/material_drawer_dark_secondary_text"
+                                                    android:textAlignment="center"
+                                                    android:layout_marginLeft="2dp"
+                                                    android:layout_marginRight="2dp" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:id="@+id/recipe_tv_heatminute"
+                                                    android:textSize="12sp"
+                                                    android:textStyle="normal|bold"
+                                                    android:text="30"
+                                                    android:textColor="@color/material_drawer_dark_primary_text"
+                                                    android:layout_marginLeft="2dp"
+                                                    android:layout_marginRight="3dp" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:id="@+id/recipve_tv_label_heatminute"
+                                                    android:text="min"
+                                                    android:textSize="12sp"
+                                                    android:textColor="@color/material_drawer_dark_secondary_text"
+                                                    android:textAlignment="center"
+                                                    android:layout_marginLeft="2dp"
+                                                    android:layout_marginRight="2dp" />
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+                                    </FrameLayout>
+                                </LinearLayout>
+
+                                <FrameLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.2"
+                                    android:id="@+id/delimiter"
+                                    android:background="@color/colorPrimary">
+
+                                </FrameLayout>
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:id="@+id/recipe_layout_final"
+                                    android:layout_weight="1"
+                                    android:weightSum="2">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:id="@+id/recip_tv_final_label"
+                                        android:layout_weight="0.9"
+                                        android:layout_gravity="center_vertical|center_horizontal"
+                                        android:text="Prêt en"
+                                        android:textSize="12sp"
+                                        android:textColor="@color/material_drawer_dark_primary_text"
+                                        android:gravity="right|center_vertical"
+                                        android:layout_marginRight="5dp" />
+
+                                    <LinearLayout
+                                        android:orientation="horizontal"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1.1"
+                                        android:id="@+id/recipe_layout_finaltime"
+                                        android:layout_gravity="center_horizontal"
+                                        android:gravity="center_vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/recipe_tv_finalhour"
+                                            android:textSize="12sp"
+                                            android:textStyle="normal|bold"
+                                            android:textAlignment="center"
+                                            android:text="30"
+                                            android:textColor="@color/material_drawer_dark_primary_text"
+                                            android:layout_marginLeft="2dp"
+                                            android:layout_marginRight="3dp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/recipe_tv_label_finalhour"
+                                            android:text="h"
+                                            android:textSize="12sp"
+                                            android:textColor="@color/material_drawer_dark_secondary_text"
+                                            android:textAlignment="center"
+                                            android:layout_marginLeft="2dp"
+                                            android:layout_marginRight="2dp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/recipe_tv_finalminute"
+                                            android:textSize="12sp"
+                                            android:textStyle="normal|bold"
+                                            android:text="30"
+                                            android:textColor="@color/material_drawer_dark_primary_text"
+                                            android:layout_marginLeft="2dp"
+                                            android:layout_marginRight="3dp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/recipve_tv_label_finalminute"
+                                            android:text="min"
+                                            android:textSize="12sp"
+                                            android:textColor="@color/material_drawer_dark_secondary_text"
+                                            android:textAlignment="center"
+                                            android:layout_marginLeft="2dp"
+                                            android:layout_marginRight="2dp" />
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:id="@+id/imageHolder"
+                            android:background="@drawable/roundbackground1"
+                            android:paddingTop="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingLeft="5dp">
+
+                            <ImageView
+                                app:srcCompat="@drawable/recipeadd_background"
+                                android:id="@+id/recipe_imageView"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:cropToPadding="false"
+                                android:scaleType="centerCrop"
+                                android:layout_weight="5" />
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="@color/material_drawer_dark_background"
+                        android:weightSum="1">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.2"
+                            android:id="@+id/delimiter21"
+                            android:background="@drawable/roundbackground1">
+
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:text="@string/step4_et_ingredient"
+                            android:textColor="@color/material_drawer_dark_primary_text"
+                            android:textAlignment="center"
+                            android:textSize="18sp"
+                            android:textStyle="normal|bold"
+                            android:layout_weight="0.8"
+                            android:gravity="center_vertical" />
+
+                    </LinearLayout>
+
+            </LinearLayout>
+
+            <GridView
+                android:layout_width="match_parent"
+                android:id="@+id/ingredients_grid"
+                android:layout_below="@+id/main_info"
+                android:numColumns="2"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:background="@color/material_drawer_dark_background"
+                android:weightSum="1"
+                android:layout_below="@+id/ingredients_grid"
+                android:layout_height="40dp"
+                android:id="@+id/stepstitle">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:id="@+id/delimiter22"
+                    android:background="@drawable/roundbackground1">
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="@string/steps"
+                    android:textColor="@color/material_drawer_dark_primary_text"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="normal|bold"
+                    android:layout_weight="0.8"
+                    android:gravity="center_vertical" />
+
+            </LinearLayout>
+
+            <GridView
+                android:layout_width="match_parent"
+                android:id="@+id/steps_grid"
+                android:layout_below="@+id/stepstitle"
+                android:numColumns="1"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

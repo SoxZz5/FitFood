@@ -9,8 +9,8 @@ import android.graphics.Color;
 import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +43,7 @@ import java.util.List;
 
 import konid.soxzz5.fitfood.fitfood_fragment.AddRecipeFragment;
 import konid.soxzz5.fitfood.fitfood_fragment.HomeFragment;
+import konid.soxzz5.fitfood.fitfood_fragment.SingleRecipeDisplay;
 import konid.soxzz5.fitfood.fitfood_session.SessionManager;
 
 
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity{
             }
             else
             {
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, HomeFragment);
                 transaction.commit();
             }
@@ -159,6 +160,28 @@ public class MainActivity extends AppCompatActivity{
                                 }
                             }
 
+                            if(drawerItem.getIdentifier() == 5)
+                            {
+                                if(drawableTag!=5)
+                                {
+                                    drawableTag=5;
+                                    SingleRecipeDisplay newFragment = new SingleRecipeDisplay();
+                                    Bundle args = new Bundle();
+                                    args.putInt("position", position);
+                                    newFragment.setArguments(args);
+
+                                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+
+                                    transaction.replace(R.id.fragment_container, newFragment);
+
+                                    transaction.commit();
+                                    toolbar.setTitle(R.string.drawer_item_add_cook);
+                                    toolbar.getMenu().clear();
+                                    toolbar.inflateMenu(R.menu.bypass_menuitem);
+                                }
+                            }
+
                             if(drawerItem.getIdentifier() == 6)
                             {
                                 if(drawableTag!=6)
@@ -169,7 +192,7 @@ public class MainActivity extends AppCompatActivity{
                                     args.putInt("position", position);
                                     newFragment.setArguments(args);
 
-                                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
 
                                     transaction.replace(R.id.fragment_container, newFragment);
