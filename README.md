@@ -154,4 +154,4 @@ firebaseAuth.createUserWithEmailAndPassword(mail,password)
 ```
 
 ### AfterLogin via l'option database de firebase
-[![](https://img.youtube.com/vi/U5aeM5dvUpA/0.jpg)](https://www.youtube.com/watch?v=U5aeM5dvUpA)
+[![](https://img.youtube.com/vi/U5aeM5dvUpA/0.jpg)](https://www.youtube.com/watch?v=U5aeM5dvUpA)<img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/afterlogin_layout.png" alt="alt text" width="216" height="384" hspace="15">
