@@ -9,6 +9,10 @@ public class Ingredient {
     private String quantity;
     private int position;
 
+    public Ingredient(){
+
+    }
+
     public Ingredient(String name, String quantity, int position){
         this.position=position;
         this.name=name;
