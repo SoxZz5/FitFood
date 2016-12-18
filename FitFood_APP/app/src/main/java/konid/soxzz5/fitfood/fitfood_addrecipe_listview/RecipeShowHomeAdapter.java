@@ -62,8 +62,8 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
         //ON MODIFIE LE HOLDER DE NOTRE ITEM
         Recipe recipe = getItem(position);
         recipeShowHomeHolder.recipe_title.setText(recipe.getRtitle());
-        String tag = recipe.getRcategory() + " / " + recipe.getRtype() + " / " + recipe.getRlevel();
-        recipeShowHomeHolder.recipe_tag.setText(tag);
+        //String tag = recipe.getRcategory() + " / " + recipe.getRtype() + " / " + recipe.getRlevel();
+        //recipeShowHomeHolder.recipe_tag.setText(tag);
         String forwho = getContext().getString(R.string.step3_tv_forwho) + " " + recipe.getRforWho();
         recipeShowHomeHolder.recipe_forwho.setText(forwho);
         recipeShowHomeHolder.recipe_heathour.setText(recipe.getRheatHour());

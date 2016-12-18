@@ -17,6 +17,7 @@ import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,7 @@ public class addrecipe_final extends Fragment implements View.OnClickListener {
     private String path_camera;
     private Uri outputFileUri;
     private File outputFile;
+    private String image_name_path;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -90,18 +92,19 @@ public class addrecipe_final extends Fragment implements View.OnClickListener {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             filePath = data.getData();
             path = filePath.toString();
+            Log.d("path",path);
             if (bitmap != null) {
                 bitmap.recycle();
                 bitmap = null;
             }
             try {
-               Uri new_path = Uri.parse(decodeFile(path,1280,720));
-                bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),new_path);
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inSampleSize = 3;
+                bitmap = BitmapFactory.decodeFile(path, options);
+                bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),filePath);
                 Bitmap resized = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.8),(int)(bitmap.getHeight()*0.8), true);
-                bitmap = resized;
                 imageView.setImageBitmap(resized);
                 imageView.setVisibility(View.VISIBLE);
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -114,8 +117,8 @@ public class addrecipe_final extends Fragment implements View.OnClickListener {
                 }
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     options.inSampleSize = 3;
+                    Log.d("AbsolutePath",outputFile.getAbsolutePath());
                     bitmap = BitmapFactory.decodeFile(outputFile.getAbsolutePath(), options);
-
                     try {
                         FileOutputStream outFile= new FileOutputStream(outputFile);
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 90, outFile);
@@ -129,8 +132,14 @@ public class addrecipe_final extends Fragment implements View.OnClickListener {
                         Toast toast = Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT);
                         toast.show();
                     }
-                    filePath = Uri.parse("file://"+path_camera);
-                    Picasso.with(getContext()).load(outputFile.getAbsolutePath()).centerCrop().resize(400,400).into(imageView);
+                    filePath = Uri.parse(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString() + File.separator + "Fitfood" + File.separator + image_name_path);
+                    try{
+                        Bitmap showbitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),Uri.parse("file://"+filePath));
+                        imageView.setImageBitmap(showbitmap);
+                    } catch (IOException e) {
+                        Toast toast = Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
             }
     }
 
@@ -150,7 +159,8 @@ public class addrecipe_final extends Fragment implements View.OnClickListener {
         {
             folder.mkdirs();
         }
-        path_camera = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString() + File.separator + "Fitfood" + File.separator + "FITFOOD_IMG_"+utils.shortUUID()+".jpg";
+        image_name_path = "FITFOOD_IMG_"+utils.shortUUID()+".jpg";
+        path_camera = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString() + File.separator + "Fitfood" + File.separator + image_name_path;
         outputFile = new File(path_camera);
         outputFileUri = Uri.fromFile(outputFile);
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

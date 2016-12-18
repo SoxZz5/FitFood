@@ -22,26 +22,27 @@ import konid.soxzz5.fitfood.fitfood_addrecipe_listview.PrepStep;
  */
 
 public class Recipe {
-    public String Rtitle;
-    public int Rcategory;
-    public int Rlevel;
-    public int Rtype;
-    public int RprepareHour;
-    public int RprepareMinute;
-    public int RheatHour;
-    public int RheatMinute;
-    public String RforWho;
-    public List<Ingredient> Ringredients;
-    public List<PrepStep> Rsteps;
-    public String Rdate;
-    public boolean Rvalidate;
-    public String Rrecipe_download_img_link;
+    private String Rtitle;
+    private int Rcategory;
+    private int Rlevel;
+    private int Rtype;
+    private int RprepareHour;
+    private int RprepareMinute;
+    private int RheatHour;
+    private int RheatMinute;
+    private String RforWho;
+    private List<Ingredient> Ringredients;
+    private List<PrepStep> Rsteps;
+    private String Rdate;
+    private boolean Rvalidate;
+    private String Rrecipe_download_img_link;
 
     public Recipe(){
 
     }
 
     public Recipe(String rtitle, int rcategory, int rlevel, int rtype, int rprepareHour, int rprepareMinute, int rheatHour, int rheatMinute, String rforWho, List<Ingredient> ringredients, List<PrepStep> rsteps, boolean validate, String date, String recipe_download_img_link) {
+
         Rtitle = rtitle;
         Rcategory = rcategory;
         Rlevel = rlevel;
@@ -59,9 +60,7 @@ public class Recipe {
 
     }
 
-    public int getRcategory() {
-        return Rcategory;
-    }
+    public int getRcategory() {return Rcategory;}
 
     public int getRheatHour() {
         return RheatHour;
