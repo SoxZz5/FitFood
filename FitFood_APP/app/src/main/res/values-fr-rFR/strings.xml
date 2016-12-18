@@ -87,14 +87,14 @@
     <string name="step4_title">Étape 4</string>
     <string name="step5_title">Étape 5</string>
 
-    <string name="step_error_title">Mauvais titre min 10 charactères</string>
+    <string name="step_error_title">Titre invalide, 3 caractères minimum</string>
     <string name="step_error_categorie">Veuillez choisir une catégorie</string>
     <string name="step_error_type">Veuillez choisir un type</string>
     <string name="step_error_difficulty">Veuillez choisir la difficulté</string>
-    <string name="step_error_heat">Veuillez renseignez le temps de cuisson (entrez 0 si pas de cuisson)</string>
-    <string name="step_error_prepare">Veuillez renseignez le temps de préparation</string>
-    <string name="step_error_forwho">Veuillez renseignez le nombre de portions</string>
-    <string name="step_error_ingredients">Veuillez renseignez au moins un ingrédient</string>
+    <string name="step_error_heat">Veuillez renseigner le temps de cuisson (entrez 0 si pas de cuisson)</string>
+    <string name="step_error_prepare">Veuillez renseigner le temps de préparation</string>
+    <string name="step_error_forwho">Veuillez renseigner le nombre de portions</string>
+    <string name="step_error_ingredients">Veuillez renseigner au moins un ingrédient</string>
 
     <string name="step1_et_title">Entrez un titre</string>
     <string name="step1_tv_title">Titre</string>
@@ -142,10 +142,13 @@
     <string name="step4_et_quantity">Quantité</string>
     <string name="step4_tv_de">De</string>
     <string name="step4_et_ingredient">Produits</string>
-    <string name="step4_info_ingredient">Exemple: 2cl de lait, 200g de farine, 2 oeufs ...</string>
+    <string name="step4_info_ingredient">Exemple: 2 cl de lait, 200 g de farine, 2 oeufs ...</string>
     <string name="step5_et_directions_steps">Étapes de préparation</string>
     <string name="step5_tv_directions">Préparation</string>
-    <string name="step5_info_ingredient">Exemple: Assaisonner le poulet avec le sel et le poivre, ...</string>
     <string name="step5_info_prep">Exemple: Assaisonner le poulet avec le sel et le poivre, ...</string>
+    <string name="step_error_prepsteps">Veuillez renseigner au moins une étape</string>
+    <string name="step4_invalid_ingredient">Ingrédient invalide</string>
+    <string name="step4_invalid_quantity">Quantité invalide</string>
+    <string name="step5_invalid_step">Étape invalide (minimum 10 caractères)</string>
 </resources>
 

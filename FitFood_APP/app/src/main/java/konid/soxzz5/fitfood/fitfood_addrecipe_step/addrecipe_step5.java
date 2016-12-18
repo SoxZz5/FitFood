@@ -1,5 +1,6 @@
 package konid.soxzz5.fitfood.fitfood_addrecipe_step;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
@@ -22,6 +23,7 @@ import konid.soxzz5.fitfood.fitfood_addrecipe_listview.PrepStepsListAdapter;
 import konid.soxzz5.fitfood.utils.utils;
 import android.widget.AdapterView.OnItemClickListener;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 
 /**
@@ -36,23 +38,38 @@ public class addrecipe_step5 extends Fragment implements OnClickListener, OnItem
 
     ListView mListView;
     List<PrepStep> prepSteps;
+    private List<PrepStep> parentList;
     String step;
     boolean first_item;
     PrepStepsListAdapter adapter;
     boolean valid_step;
-    int nbItem;
+    int nbSteps;
+    Context _context;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.addrecipe_step5, container, false);
-        nbItem = 0;
+        nbSteps = 0;
         mListView = (ListView) v.findViewById(R.id.step5_listview);
         final EditText et_step = (EditText) v.findViewById(R.id.step5_et_step);
         final ImageView bt_add = (ImageView) v.findViewById(R.id.step5_bt_add);
-        prepSteps = new ArrayList<PrepStep>();
+        final TextView info_error = (TextView) v.findViewById(R.id.info_error);
         first_item =false;
-
         valid_step=false;
+        _context=getContext();
+
+        //On récupère le tableau s'il existe déjà
+        if(parentList != null && parentList.size()>0) {
+            prepSteps = parentList;
+            adapter = new PrepStepsListAdapter(_context, prepSteps,this);
+            mListView.setAdapter(adapter);
+            if(this.prepSteps.size()==1) {
+                first_item=true;
+            } else {
+                adapter.notifyDataSetChanged();
+            }
+            nbSteps = prepSteps.size();
+        } else prepSteps = new ArrayList<PrepStep>();
         et_step.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -64,6 +81,9 @@ public class addrecipe_step5 extends Fragment implements OnClickListener, OnItem
                 if(utils.findMatch(et_step.getText().toString(),"^[\\s\\w]{10,100}$")){
                     step = et_step.getText().toString();
                     valid_step=true;
+                    info_error.setText("");
+                } else {
+                    valid_step=false;
                 }
             }
 
@@ -81,6 +101,8 @@ public class addrecipe_step5 extends Fragment implements OnClickListener, OnItem
                     addToList();
                     valid_step=false;
                     et_step.setText("");
+                } else {
+                    info_error.setText(R.string.step5_invalid_step);
                 }
             }
         });
@@ -89,7 +111,7 @@ public class addrecipe_step5 extends Fragment implements OnClickListener, OnItem
 
     private void addToList()
     {
-        nbItem++;
+        nbSteps++;
         if(!first_item)
         {
             adapter = new PrepStepsListAdapter(getContext(), prepSteps,this);
@@ -107,7 +129,7 @@ public class addrecipe_step5 extends Fragment implements OnClickListener, OnItem
     public void onClick(View v) {
         int position = (Integer) v.getTag(R.id.key_position);
         if(v.getId() == R.id.handler){
-            nbItem--;
+            nbSteps--;
             refreshPositions(position);
             prepSteps.remove(position);
             adapter.notifyDataSetChanged();
@@ -133,7 +155,11 @@ public class addrecipe_step5 extends Fragment implements OnClickListener, OnItem
     }
 
     public int getnbItem() {
-        return nbItem;
+        return nbSteps;
+    }
+
+    public void setParentList(List<PrepStep> parentList) {
+        this.parentList = parentList;
     }
 }
 

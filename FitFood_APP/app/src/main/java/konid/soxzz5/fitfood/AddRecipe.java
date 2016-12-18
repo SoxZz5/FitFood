@@ -141,10 +141,8 @@ public class AddRecipe extends AppCompatActivity {
                         transaction.commit();
                         step1.setCategory(iCategory);
                         step1.setTitle(sTitle);
-                        //backgroundWizard.setImageResource(R.drawable.recipeadd_step_background);
                         break;
                     case 3:
-                        //backgroundWizard.setImageResource(R.drawable.recipeadd_step3_background);
                         info_error.setText("");
                         transaction = getFragmentManager().beginTransaction();
                         transaction.setCustomAnimations(R.animator.slide_in_right, R.animator.slide_out_left, 0, 0);
@@ -156,7 +154,6 @@ public class AddRecipe extends AppCompatActivity {
                         transaction.commit();
                         step2.setLevel(iLevel);
                         step2.setType(iType);
-                        //backgroundWizard.setImageResource(R.drawable.recipeadd_step2_background);
                         break;
                     case 4:
                         info_error.setText("");
@@ -174,7 +171,6 @@ public class AddRecipe extends AppCompatActivity {
                         step3.setPrephour(iPrepareHour);
                         step3.setForwho(sWho);
                         step3.setNbwho(iNbWho);
-                        //backgroundWizard.setImageResource(R.drawable.recipeadd_step3_background);
                         break;
                     case 5:
                         info_error.setText("");
@@ -186,8 +182,13 @@ public class AddRecipe extends AppCompatActivity {
                         stepinfo5.setBackgroundResource(R.color.material_drawer_dark_selected);
                         stepinfo4.setBackgroundResource(R.color.colorAccent);
                         transaction.commit();
+                        //Actualise la tableau si des ingrédients sont déjà enregistrés
+                        if(allIngredients.size()>0) {
+                            step4.setParentList(allIngredients);
+                        }
                         break;
                     case 6:
+                        info_error.setText("");
                         layout_title.setVisibility(View.VISIBLE);
                         next.setVisibility(View.VISIBLE);
                         valid_final.setVisibility(View.GONE);
@@ -202,6 +203,10 @@ public class AddRecipe extends AppCompatActivity {
                         stepinfo4.setBackgroundResource(R.color.material_drawer_dark_selected);
                         stepinfo5.setBackgroundResource(R.color.colorAccent);
                         transaction.commit();
+                        //Actualise la tableau si des étapes de préparation sont déjà enregistrées
+                        if(allIngredients.size()>0) {
+                            step5.setParentList(allSteps);
+                        }
                         break;
                 }
             }
@@ -237,7 +242,6 @@ public class AddRecipe extends AppCompatActivity {
 
                     if (validate_category && validate_title)
                     {
-                        //backgroundWizard.setImageResource(R.drawable.recipeadd_step2_background);
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
                         transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
                         transaction.replace(R.id.step_container, step2);
@@ -348,7 +352,7 @@ public class AddRecipe extends AppCompatActivity {
                         boolean validate_ingredient=false;
                         allIngredients = step4.getIngredients();
                         nbIngredients = step4.getNbIngredient();
-                        if(allIngredients != null)
+                        if(allIngredients != null && allIngredients.size()>0)
                         {
                             validate_ingredient = true;
                         }
@@ -373,7 +377,7 @@ public class AddRecipe extends AppCompatActivity {
                     case 5:
                         boolean validate_steps =false;
                         allSteps = step5.getPrepSteps();
-                        if(allSteps != null)
+                        if(allSteps != null && allSteps.size()>0)
                         {
                             validate_steps = true;
                         }
@@ -395,6 +399,10 @@ public class AddRecipe extends AppCompatActivity {
                             layout_title.setVisibility(View.GONE);
                             valid_final.setVisibility(View.VISIBLE);
                             transaction.commit();
+                        }
+                        else
+                        {
+                            info_error.setText(getString(R.string.step_error_prepsteps));
                         }
                         break;
                 }
