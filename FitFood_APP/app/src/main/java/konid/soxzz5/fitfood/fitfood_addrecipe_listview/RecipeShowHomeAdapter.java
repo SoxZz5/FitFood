@@ -3,6 +3,7 @@ package konid.soxzz5.fitfood.fitfood_addrecipe_listview;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -32,6 +35,7 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
     private View mConvertView;
     private Bitmap mBitmap;
     private StorageReference firebaseStorage;
+    FirebaseStorage storage;
     public RecipeShowHomeAdapter(Context context, List<Recipe> recipeList, OnClickListener clickListener) {
         super(context, 0, recipeList);
         mContext = context;
@@ -145,14 +149,23 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
         int finalminute = ((totalHourInMin%60)+Integer.parseInt(timeDisplay.substring(3,4)));
         recipeShowHomeHolder.recipe_finalhour.setText(Integer.toString(finalhour));
         recipeShowHomeHolder.recipe_finalminute.setText(Integer.toString(finalminute));
-        Log.d("dll :" ,recipe.getRrecipe_download_img_link());
-        //TODO DEBUG IMAGE HERE
-        Picasso.with(getContext())
-                .load(recipe.getRrecipe_download_img_link())
-                .resize(600, 200)
-                .centerInside()
-                .onlyScaleDown()
-                .into(recipeShowHomeHolder.recipe_image);
+
+        //Téléchargement et affichage de l'image de la recette
+        storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReferenceFromUrl(recipe.getRrecipe_download_img_link());
+        final long ONE_MEGABYTE = 1024 * 1024;
+        storageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                recipeShowHomeHolder.recipe_image.setImageBitmap(bitmap);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
 
 
 
