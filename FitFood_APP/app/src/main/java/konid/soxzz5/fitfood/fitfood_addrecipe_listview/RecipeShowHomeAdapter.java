@@ -1,6 +1,7 @@
 package konid.soxzz5.fitfood.fitfood_addrecipe_listview;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
     private List<Recipe> mRecipeList;
     private OnClickListener clickListener;
     private View mConvertView;
+    private Bitmap mBitmap;
     public RecipeShowHomeAdapter(Context context, List<Recipe> recipeList, OnClickListener clickListener) {
         super(context, 0, recipeList);
         mContext = context;
@@ -57,7 +59,17 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
 
         //ON MODIFIE LE HOLDER DE NOTRE ITEM
         Recipe recipe = getItem(position);
-        recipeShowHomeHolder.recipe_title.setText(recipe.g);
+        recipeShowHomeHolder.recipe_title.setText(recipe.getRtitle());
+        recipeShowHomeHolder.recipe_tag.setText(recipe.getRtitle());
+        recipeShowHomeHolder.recipe_forwho.setText(recipe.getRtitle());
+        recipeShowHomeHolder.recipe_heathour.setText(recipe.getRtitle());
+        recipeShowHomeHolder.recipe_heatminute.setText(recipe.getRtitle());
+        recipeShowHomeHolder.recipe_prephour.setText(recipe.getRtitle());
+        recipeShowHomeHolder.recipe_prepminute.setText(recipe.getRtitle());
+        recipeShowHomeHolder.recipe_finalhour.setText(recipe.getRtitle());
+        recipeShowHomeHolder.recipe_finalminute.setText(recipe.getRtitle());
+
+        //recipeShowHomeHolder.recipe_image.setImageBitmap();
 
         return convertView;
     }

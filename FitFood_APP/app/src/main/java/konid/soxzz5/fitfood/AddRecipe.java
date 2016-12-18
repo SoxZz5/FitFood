@@ -442,15 +442,11 @@ public class AddRecipe extends AppCompatActivity {
                         mProgressDialog.hide();
                         mProgressDialog.setMessage("Sending recipe ...");
                         mProgressDialog.show();
-                        Recipe recipe = new Recipe(sTitle, iCategory, iLevel, iType, iPrepareHour, iPrepareMinute, iHeatHour, iHeatMinute, sForWho, allIngredients, allSteps);
-                        recipe_ref.child(newKey).setValue(recipe);
-                        recipe_ref.child(newKey).child("validate").setValue(false);
-
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy_HH:mm");
                         sdf.setTimeZone(TimeZone.getTimeZone("GMT+1"));
                         String currentDateandTime = sdf.format(new Date());
-
-                        recipe_ref.child(newKey).child("date").setValue(currentDateandTime);
+                        Recipe recipe = new Recipe(sTitle, iCategory, iLevel, iType, iPrepareHour, iPrepareMinute, iHeatHour, iHeatMinute, sForWho, allIngredients, allSteps,false,currentDateandTime);
+                        recipe_ref.child(newKey).setValue(recipe);
 
                         Toast.makeText(AddRecipe.this,"Recette ajouter à la BDD",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(AddRecipe.this,MainActivity.class);
