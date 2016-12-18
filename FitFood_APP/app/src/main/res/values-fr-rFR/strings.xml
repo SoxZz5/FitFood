@@ -73,11 +73,11 @@
     <string name="recipeadd_text_selecttitle">Choisissez un titre pertinent décrivant votre recette avec clarté à la communauté.</string>
     <string name="recipeadd_text_selectinfo">N\'oubliez pas de renseigner les mesures de vos ingrédients ainsi que les éventuels allergènes.</string>
     <string name="recipeadd_text_selectverif">Avant de proposer une recette, vérifiez bien que celle-ci n\'existe pas déjà sur notre plateforme.</string>
-    <string name="recipeadd_bt_add">proposer</string>
+    <string name="recipeadd_bt_add">Partager</string>
 
     <string name="wizard_next">Suivant</string>
     <string name="wizard_prev">Précédent</string>
-    <string name="wizard_final">Validation final</string>
+    <string name="wizard_final">Partager</string>
     <string name="wizard_bt_choose">Choisir une image</string>
     <string name="wizard_bt_upload">Envoyer l\'image</string>
     <string name="wizard_select_picture">Choisir une image</string>

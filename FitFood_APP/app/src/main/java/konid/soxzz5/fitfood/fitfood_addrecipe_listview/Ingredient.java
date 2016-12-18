@@ -34,4 +34,8 @@ public class Ingredient {
     public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
+
+    public void decreasePosition() {
+        this.position--;
+    }
 }

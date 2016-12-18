@@ -108,9 +108,19 @@ public class addrecipe_step5 extends Fragment implements OnClickListener, OnItem
         int position = (Integer) v.getTag(R.id.key_position);
         if(v.getId() == R.id.handler){
             nbItem--;
+            refreshPositions(position);
             prepSteps.remove(position);
             adapter.notifyDataSetChanged();
         }
+    }
+
+    //Allow to refresh steps numbers
+    private void refreshPositions(int position) {
+        int i=0;
+        for (i=position;i<this.prepSteps.size();i++) {
+            this.prepSteps.get(i).decreasePosition();
+        }
+        adapter.notifyDataSetChanged();
     }
 
     @Override

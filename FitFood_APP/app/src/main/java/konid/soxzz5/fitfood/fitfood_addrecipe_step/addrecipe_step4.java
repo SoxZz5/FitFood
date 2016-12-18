@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringDef;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -128,10 +129,21 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
         int position = (Integer) v.getTag(R.id.key_position);
         if(v.getId() == R.id.handler){
             nbIngredient--;
+            refreshPositions(position);
             ingredients.remove(position);
             adapter.notifyDataSetChanged();
         }
     }
+
+    //Allow to refresh ingredients numbers
+    private void refreshPositions(int position) {
+        int i=0;
+        for (i=position;i<this.ingredients.size();i++) {
+            this.ingredients.get(i).decreasePosition();
+        }
+        adapter.notifyDataSetChanged();
+    }
+
     //Actualisation de la liste
     private void addToList()
     {

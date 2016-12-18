@@ -3,6 +3,7 @@ package konid.soxzz5.fitfood.fitfood_addrecipe_step;
 import android.app.ProgressDialog;
 import android.app.Fragment;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,19 +14,23 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.mikepenz.iconics.context.IconicsContextWrapper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import konid.soxzz5.fitfood.Manifest;
 import konid.soxzz5.fitfood.R;
 import konid.soxzz5.fitfood.utils.ScalingUtilities;
 import konid.soxzz5.fitfood.utils.utils;
@@ -37,9 +42,9 @@ import static android.app.Activity.RESULT_OK;
  * Created by Soxzer on 15/12/2016.
  */
 
-public class addrecipe_final extends Fragment implements View.OnClickListener{
-    private ImageView buttonChoose;
-    private ImageView buttonTake;
+public class addrecipe_final extends Fragment implements View.OnClickListener {
+    private com.mikepenz.iconics.view.IconicsImageView buttonChoose;
+    private com.mikepenz.iconics.view.IconicsImageView buttonTake;
     private ImageView imageView;
     private Bitmap bitmap;
     private int PICK_IMAGE_REQUEST = 1;
@@ -54,8 +59,8 @@ public class addrecipe_final extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.addrecipe_wizard_final, container, false);
 
-        buttonChoose = (ImageView) v.findViewById(R.id.wizard_bt_choose);
-        buttonTake = (ImageView) v.findViewById(R.id.wizard_bt_take);
+        buttonChoose = (com.mikepenz.iconics.view.IconicsImageView) v.findViewById(R.id.wizard_bt_choose);
+        buttonTake = (com.mikepenz.iconics.view.IconicsImageView) v.findViewById(R.id.wizard_bt_take);
         imageView = (ImageView) v.findViewById(R.id.wizard_iv_final);
         storageReference = FirebaseStorage.getInstance().getReference();
         buttonChoose.setOnClickListener(this);
@@ -83,6 +88,7 @@ public class addrecipe_final extends Fragment implements View.OnClickListener{
                 Bitmap resized = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.8),(int)(bitmap.getHeight()*0.8), true);
                 bitmap = resized;
                 imageView.setImageBitmap(resized);
+                imageView.setVisibility(View.VISIBLE);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -96,6 +102,7 @@ public class addrecipe_final extends Fragment implements View.OnClickListener{
             Bitmap resized = get_Resized_Bitmap(b,(int)(b.getWidth()*0.9),(int)(b.getHeight()*0.9));
             bitmap = resized;
             imageView.setImageBitmap(b);
+            imageView.setVisibility(View.VISIBLE);
         }
     }
 

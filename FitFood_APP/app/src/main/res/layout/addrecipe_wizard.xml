@@ -152,9 +152,12 @@
                         android:id="@+id/wizard_bt_final"
                         android:layout_weight="4"
                         android:text="@string/wizard_final"
-                        android:textColor="@color/accent"
+                        android:textColor="@color/material_drawer_dark_header_selection_text"
                  android:layout_gravity="bottom"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                 android:background="@drawable/loginroundedbutton"
+                 android:textSize="24sp"
+                 android:elevation="0dp" />
 
                 <Button
                     android:layout_width="0dp"

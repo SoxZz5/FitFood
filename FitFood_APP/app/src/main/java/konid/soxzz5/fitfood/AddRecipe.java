@@ -5,15 +5,12 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.FragmentTransaction;
-import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.mikepenz.iconics.context.IconicsLayoutInflater;
 
 import java.util.List;
 
@@ -58,8 +54,8 @@ public class AddRecipe extends AppCompatActivity {
     String sForWho;
     String sWho;
     int iNbWho;
-    List<Ingredient> alIngredients;
-    List<PrepStep> alSteps;
+    List<Ingredient> allIngredients;
+    List<PrepStep> allSteps;
 
     int nbIngredients;
 
@@ -192,11 +188,17 @@ public class AddRecipe extends AppCompatActivity {
                         layout_title.setVisibility(View.VISIBLE);
                         next.setVisibility(View.VISIBLE);
                         valid_final.setVisibility(View.GONE);
+                        transaction = getFragmentManager().beginTransaction();
+                        transaction.setCustomAnimations(R.animator.slide_in_right, R.animator.slide_out_left, 0, 0);
+                        transaction.replace(R.id.step_container, step5);
+                        step=5;
+                        title.setText(R.string.step5_title);
                         stepinfo1.setBackgroundResource(R.color.material_drawer_dark_selected);
                         stepinfo2.setBackgroundResource(R.color.material_drawer_dark_selected);
                         stepinfo3.setBackgroundResource(R.color.material_drawer_dark_selected);
                         stepinfo4.setBackgroundResource(R.color.material_drawer_dark_selected);
                         stepinfo5.setBackgroundResource(R.color.colorAccent);
+                        transaction.commit();
                         break;
                 }
             }
@@ -282,6 +284,7 @@ public class AddRecipe extends AppCompatActivity {
                         break;
 
                     case 3:
+
                         boolean validate_prepare = false;
                         boolean validate_heat = false;
                         boolean validate_forwho = false;
@@ -340,9 +343,9 @@ public class AddRecipe extends AppCompatActivity {
 
                     case 4:
                         boolean validate_ingredient=false;
-                        alIngredients = step4.getIngredients();
+                        allIngredients = step4.getIngredients();
                         nbIngredients = step4.getNbIngredient();
-                        if(alIngredients != null)
+                        if(allIngredients != null)
                         {
                             validate_ingredient = true;
                         }
@@ -366,8 +369,8 @@ public class AddRecipe extends AppCompatActivity {
                         break;
                     case 5:
                         boolean validate_steps =false;
-                        alSteps = step5.getPrepSteps();
-                        if(alSteps != null)
+                        allSteps = step5.getPrepSteps();
+                        if(allSteps != null)
                         {
                             validate_steps = true;
                         }
@@ -396,9 +399,8 @@ public class AddRecipe extends AppCompatActivity {
             }
         });
 
-        /*step=4;
+        step=3;
         next.callOnClick();
-        backgroundWizard.setImageResource(R.drawable.recipeadd_step3_background);*/
 
         valid_final.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -435,7 +437,7 @@ public class AddRecipe extends AppCompatActivity {
                         mProgressDialog.hide();
                         mProgressDialog.setMessage("Sending recipe ...");
                         mProgressDialog.show();
-                        Recipe recipe = new Recipe(sTitle, iCategory, iLevel, iType, iPrepareHour, iPrepareMinute, iHeatHour, iHeatMinute, sForWho, alIngredients, alSteps);
+                        Recipe recipe = new Recipe(sTitle, iCategory, iLevel, iType, iPrepareHour, iPrepareMinute, iHeatHour, iHeatMinute, sForWho, allIngredients, allSteps);
                         recipe_ref.child(newKey).setValue(recipe);
                         recipe_ref.child(newKey).child("validate").setValue(false);
                         mProgressDialog.hide();

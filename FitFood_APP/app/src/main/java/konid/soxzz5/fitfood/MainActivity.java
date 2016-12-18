@@ -1,6 +1,7 @@
 package konid.soxzz5.fitfood;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -28,6 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
@@ -40,8 +42,6 @@ import java.util.List;
 
 import konid.soxzz5.fitfood.fitfood_fragment.AddRecipeFragment;
 import konid.soxzz5.fitfood.fitfood_session.SessionManager;
-import pub.devrel.easypermissions.AppSettingsDialog;
-import pub.devrel.easypermissions.EasyPermissions;
 
 
 public class MainActivity extends AppCompatActivity{
@@ -217,6 +217,11 @@ public class MainActivity extends AppCompatActivity{
                 //Do some magic
             }
         });
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
     }
 
     //PERMET LA GESTION DE LA TOOLBAR ON AJOUTE UN MENU CONTENANT DES ITEMS
