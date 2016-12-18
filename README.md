@@ -154,4 +154,4 @@ firebaseAuth.createUserWithEmailAndPassword(mail,password)
 ```
 
 ### AfterLogin via l'option database de firebase
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/U5aeM5dvUpA&t=3s/0.jpg)](https://www.youtube.com/watch?v=U5aeM5dvUpA&t=3s)
+[![](https://img.youtube.com/vi/U5aeM5dvUpA/0.jpg)](https://www.youtube.com/watch?v=U5aeM5dvUpA)
