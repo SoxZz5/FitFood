@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
@@ -13,13 +14,28 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp">
 
-        <ImageView
-            android:id="@+id/recipe_imageView"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:cropToPadding="false"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop" />
+            android:id="@+id/image_view_layout">
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="match_parent"
+                android:id="@+id/recipe_image_pb"
+                tools:visibility="visible"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/recipe_imageView"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:cropToPadding="false"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+        </RelativeLayout>
 
         <FrameLayout
             android:layout_width="wrap_content"
@@ -46,7 +62,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/recipe_imageView"
+            android:layout_below="@+id/image_view_layout"
             android:background="@color/black_overlay_65"
             android:id="@+id/recipe_layout_info"
             android:layout_marginLeft="-5dp"

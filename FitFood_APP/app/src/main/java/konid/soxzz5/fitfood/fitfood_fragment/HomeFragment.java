@@ -123,7 +123,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
         });
         mClickListener = this;
         databaseReference = FirebaseDatabase.getInstance().getReference().child("recipe");
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.orderByKey().limitToFirst(20).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
