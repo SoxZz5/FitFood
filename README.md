@@ -58,7 +58,7 @@ Intent intent_tmp = getIntent();
 Bundle bundle_tmp = intent_tmp.getExtras();
     if(bundle_tmp != null)
     {
-        String response_register = getString(R.string.login_text_after_register) + " " +             bundle_tmp.getString("response");
+        String response_register = getString(R.string.login_text_after_register) + " " + bundle_tmp.getString("response");
         if(!response_register.isEmpty())
         {
             Toast toast = Toast.makeText(context, response_register, duration);
@@ -134,8 +134,11 @@ public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
     }
 }
 ```
+Le champ mot de passe est lui vérifier avec une fonction de calcul de puissance de mot de passe universel
 
-La fonction de test utilise une regex via une fonction appeler ``sh findMatch(String myString , String RegexPattern)`` qui retourne true or false:
+<img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/register_password.png" alt="alt text" hspace="15">
+
+La fonction de test utilise une regex via ``sh findMatch(String myString , String RegexPattern)`` qui retourne true or false:
 ```sh
 String match = "";
 
@@ -149,4 +152,21 @@ Matcher m = regEx.matcher(myString); //On match en fonction du pattern
     {
         return false;
     }
+```
+
+Pour l'inscription tout comme pour la connexion on utilise une fonction bien spécifique à firebase
+```sh
+firebaseAuth.createUserWithEmailAndPassword(mail,password)
+    .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+        @Override
+        public void onComplete(@NonNull Task<AuthResult> task) {
+            if(task.isSuccessful()){
+                //ON VA A LOGIN
+            }
+            else
+            {
+                //ON AFFICHE UNE ERREUR
+            }
+        }
+    });
 ```
