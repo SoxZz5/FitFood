@@ -15,7 +15,7 @@ Les fonctions à venir:
   - Pannel de préférences pour séléctionner les différents allérgenes
   - Algorithme de trie pour la gestion des ingrédients automatiquement
   - Ajout des allergénes à la recherche avancées
-
+<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 ## Fitfood est sous licences CC-4.0
 <img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/creative1.png" alt="alt text" width="394" height="94">
 
