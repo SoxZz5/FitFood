@@ -3,6 +3,7 @@ package konid.soxzz5.fitfood;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -59,6 +60,7 @@ public class AddRecipe extends AppCompatActivity {
     int iNbWho;
     List<Ingredient> allIngredients;
     List<PrepStep> allSteps;
+    Uri download_uri;
 
     int nbIngredients;
 
@@ -427,14 +429,13 @@ public class AddRecipe extends AppCompatActivity {
                                 mProgressDialog.hide();
                                 mProgressDialog.cancel();
                                 validate_upload=true;
+                                download_uri= taskSnapshot.getDownloadUrl();
                             }
                         });
 
                         DatabaseReference recipe_ref = databaseReference.child("recipe");
                         DatabaseReference user_recipe_ref = databaseReference.child("user_recipe");
                         DatabaseReference recipe_image_ref = databaseReference.child("recipe_image").push();
-
-
                         recipe_image_ref.setValue(new_filepath.getPath());
 
                         String newKey = recipe_image_ref.getKey().toString();
@@ -445,7 +446,7 @@ public class AddRecipe extends AppCompatActivity {
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy_HH:mm");
                         sdf.setTimeZone(TimeZone.getTimeZone("GMT+1"));
                         String currentDateandTime = sdf.format(new Date());
-                        Recipe recipe = new Recipe(sTitle, iCategory, iLevel, iType, iPrepareHour, iPrepareMinute, iHeatHour, iHeatMinute, sForWho, allIngredients, allSteps,false,currentDateandTime);
+                        Recipe recipe = new Recipe(sTitle, iCategory, iLevel, iType, iPrepareHour, iPrepareMinute, iHeatHour, iHeatMinute, sForWho, allIngredients, allSteps,false,currentDateandTime,download_uri.toString());
                         recipe_ref.child(newKey).setValue(recipe);
 
                         Toast.makeText(AddRecipe.this,"Recette ajouter à la BDD",Toast.LENGTH_SHORT).show();

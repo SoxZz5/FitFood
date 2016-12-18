@@ -1,5 +1,17 @@
 package konid.soxzz5.fitfood.firebase_fitfood;
 
+import android.graphics.Bitmap;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.List;
 
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Ingredient;
@@ -23,12 +35,13 @@ public class Recipe {
     public List<PrepStep> Rsteps;
     public String Rdate;
     public boolean Rvalidate;
+    public String Rrecipe_download_img_link;
 
     public Recipe(){
 
     }
 
-    public Recipe(String rtitle, int rcategory, int rlevel, int rtype, int rprepareHour, int rprepareMinute, int rheatHour, int rheatMinute, String rforWho, List<Ingredient> ringredients, List<PrepStep> rsteps, boolean validate, String date) {
+    public Recipe(String rtitle, int rcategory, int rlevel, int rtype, int rprepareHour, int rprepareMinute, int rheatHour, int rheatMinute, String rforWho, List<Ingredient> ringredients, List<PrepStep> rsteps, boolean validate, String date, String recipe_download_img_link) {
         Rtitle = rtitle;
         Rcategory = rcategory;
         Rlevel = rlevel;
@@ -42,6 +55,7 @@ public class Recipe {
         Rsteps = rsteps;
         Rvalidate=validate;
         Rdate = date;
+        Rrecipe_download_img_link = recipe_download_img_link;
 
     }
 
@@ -143,5 +157,59 @@ public class Recipe {
 
     public void setRvalidate(boolean rvalidate) {
         Rvalidate = rvalidate;
+    }
+
+    public Bitmap getBitmapFromImage()
+    {
+        DatabaseReference recipeImgReference = FirebaseDatabase.getInstance().getReference().child("recipe_img");
+        StorageReference firebaseStorage;
+        if(getRecipeKey() != "")
+        {
+            recipe_key = getRecipeKey();
+        }
+        recipeImgReference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                if(recipe_key.equals(dataSnapshot.getKey()))
+                {
+
+                }
+            }
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
+
+
+    }
+
+    public String getRecipeKey()
+    {
+        DatabaseReference recipeReference = FirebaseDatabase.getInstance().getReference().child("recipe");
+        recipe_key = "";
+        recipeReference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                if(Rtitle.toLowerCase().equals(dataSnapshot.getKey().toLowerCase()))
+                {
+                    recipe_key = dataSnapshot.getKey();
+                }
+            }
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            }
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
+        return  recipe_key;
     }
 }
