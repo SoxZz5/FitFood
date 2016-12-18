@@ -16,7 +16,7 @@ Les fonctions à venir:
   - Algorithme de trie pour la gestion des ingrédients automatiquement
   - Ajout des allergénes à la recherche avancées
 
-## Fitfood est open-source est sous licences CC-BY-NC-SA-4.0
+## Fitfood est sous licences CC-4.0
 <img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/creative1.png" alt="alt text" width="394" height="94">
 
 
