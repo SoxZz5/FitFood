@@ -16,7 +16,7 @@ import konid.soxzz5.fitfood.firebase_fitfood.Recipe;
 public class RecipeShowHomeAdapter  extends ArrayAdapter<RecipeShowHome> {
     RecipeShowHomeViewHolder recipeShowHomeHolder;
     private Context mContext;
-    private List<RecipeShowHome>
+    private List<RecipeShowHome>;
     public RecipeShowHomeAdapter(Context context,)
 
     class RecipeShowHomeViewHolder{
