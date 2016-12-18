@@ -17,7 +17,7 @@ Les fonctions à venir:
   - Ajout des allergénes à la recherche avancées
 
 ## Fitfood est open-source est sous licences CC-BY-NC-SA-4.0
-![](./image_readme/creative1.png = 788x188)
+![](/image_readme/creative1.png = 788x188)
 
 ## Fonctionnalité
 
