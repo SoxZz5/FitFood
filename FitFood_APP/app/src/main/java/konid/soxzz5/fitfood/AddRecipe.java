@@ -28,7 +28,10 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.mikepenz.iconics.context.IconicsLayoutInflater;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import konid.soxzz5.fitfood.firebase_fitfood.Recipe;
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Ingredient;
@@ -414,8 +417,7 @@ public class AddRecipe extends AppCompatActivity {
                         new_filepath.putFile(step_final.getFilePath()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                mProgressDialog.hide();
-                                mProgressDialog.setMessage("Sending recipe image ...");
+                                mProgressDialog.setMessage("Sending recipe ...");
                                 mProgressDialog.hide();
                                 validate_upload=true;
                             }
@@ -438,6 +440,10 @@ public class AddRecipe extends AppCompatActivity {
                         Recipe recipe = new Recipe(sTitle, iCategory, iLevel, iType, iPrepareHour, iPrepareMinute, iHeatHour, iHeatMinute, sForWho, alIngredients, alSteps);
                         recipe_ref.child(newKey).setValue(recipe);
                         recipe_ref.child(newKey).child("validate").setValue(false);
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy_HH:mm");
+                        sdf.setTimeZone(TimeZone.getTimeZone("GMT+1"));
+                        String currentDateandTime = sdf.format(new Date());
+                        recipe_ref.child(newKey).child("date").setValue(currentDateandTime);
                         mProgressDialog.hide();
                         Toast.makeText(AddRecipe.this,"Recette ajouter à la BDD",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(AddRecipe.this,MainActivity.class);
