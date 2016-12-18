@@ -60,14 +60,15 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:id="@+id/wizard_iv_final"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/roundbackground4"
             android:visibility="invisible"
-            android:padding="4dp"
-            android:layout_weight="6" />
+            android:padding="2dp"
+            android:layout_weight="6"
+            android:scaleType="centerCrop" />
 
     </LinearLayout>
 
