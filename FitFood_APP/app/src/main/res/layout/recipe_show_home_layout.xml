@@ -168,7 +168,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/recip_tv_prepminute"
+                        android:id="@+id/recipe_tv_prepminute"
                         android:textSize="12sp"
                         android:textStyle="normal|bold"
                         android:text="30"
@@ -252,7 +252,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/recip_tv_heatminute"
+                        android:id="@+id/recipe_tv_heatminute"
                         android:textSize="12sp"
                         android:textStyle="normal|bold"
                         android:text="30"
@@ -335,7 +335,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/recip_tv_finalminute"
+                        android:id="@+id/recipe_tv_finalminute"
                         android:textSize="12sp"
                         android:textStyle="normal|bold"
                         android:text="30"
