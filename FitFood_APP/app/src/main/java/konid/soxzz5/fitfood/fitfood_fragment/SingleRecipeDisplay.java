@@ -28,6 +28,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import static java.lang.Math.toIntExact;
+
 /**
  * Created by CORTELLA and GIFFARD on 18/12/2016.
  */
@@ -41,6 +43,7 @@ public class SingleRecipeDisplay extends Fragment {
     private TextView recipeTitle;
     private TextView recipeAuthor;
     private TextView recipe_info_tag;
+    private TextView recipe_info_level;
     private TextView recipe_info_forwho;
     private TextView recipe_tv_heathour;
     private TextView recipe_tv_heatminute;
@@ -48,6 +51,7 @@ public class SingleRecipeDisplay extends Fragment {
     private TextView recipe_tv_prepminute;
     private TextView recipe_tv_finalhour;
     private TextView recipe_tv_finalminute;
+    private TextView info_typedish;
     private ImageView recipe_imageView;
     private Context context;
     private int recipeId = 0;
@@ -71,48 +75,129 @@ public class SingleRecipeDisplay extends Fragment {
         recipe_tv_prepminute = (TextView) v.findViewById(R.id.recipe_tv_prepminute);
         recipe_tv_finalhour = (TextView) v.findViewById(R.id.recipe_tv_finalhour);
         recipe_tv_finalminute = (TextView) v.findViewById(R.id.recipe_tv_finalminute);
+        info_typedish = (TextView) v.findViewById(R.id.info_typedish);
+        recipe_info_level = (TextView) v.findViewById(R.id.recipe_info_level);
         recipe_imageView = (ImageView) v.findViewById(R.id.recipe_imageView);
 
         storage = FirebaseStorage.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("recipe").child("-KZID8Lhn5Mn2RG8vYhd");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("recipe").child("-KZIkIUUDZ_9QADpjyu1");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                loadedRecipe.setRtitle(String.valueOf(dataSnapshot.child("rtitle").getValue()));
-                loadedRecipe.setRforWho(String.valueOf(dataSnapshot.child("rforWho").getValue()));
-                loadedRecipe.setURL(String.valueOf(dataSnapshot.child("rrecipe_download_img_link").getValue()));
-                long Rheathour = (Long.parseLong(String.valueOf(dataSnapshot.child("rheatHour").getValue())));
-                long Rheatminute = (Long.parseLong(String.valueOf(dataSnapshot.child("rheatMinute").getValue())));
-                long Rprephour = (Long.parseLong(String.valueOf(dataSnapshot.child("rprepareHour").getValue())));
-                long Rprepminute = (Long.parseLong(String.valueOf(dataSnapshot.child("rprepareMinute").getValue())));
-                long Rfinalhour = Rheathour + Rprephour;
-                long Rfinalminute = Rheatminute + Rprepminute;
-                System.out.println("URL:" + String.valueOf(dataSnapshot.child("rrecipe_download_img_link").getValue()));
+                if(dataSnapshot.child("rtitle").getValue()!=null) {
+                    loadedRecipe.setRtitle(String.valueOf(dataSnapshot.child("rtitle").getValue()));
+                    loadedRecipe.setRforWho(String.valueOf(dataSnapshot.child("rforWho").getValue()));
+                    loadedRecipe.setURL(String.valueOf(dataSnapshot.child("rrecipe_download_img_link").getValue()));
+                    long Rlevel = (Long.parseLong(String.valueOf(dataSnapshot.child("rlevel").getValue())));
+                    long Rtypedish = (Long.parseLong(String.valueOf(dataSnapshot.child("rtype").getValue())));
+                    long Rcategorie = (Long.parseLong(String.valueOf(dataSnapshot.child("rcategory").getValue())));
+                    long Rheathour = (Long.parseLong(String.valueOf(dataSnapshot.child("rheatHour").getValue())));
+                    long Rheatminute = (Long.parseLong(String.valueOf(dataSnapshot.child("rheatMinute").getValue())));
+                    long Rprephour = (Long.parseLong(String.valueOf(dataSnapshot.child("rprepareHour").getValue())));
+                    long Rprepminute = (Long.parseLong(String.valueOf(dataSnapshot.child("rprepareMinute").getValue())));
+                    long Rfinalhour = Rheathour + Rprephour;
+                    long Rfinalminute = Rheatminute + Rprepminute;
+                    System.out.println("URL:" + String.valueOf(dataSnapshot.child("rrecipe_download_img_link").getValue()));
 
-                recipeTitle.setText(loadedRecipe.getRtitle());
-                recipe_info_forwho.setText(loadedRecipe.getRforWho());
-                recipe_tv_heathour.setText(String.valueOf(Rheathour));
-                recipe_tv_heatminute.setText(String.valueOf(Rheatminute));
-                recipe_tv_prephour.setText(String.valueOf(Rprephour));
-                recipe_tv_prepminute.setText(String.valueOf(Rprepminute));
-                recipe_tv_finalhour.setText(String.valueOf(Rfinalhour));
-                recipe_tv_finalminute.setText(String.valueOf(Rfinalminute));
+                    switch ((int)(long)(Rtypedish))
+                    {
+                        case 1:
+                            info_typedish.setText(R.string.step2_rb_starter);
+                            break;
+                        case 2:
+                            info_typedish.setText(R.string.step2_rb_maincourse);
+                            break;
+                        case 3:
+                            info_typedish.setText(R.string.step2_rb_dessert);
+                            break;
+                        case 4:
+                            info_typedish.setText(R.string.step2_rb_sidedish);
+                            break;
+                        case 5:
+                            info_typedish.setText(R.string.step2_rb_appetizer);
+                            break;
+                        case 6:
+                            info_typedish.setText(R.string.step2_rb_drink);
+                            break;
+                        case 7:
+                            info_typedish.setText(R.string.step2_rb_sweets);
+                            break;
+                        case 8:
+                            info_typedish.setText(R.string.step2_rb_sauce);
+                            break;
+                    }
 
-                //Téléchargement et affichage de l'image de la recette
-                StorageReference storageRef = storage.getReferenceFromUrl(loadedRecipe.getURL());
-                final long ONE_MEGABYTE = 1024 * 1024;
-                storageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                    @Override
-                    public void onSuccess(byte[] bytes) {
-                        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                        recipe_imageView.setImageBitmap(bitmap);
+                    switch ((int)(long)(Rcategorie))
+                    {
+                        case 1:
+                            recipe_info_tag.setText(R.string.step1_rb_omnivore);
+                            break;
+                        case 2:
+                            recipe_info_tag.setText(R.string.step1_rb_vegetarien);
+                            break;
+                        case 3:
+                            recipe_info_tag.setText(R.string.step1_rb_vegetalien);
+                            break;
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle any errors
+
+                    switch ((int)(long)Rlevel)
+                    {
+                        case 1:
+                            recipe_info_level.setText(R.string.step2_tv_info_0);
+                            recipe_info_level.setTextColor(getResources().getColor(R.color.FromGreenToRed1));
+                            break;
+                        case 2:
+                            recipe_info_level.setText(R.string.step2_tv_info_1);
+                            recipe_info_level.setTextColor(getResources().getColor(R.color.FromGreenToRed2));
+                            break;
+                        case 3:
+                            recipe_info_level.setText(R.string.step2_tv_info_2);
+                            recipe_info_level.setTextColor(getResources().getColor(R.color.FromGreenToRed3));
+                            break;
+                        case 4:
+                            recipe_info_level.setText(R.string.step2_tv_info_3);
+                            recipe_info_level.setTextColor(getResources().getColor(R.color.FromGreenToRed4));
+                            break;
+                        case 5:
+                            recipe_info_level.setText(R.string.step2_tv_info_4);
+                            recipe_info_level.setTextColor(getResources().getColor(R.color.FromGreenToRed5));
+                            break;
                     }
-                });
+
+                    //TITRE
+                    recipeTitle.setText(loadedRecipe.getRtitle());
+                    //Pour combien de personnes
+                    recipe_info_forwho.setText(loadedRecipe.getRforWho());
+                    //Heure de cuisson
+                    recipe_tv_heathour.setText(String.valueOf(Rheathour));
+                    //Minutes de cuisson
+                    recipe_tv_heatminute.setText(String.valueOf(Rheatminute));
+                    //Heures de préparation
+                    recipe_tv_prephour.setText(String.valueOf(Rprephour));
+                    //Minutes de préparation
+                    recipe_tv_prepminute.setText(String.valueOf(Rprepminute));
+                    //Heures au total
+                    recipe_tv_finalhour.setText(String.valueOf(Rfinalhour));
+                    //Minuts au total
+                    recipe_tv_finalminute.setText(String.valueOf(Rfinalminute));
+
+                    //Téléchargement et affichage de l'image de la recette
+                    StorageReference storageRef = storage.getReferenceFromUrl(loadedRecipe.getURL());
+                    final long ONE_MEGABYTE = 1024 * 1024;
+                    storageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes) {
+                            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                            recipe_imageView.setImageBitmap(bitmap);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle any errors
+                        }
+                    });
+
+                }
             }
 
             @Override

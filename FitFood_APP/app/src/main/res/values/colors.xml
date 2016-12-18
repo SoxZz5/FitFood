@@ -27,4 +27,10 @@
     <color name="colorButton_GAlpha">#a31fa618</color>
     <color name="invalidMessageRegister">#ff000e</color>
 
+    <color name="FromGreenToRed1">#25e214</color>
+    <color name="FromGreenToRed2">#4ee214</color>
+    <color name="FromGreenToRed3">#a1e214</color>
+    <color name="FromGreenToRed4">#e26014</color>
+    <color name="FromGreenToRed5">#e21414</color>
+
 </resources>
