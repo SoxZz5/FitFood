@@ -13,6 +13,7 @@ import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -25,8 +26,10 @@ import android.widget.Toast;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -87,6 +90,10 @@ public class addrecipe_final extends Fragment implements View.OnClickListener {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             filePath = data.getData();
             path = filePath.toString();
+            if (bitmap != null) {
+                bitmap.recycle();
+                bitmap = null;
+            }
             try {
                Uri new_path = Uri.parse(decodeFile(path,1280,720));
                 bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),new_path);
@@ -102,16 +109,16 @@ public class addrecipe_final extends Fragment implements View.OnClickListener {
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
                 if (bitmap != null) {
-                    bitmap = null;
                     bitmap.recycle();
+                    bitmap = null;
                 }
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     options.inSampleSize = 3;
                     bitmap = BitmapFactory.decodeFile(outputFile.getAbsolutePath(), options);
-                    imageView.setImageBitmap(bitmap);
+
                     try {
                         FileOutputStream outFile= new FileOutputStream(outputFile);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 95, outFile);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, outFile);
                         MediaScannerConnection.scanFile(getContext(), new String[] { path_camera }, new String[] { "image/jpeg" }, null);
                         outFile.flush();
                         outFile.close();
@@ -123,6 +130,7 @@ public class addrecipe_final extends Fragment implements View.OnClickListener {
                         toast.show();
                     }
                     filePath = Uri.parse("file://"+path_camera);
+                    Picasso.with(getContext()).load(outputFile.getAbsolutePath()).centerCrop().resize(400,400).into(imageView);
             }
     }
 
@@ -213,21 +221,5 @@ public class addrecipe_final extends Fragment implements View.OnClickListener {
         return strMyImagePath;
 
     }
-
-    public Bitmap get_Resized_Bitmap(Bitmap bmp, int newHeight, int newWidth) {
-        int width = bmp.getWidth();
-        int height = bmp.getHeight();
-        float scaleWidth = ((float) newWidth) / width;
-        float scaleHeight = ((float) newHeight) / height;
-        // CREATE A MATRIX FOR THE MANIPULATION
-        Matrix matrix = new Matrix();
-        // RESIZE THE BIT MAP
-        matrix.postScale(scaleWidth, scaleHeight);
-
-        // "RECREATE" THE NEW BITMAP
-        Bitmap newBitmap = Bitmap.createBitmap(bmp, 0, 0, width, height, matrix, false);
-        return newBitmap ;
-    }
-
 
 }

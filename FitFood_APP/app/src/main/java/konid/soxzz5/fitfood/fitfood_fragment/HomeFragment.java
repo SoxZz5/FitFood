@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment {
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("recipe");
 
-        
+
 
         mHandler = new Handler() {
             @Override

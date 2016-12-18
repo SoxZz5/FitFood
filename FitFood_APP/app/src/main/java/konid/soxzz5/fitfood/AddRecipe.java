@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -422,14 +423,13 @@ public class AddRecipe extends AppCompatActivity {
                     {
                         mProgressDialog.setMessage("Uploading ...");
                         mProgressDialog.show();
+                        Log.d("TEST",step_final.getFilePath().getLastPathSegment());
                         StorageReference new_filepath = firebaseStorage.child("Recipe_Image").child(firebaseUser.getUid()).child(step_final.getFilePath().getLastPathSegment());
                         new_filepath.putFile(step_final.getFilePath()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                mProgressDialog.hide();
-                                mProgressDialog.cancel();
+                                mProgressDialog.dismiss();
                                 validate_upload=true;
-                                download_uri= taskSnapshot.getDownloadUrl();
                             }
                         });
 
@@ -443,7 +443,7 @@ public class AddRecipe extends AppCompatActivity {
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy_HH:mm");
                         sdf.setTimeZone(TimeZone.getTimeZone("GMT+1"));
                         String currentDateandTime = sdf.format(new Date());
-                        Recipe recipe = new Recipe(sTitle, iCategory, iLevel, iType, iPrepareHour, iPrepareMinute, iHeatHour, iHeatMinute, sForWho, allIngredients, allSteps,false,currentDateandTime,download_uri.toString());
+                        Recipe recipe = new Recipe(sTitle, iCategory, iLevel, iType, iPrepareHour, iPrepareMinute, iHeatHour, iHeatMinute, sForWho, allIngredients, allSteps,false,currentDateandTime,(String)("gs://firebase-fitfood.appspot.com/Recipe_Image/" + step_final.getFilePath().getLastPathSegment()));
                         recipe_ref.child(newKey).setValue(recipe);
 
                         Toast.makeText(AddRecipe.this,"Recette ajouter à la BDD",Toast.LENGTH_SHORT).show();
