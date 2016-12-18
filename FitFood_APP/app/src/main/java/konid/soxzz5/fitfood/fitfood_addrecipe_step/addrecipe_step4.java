@@ -21,6 +21,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +40,7 @@ import static konid.soxzz5.fitfood.utils.utils.accentedCharacters;
 public class addrecipe_step4 extends Fragment implements OnClickListener, OnItemClickListener{
     ListView mListView;
     List<Ingredient> ingredients;
+    private List<Ingredient> parentList;
     boolean first_item;
     IngredientListAdapter adapter;
     String ingredient;
@@ -47,22 +50,37 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
     Context _context;
     int nbIngredient;
     @Nullable
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.addrecipe_step4, container, false);
-
+        System.out.println("CREATION WEBVIEW4");
         //ON CREE NOTRE LISTVIEW
+
         mListView = (ListView) v.findViewById(R.id.step4_listview);
         _context=getContext();
         nbIngredient = 0;
         final EditText et_quantity = (EditText) v.findViewById(R.id.step4_et_quantity);
         final EditText et_ingredient = (EditText) v.findViewById(R.id.step4_et_ingredient);
         final ImageView bt_add = (ImageView) v.findViewById(R.id.step4_bt_add);
+        final TextView info_error = (TextView) v.findViewById(R.id.info_error);
 
-        ingredients = new ArrayList<Ingredient>();
         first_item =false;
         valid_ingredient = false;
         valid_quantity = false;
+
+        //On récupère le tableau s'il existe déjà
+        if(parentList != null && parentList.size()>0) {
+            ingredients = parentList;
+            adapter = new IngredientListAdapter(_context, ingredients,this);
+            mListView.setAdapter(adapter);
+            if(this.ingredients.size()==1) {
+                first_item=true;
+            } else {
+                adapter.notifyDataSetChanged();
+            }
+            nbIngredient = ingredients.size();
+        } else ingredients = new ArrayList<Ingredient>();
 
         et_ingredient.addTextChangedListener(new TextWatcher() {
             @Override
@@ -76,6 +94,9 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
                 {
                     ingredient = et_ingredient.getText().toString();
                     valid_ingredient=true;
+                    info_error.setText("");
+                } else {
+                    valid_ingredient=false;
                 }
             }
 
@@ -104,6 +125,9 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
                 {
                     quantity = et_quantity.getText().toString();
                     valid_quantity=true;
+                    info_error.setText("");
+                } else {
+                    valid_quantity=false;
                 }
             }
         });
@@ -118,6 +142,10 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
                     addToList();
                     valid_quantity=false;
                     valid_ingredient=false;
+                } else if(valid_quantity==false) {
+                    info_error.setText(R.string.step4_invalid_quantity);
+                } else {
+                    info_error.setText(R.string.step4_invalid_ingredient);
                 }
             }
         });
@@ -171,5 +199,9 @@ public class addrecipe_step4 extends Fragment implements OnClickListener, OnItem
 
     public int getNbIngredient() {
         return nbIngredient;
+    }
+
+    public void setParentList(List<Ingredient> parentList) {
+        this.parentList = parentList;
     }
 }

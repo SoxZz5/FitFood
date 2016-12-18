@@ -86,14 +86,15 @@
     <string name="step4_title">Step 4</string>
     <string name="step5_title">Step 5</string>
 
-    <string name="step_error_title">Bad title min 10 char</string>
+    <string name="step_error_title">Invalid title, need at least 3 characters</string>
     <string name="step_error_categorie">Please select one category</string>
     <string name="step_error_type">Please select one type</string>
     <string name="step_error_difficulty">Please select difficulty</string>
     <string name="step_error_heat">Please enter cooking time (enter 0 if no cooking)</string>
     <string name="step_error_prepare">Please enter preparation time</string>
     <string name="step_error_forwho">Please enter number of servings</string>
-    <string name="step_error_ingredients">Please enter one ingredient</string>
+    <string name="step_error_ingredients">Please enter at least one ingredient</string>
+    <string name="step_error_prepsteps">Please enter at least one step</string>
 
     <string name="step1_et_title">Enter a title</string>
     <string name="step1_tv_title">Title</string>
@@ -141,11 +142,14 @@
     <string name="step4_et_quantity">Quantity</string>
     <string name="step4_tv_de">Of</string>
     <string name="step4_et_ingredient">Ingredient</string>
-    <string name="step4_info_ingredient">Example: 2cl of milk, 200g of flour, 2 eggs ...</string>
+    <string name="step4_info_ingredient">Example: 2 cl of milk, 200 g of flour, 2 eggs ...</string>
+    <string name="step4_invalid_ingredient">Invalid ingredient</string>
+    <string name="step4_invalid_quantity">Invalid quantity</string>
 
     <string name="step5_tv_directions">Directions</string>
     <string name="step5_et_directions_steps">Preparation steps</string>
     <string name="step5_info_prep">Example: Season chicken with salt and pepper, roast in the preheated oven ...</string>
+    <string name="step5_invalid_step">Invalid step (min 10 characters)</string>
 
 
 </resources>

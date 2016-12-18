@@ -43,7 +43,7 @@ public class addrecipe_step1 extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(utils.findMatch(et_title.getText().toString(),"^[A-Z][\\s\\w]{10,50}$"))
+                if(utils.findMatch(et_title.getText().toString(),"^[A-z][\\s\\w]{2,50}$"))
                 {
                     title=et_title.getText().toString();
                     title_changed=true;
