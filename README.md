@@ -17,7 +17,7 @@ Les fonctions à venir:
   - Ajout des allergénes à la recherche avancées
   
 ## Fitfood est sous licences APACHE 2.0
-```sh
+``
 Copyright 2016 Giffard Lucas "SoxZz5" / Cortella Nicolas "konidk"
 
 Fitfood is licensed under the Apache License, Version 2.0 (the "License");
@@ -31,7 +31,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-```
+``
 
 Nous distribuons le code gratuitement afin qu'il puissent vous aidez à titre d'exemple pour vos projets android
 ### Attention à des fins de test pour l'ajout de recette il faudra modifier la ligne suivante dans utils/utils.java
