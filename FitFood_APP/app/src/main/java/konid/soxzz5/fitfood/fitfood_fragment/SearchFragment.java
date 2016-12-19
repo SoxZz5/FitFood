@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.ViewFlipper;
 
 import com.google.firebase.database.DataSnapshot;
@@ -38,7 +39,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Ad
     private List<Recipe> recipeList;
     private DatabaseReference databaseReference;
     private RecipeShowHomeAdapter recipeShowHomeAdapter;
-
+    private ProgressBar search_pb;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,6 +49,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Ad
         recipeList = new ArrayList<>();
         recipeShowHomeAdapter = new RecipeShowHomeAdapter(mContext, recipeList,this);
         listview_container = (ListView) v.findViewById(R.id.search_list_view);
+        search_pb = (ProgressBar) v.findViewById(R.id.search_pb);
+        search_pb.setVisibility(View.VISIBLE);
         Bundle bundle_tmp = this.getArguments();
         if(bundle_tmp != null) {
             final String query = bundle_tmp.getString("seek");
@@ -87,6 +90,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Ad
                             ((MainActivity) getActivity()).openRecipe(clickedRecipe.getRecipeID());
                         }
                     });
+                    search_pb.setVisibility(View.GONE);
                     recipeShowHomeAdapter.notifyDataSetChanged();
                 }
 

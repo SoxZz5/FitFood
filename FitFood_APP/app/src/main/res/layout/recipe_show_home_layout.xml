@@ -18,7 +18,7 @@
             android:padding="2dp">
 
             <ProgressBar
-                style="?android:attr/progressBarStyleSmall"
+                style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
                 android:layout_width="match_parent"
                 android:id="@+id/recipe_image_pb"
                 tools:visibility="visible"

@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -301,7 +302,6 @@ public class MainActivity extends AppCompatActivity{
                     }
                     else
                     {
-                        transaction.setCustomAnimations(R.animator.slide_in_up, R.animator.slide_out_down, 0, 0);
                         transaction.replace(R.id.fragment_container, searchFragment);
                     }
                     transaction.commit();
@@ -338,7 +338,6 @@ public class MainActivity extends AppCompatActivity{
                     }
                     else
                     {
-                        transaction.setCustomAnimations(R.animator.slide_in_up, R.animator.slide_out_down, 0, 0);
                         transaction.replace(R.id.fragment_container, searchFragment);
                     }
                     transaction.commit();
