@@ -159,6 +159,7 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
         firebaseStorage = FirebaseStorage.getInstance().getReferenceFromUrl(recipe.getRrecipe_download_img_link().toString());
         Picasso.with(mContext).setLoggingEnabled(true);
         recipeShowHomeHolder.recipe_img_pb.setVisibility(View.VISIBLE);
+        System.out.println("FDPFDP1: " + recipe.getRrecipe_download_img_link().toString());
         Picasso.with(mContext)
                 .load(recipe.getRrecipe_download_img_link().toString())
                 .fit()
