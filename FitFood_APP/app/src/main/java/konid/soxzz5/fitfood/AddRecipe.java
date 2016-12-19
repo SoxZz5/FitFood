@@ -41,6 +41,8 @@ import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step3;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step4;
 import konid.soxzz5.fitfood.fitfood_addrecipe_step.addrecipe_step5;
 
+import static konid.soxzz5.fitfood.utils.utils.KEY_VALID_RECIPE;
+
 
 /**
  * Created by Soxzer on 08/12/2016.
@@ -441,7 +443,7 @@ public class AddRecipe extends AppCompatActivity {
                                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy_HH:mm");
                                     sdf.setTimeZone(TimeZone.getTimeZone("GMT+1"));
                                     String currentDateandTime = sdf.format(new Date());
-                                    Recipe recipe = new Recipe(sTitle, iCategory, iLevel, iType, iPrepareHour, iPrepareMinute, iHeatHour, iHeatMinute, sForWho, allIngredients, allSteps, false, currentDateandTime,path);
+                                    Recipe recipe = new Recipe(sTitle, iCategory, iLevel, iType, iPrepareHour, iPrepareMinute, iHeatHour, iHeatMinute, sForWho, allIngredients, allSteps, KEY_VALID_RECIPE, currentDateandTime,path);
                                     recipe_ref.setValue(recipe);
                                     Toast.makeText(AddRecipe.this, "Recette ajouter à la BDD", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(AddRecipe.this, MainActivity.class);

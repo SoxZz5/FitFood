@@ -17,7 +17,7 @@ public class AccountFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_account, container, false);
-        //TODO LAYOUT fragment_account + Fonction de la layout ici
+
         return v;
     }
 }

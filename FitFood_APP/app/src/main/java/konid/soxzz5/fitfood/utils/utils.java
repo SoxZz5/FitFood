@@ -36,7 +36,7 @@ import java.util.regex.Pattern;
 
 public class utils {
     public static String accentedCharacters = "àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ";
-
+    public static boolean KEY_VALID_RECIPE = false;
     public static Boolean findMatch(String myString, String pattern) {
 
         String match = "";
