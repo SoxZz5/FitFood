@@ -7,13 +7,17 @@ import android.graphics.Color;
 import android.speech.RecognizerIntent;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,7 +51,7 @@ public class MainActivity extends AppCompatActivity{
     private static final int RC_CAMERA = 123;
     private static final int RC_STORAGE = 124;
     private static final int RC_SETTINGS_SCREEN = 125;
-
+    Drawer menu;
     MaterialSearchView searchView;
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
@@ -55,6 +59,14 @@ public class MainActivity extends AppCompatActivity{
     SessionManager sessionManager;
     String first_sign;
     String recipe_of_day;
+    DrawerLayout drawer_layout;
+    int mem_DrawableTag;
+    SearchFragment searchFragment;
+    SingleRecipeDisplay singleRecipeDisplay;
+    HomeFragment homeFragment;
+    RecipeOfDayFragment recipeOfDayFragment;
+    LastRecipeFragment lastRecipeFragment;
+    AddRecipeFragment addRecipeFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,14 +130,14 @@ public class MainActivity extends AppCompatActivity{
         PrimaryDrawerItem disconnect = new PrimaryDrawerItem().withName(R.string.drawer_item_disconnect).withIcon(GoogleMaterial.Icon.gmd_highlight_off).withIdentifier(12);
 
         //CONSTRUCTION DU MENU
-        Drawer menu = new DrawerBuilder()
+        menu = new DrawerBuilder()
                 .withActivity(this)
                 .withRootView(R.id.drawer_layout)
                 .withSavedInstance(savedInstanceState)
                 .withDisplayBelowStatusBar(false)
                 .withDrawerWidthDp(250)
                 .withToolbar(toolbar)
-                .withSelectedItem(drawableTag)
+                .withSelectedItem(1)
                 .withActionBarDrawerToggle(true)
                 .withActionBarDrawerToggleAnimated(true)
                 .addDrawerItems(
@@ -146,6 +158,55 @@ public class MainActivity extends AppCompatActivity{
                         account,
                         disconnect
                 )
+                .withOnDrawerNavigationListener(new Drawer.OnDrawerNavigationListener() {
+                    @Override
+                    public boolean onNavigationClickListener(View clickedView) {
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        switch(mem_DrawableTag)
+                        {
+                            case 1:
+                                toolbar.setTitle(R.string.drawer_item_home_cook);
+                                transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
+                                homeFragment = new HomeFragment();
+                                transaction.replace(R.id.fragment_container,homeFragment).commit();
+                                break;
+                            case 3:
+                                toolbar.setTitle(R.string.drawer_item_top_cook);
+                                break;
+                            case 4:
+                                toolbar.setTitle(R.string.drawer_item_last_cook);
+                                transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
+                                transaction.replace(R.id.fragment_container,lastRecipeFragment).commit();
+                                break;
+                            case 5:
+                                toolbar.setTitle(R.string.drawer_item_seek_cook);
+                                break;
+                            case 7:
+                                toolbar.setTitle(R.string.drawer_item_mycook_book);
+                                break;
+                            case 8:
+                                toolbar.setTitle(R.string.drawer_item_list_book);
+                                break;
+                            case 9:
+                                toolbar.setTitle(R.string.drawer_item_historic_book);
+                                break;
+                            case 10:
+                                toolbar.setTitle(R.string.drawer_item_param_book);
+                                break;
+                            case 11:
+                                toolbar.setTitle(R.string.drawer_item_account);
+                                break;
+                        }
+                        drawableTag=mem_DrawableTag;
+                        mem_DrawableTag = -1;
+                        drawer_layout = menu.getDrawerLayout();
+                        drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                        refreshMenu(MainActivity.this);
+                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                        menu.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
+                        return true;
+                    }
+                })
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem)
@@ -158,10 +219,10 @@ public class MainActivity extends AppCompatActivity{
                                 {
                                     refreshMenu(MainActivity.this);
                                     drawableTag=1;
-                                    HomeFragment newFragment = new HomeFragment();
+                                    homeFragment = new HomeFragment();
                                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
                                     transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
-                                    transaction.replace(R.id.fragment_container, newFragment);
+                                    transaction.replace(R.id.fragment_container, homeFragment);
                                     transaction.commit();
                                     toolbar.setTitle(R.string.drawer_item_home_cook);
                                 }
@@ -174,11 +235,11 @@ public class MainActivity extends AppCompatActivity{
                                     drawableTag=2;
                                     Bundle args = new Bundle();
                                     args.putString("recipe_key", recipe_of_day);
-                                    RecipeOfDayFragment newFragment = new RecipeOfDayFragment();
-                                    newFragment.setArguments(args);
+                                    recipeOfDayFragment = new RecipeOfDayFragment();
+                                    recipeOfDayFragment.setArguments(args);
                                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
                                     transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
-                                    transaction.replace(R.id.fragment_container, newFragment);
+                                    transaction.replace(R.id.fragment_container, recipeOfDayFragment);
                                     transaction.commit();
                                     toolbar.setTitle(R.string.drawer_item_day_cook);
                                 }
@@ -188,10 +249,10 @@ public class MainActivity extends AppCompatActivity{
                                 if(drawableTag!=4) {
                                     refreshMenu(MainActivity.this);
                                     drawableTag = 4;
-                                    LastRecipeFragment newFragment = new LastRecipeFragment();
+                                    lastRecipeFragment = new LastRecipeFragment();
                                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
                                     transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
-                                    transaction.replace(R.id.fragment_container, newFragment);
+                                    transaction.replace(R.id.fragment_container, lastRecipeFragment);
                                     transaction.commit();
                                     toolbar.setTitle(R.string.drawer_item_last_cook);
                                 }
@@ -209,15 +270,15 @@ public class MainActivity extends AppCompatActivity{
                                 if(drawableTag!=6)
                                 {
                                     drawableTag=6;
-                                    AddRecipeFragment newFragment = new AddRecipeFragment();
+                                    addRecipeFragment = new AddRecipeFragment();
                                     Bundle args = new Bundle();
                                     args.putInt("position", position);
-                                    newFragment.setArguments(args);
+                                    addRecipeFragment.setArguments(args);
 
                                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
                                     transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
-                                    transaction.replace(R.id.fragment_container, newFragment);
+                                    transaction.replace(R.id.fragment_container, addRecipeFragment);
 
                                     transaction.commit();
                                     toolbar.setTitle(R.string.drawer_item_add_cook);
@@ -241,6 +302,11 @@ public class MainActivity extends AppCompatActivity{
                     }
                 }).build();
 
+        if(drawableTag == 1)
+        {
+            menu.setSelection(1);
+        }
+
 
 
         //ON CREER NOTRE SEARCHVIEW
@@ -251,14 +317,15 @@ public class MainActivity extends AppCompatActivity{
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                mem_DrawableTag = drawableTag;
                 drawableTag = -1;
-                SearchFragment newFragment = new SearchFragment();
+                searchFragment = new SearchFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("seek", query);
-                newFragment.setArguments(bundle);
+                searchFragment.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
-                transaction.replace(R.id.fragment_container, newFragment);
+                transaction.replace(R.id.fragment_container, searchFragment);
                 transaction.commit();
                 toolbar.setTitle(query);
                 return false;
@@ -356,19 +423,23 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void openRecipe(String recipeID) {
-        SingleRecipeDisplay newFragment = new SingleRecipeDisplay();
-        Bundle args = new Bundle();
-        newFragment.setRecipeID(recipeID);
-        newFragment.setArguments(args);
+        singleRecipeDisplay = new SingleRecipeDisplay();
+        singleRecipeDisplay.setRecipeID(recipeID);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
-        transaction.replace(R.id.fragment_container, newFragment);
+        transaction.replace(R.id.fragment_container, singleRecipeDisplay);
         transaction.commit();
+        drawer_layout = menu.getDrawerLayout();
+        drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.drawer_item_display);
+        //toolbar.setTitle();
         toolbar.getMenu().clear();
         toolbar.inflateMenu(R.menu.bypass_menuitem);
+        menu.getActionBarDrawerToggle().setDrawerIndicatorEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mem_DrawableTag = drawableTag;
         drawableTag=-1;
+
     }
 
     public static void refreshMenu(Activity activity)

@@ -118,7 +118,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
                         slider.setVisibility(View.GONE);
                     }*/
                 }
-                if(FirstVisibleItem == firstVisibleItem)
+                if(FirstVisibleItem == firstVisibleItem && mLastFirstVisibleItem<firstVisibleItem)
                 {
                     /*if(iscollapsed)
                     {

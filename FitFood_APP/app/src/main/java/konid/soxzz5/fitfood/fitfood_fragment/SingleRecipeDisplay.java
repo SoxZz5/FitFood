@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -210,11 +211,12 @@ public class SingleRecipeDisplay extends Fragment {
                     finalTime.set(Calendar.MINUTE,(int)(long)Rprepminute);
                     finalTime.add(Calendar.HOUR_OF_DAY,(int)(long)Rheathour);
                     finalTime.add(Calendar.MINUTE,(int)(long)Rheatminute);
-
                     //Date
                     recipe_info_date.setText(loadedRecipe.getRdate());
                     //TITRE
                     recipeTitle.setText(loadedRecipe.getRtitle());
+                    final Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+                    toolbar.setTitle(loadedRecipe.getRtitle());
                     //Pour combien de personnes
                     recipe_info_forwho.setText(loadedRecipe.getRforWho());
                     //Heure de cuisson
@@ -265,4 +267,5 @@ public class SingleRecipeDisplay extends Fragment {
     public void setRecipeID(String recipeID) {
         this.recipeID = recipeID;
     }
+
 }
