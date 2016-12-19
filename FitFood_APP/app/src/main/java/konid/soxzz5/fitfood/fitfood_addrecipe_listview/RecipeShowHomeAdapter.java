@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 
@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -69,6 +70,7 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
             recipeShowHomeHolder.recipe_finalhour = (TextView) convertView.findViewById(R.id.recipe_tv_finalhour);
             recipeShowHomeHolder.recipe_finalminute = (TextView) convertView.findViewById(R.id.recipe_tv_finalminute);
             recipeShowHomeHolder.recipe_image = (ImageView) convertView.findViewById(R.id.recipe_imageView);
+            recipeShowHomeHolder.recipe_img_pb = (ProgressBar) convertView.findViewById(R.id.recipe_image_pb);
             convertView.setTag(recipeShowHomeHolder);
         }
 
@@ -156,11 +158,22 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
         recipeShowHomeHolder.recipe_finalminute.setText(Integer.toString(finalminute));
         firebaseStorage = FirebaseStorage.getInstance().getReferenceFromUrl(recipe.getRrecipe_download_img_link().toString());
         Picasso.with(mContext).setLoggingEnabled(true);
+        recipeShowHomeHolder.recipe_img_pb.setVisibility(View.VISIBLE);
         Picasso.with(mContext)
                 .load(recipe.getRrecipe_download_img_link().toString())
                 .fit()
                 .centerCrop()
-                .into(recipeShowHomeHolder.recipe_image);
+                .into(recipeShowHomeHolder.recipe_image, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        recipeShowHomeHolder.recipe_img_pb.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
 
 
         return convertView;
@@ -195,6 +208,7 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
         public TextView recipe_finalhour;
         public TextView recipe_finalminute;
         public ImageView recipe_image;
+        public ProgressBar recipe_img_pb;
     }
 
 
