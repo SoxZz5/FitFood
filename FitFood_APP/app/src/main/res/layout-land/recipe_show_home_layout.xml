@@ -18,13 +18,15 @@
             android:padding="2dp">
 
             <ProgressBar
-                style="?android:attr/progressBarStyleSmall"
                 android:layout_width="match_parent"
                 android:id="@+id/recipe_image_pb"
                 tools:visibility="visible"
-                android:layout_height="60dp"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                android:visibility="gone" />
+                android:visibility="gone"
+                android:indeterminateDrawable="@drawable/progress_bar_loading"
+                android:indeterminateTint="@color/colorAccent"
+                android:indeterminateTintMode="multiply" />
 
             <ImageView
                 android:id="@+id/recipe_imageView"

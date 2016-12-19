@@ -29,11 +29,13 @@
                 android:layout_height="240dp">
 
                 <ProgressBar
-                    style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
                     android:layout_width="match_parent"
                     android:id="@+id/recipe_img_pb"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center_vertical" />
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:indeterminateDrawable="@drawable/progress_bar_loading"
+                    android:indeterminateTint="@color/colorAccent"
+                    android:indeterminateTintMode="multiply" />
 
                 <ImageView
                         android:id="@+id/recipe_imageView"

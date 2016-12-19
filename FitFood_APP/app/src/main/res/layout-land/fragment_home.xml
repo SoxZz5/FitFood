@@ -115,7 +115,10 @@
             android:layout_height="120dp"
             android:layout_centerHorizontal="false"
             android:layout_centerInParent="true"
-            tools:visibility="gone" />
+            tools:visibility="gone"
+            android:indeterminateDrawable="@drawable/progress_bar_loading"
+            android:indeterminateTint="@color/colorAccent"
+            android:indeterminateTintMode="multiply" />
 
         <ListView
             android:layout_width="match_parent"

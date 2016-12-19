@@ -7,7 +7,10 @@
         style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/search_pb" />
+        android:id="@+id/search_pb"
+        android:indeterminateDrawable="@drawable/progress_bar_loading"
+        android:indeterminateTint="@color/colorAccent"
+        android:indeterminateTintMode="multiply" />
 
     <ListView
         android:layout_width="match_parent"
