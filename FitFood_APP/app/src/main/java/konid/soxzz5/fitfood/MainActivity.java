@@ -360,7 +360,7 @@ public class MainActivity extends AppCompatActivity{
         toolbar.setTitle(R.string.drawer_item_display);
         toolbar.getMenu().clear();
         toolbar.inflateMenu(R.menu.bypass_menuitem);
-        drawableTag=50;
+        drawableTag=-1;
     }
 
     public static void refreshMenu(Activity activity)
