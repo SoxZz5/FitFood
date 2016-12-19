@@ -17,7 +17,7 @@ Les fonctions à venir:
   - Ajout des allergénes à la recherche avancées
   
 ## Fitfood est sous licences APACHE 2.0
-``
+``sh
 Copyright 2016 Giffard Lucas "SoxZz5" / Cortella Nicolas "konidk"
 
 Fitfood is licensed under the Apache License, Version 2.0 (the "License");
