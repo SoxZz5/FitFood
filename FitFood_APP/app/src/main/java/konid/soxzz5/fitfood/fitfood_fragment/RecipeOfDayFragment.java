@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -223,7 +224,8 @@ public class RecipeOfDayFragment extends Fragment {
                         //Date
                         recipe_info_date.setText(loadedRecipe.getRdate());
                         //TITRE
-                        recipeTitle.setText(loadedRecipe.getRtitle());
+                        final Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+                        toolbar.setTitle(loadedRecipe.getRtitle());
                         //Pour combien de personnes
                         recipe_info_forwho.setText(loadedRecipe.getRforWho());
                         //Heure de cuisson

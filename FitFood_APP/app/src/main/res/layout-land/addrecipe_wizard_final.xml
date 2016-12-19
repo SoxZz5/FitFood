@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/addrecipe_wizard">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/recipeadd_step6_background"
+        android:id="@+id/background"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:weightSum="8">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:weightSum="1">
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:id="@+id/wizard_bt_choose"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                app:iiv_color="@color/common_google_signin_btn_text_dark_default"
+                app:iiv_icon="gmd-photo-library"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/roundbackground3"
+                android:padding="15dp" />
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:id="@+id/wizard_bt_take"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                app:iiv_color="@color/common_google_signin_btn_text_dark_default"
+                app:iiv_icon="gmd-photo-camera"
+                android:layout_marginLeft="0dp"
+                android:background="@drawable/roundbackground3"
+                android:padding="15dp" />
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/wizard_iv_final"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/roundbackground4"
+            android:visibility="invisible"
+            android:padding="2dp"
+            android:layout_weight="6"
+            android:scaleType="centerCrop" />
+
+    </LinearLayout>
+
+</RelativeLayout>

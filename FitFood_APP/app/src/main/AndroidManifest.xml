@@ -24,8 +24,7 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/CustomTheme">
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,15 +33,12 @@
         </activity>
         <activity
             android:name=".RegisterActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/CustomTheme" />
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/CustomTheme" />
         <activity
             android:name=".AddRecipe"
-            android:screenOrientation="portrait"
             android:theme="@style/CustomTheme" />
         <activity android:name=".AfterLogin"></activity>
     </application>

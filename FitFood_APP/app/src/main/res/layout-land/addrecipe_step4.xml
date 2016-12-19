@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/container">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/recipeadd_step4_background"
+        android:id="@+id/background"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:weightSum="10">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/step4_tv_ingredient"
+            android:textSize="24sp"
+            android:textStyle="normal|bold"
+            android:textColor="@color/md_green_A700"
+            android:textAlignment="center"
+            android:layout_marginTop="10dp"
+            android:text="@string/step4_tv_ingredient"
+            android:layout_weight="0.8"
+            android:gravity="center_vertical" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:weightSum="10"
+            android:layout_weight="9.2">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="10">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:weightSum="4.5"
+                    android:layout_alignParentBottom="false"
+                    android:elevation="0dp"
+                    android:id="@+id/layout_info"
+                    android:layout_height="100dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/info_error"
+                        android:textColor="@color/invalidMessageRegister"
+                        android:textAlignment="center"
+                        android:layout_weight="1"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center_vertical|center_horizontal" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2.5"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:weightSum="6.5"
+                        android:visibility="visible"
+                        android:gravity="center_vertical"
+                        android:paddingRight="60dp">
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:inputType="textPersonName"
+                            android:id="@+id/step4_et_quantity"
+                            android:layout_weight="2.5"
+                            android:hint="@string/step4_et_quantity"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:text="@string/step4_tv_de"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:id="@+id/step4_tv_de"
+                            android:layout_weight="0.8"
+                            android:textColor="@color/material_drawer_dark_primary_text"
+                            android:textAlignment="center"
+                            android:textStyle="normal|bold"
+                            android:textSize="18sp"
+                            android:gravity="center_vertical" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:inputType="textPersonName"
+                            android:id="@+id/step4_et_ingredient"
+                            android:layout_weight="2.5"
+                            android:hint="@string/step4_et_ingredient"
+                            android:textAlignment="center" />
+
+                        <ImageView
+                            app:srcCompat="@android:drawable/ic_menu_add"
+                            android:id="@+id/step4_bt_add"
+                            android:layout_weight="0.7"
+                            android:clickable="true"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/step4_info_ingredient"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textSize="12sp"
+                        android:textColor="@color/md_green_A700"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:textAlignment="center"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/step4_info_ingredient"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/step4_listview"
+                    android:layout_weight="1"
+                    android:dividerHeight="0dp"
+                    android:background="@drawable/listview"
+                    android:elevation="0dp"
+                    android:divider="#00ffffff"
+                    android:layout_marginTop="15dp"
+                    android:visibility="visible"
+                    android:layout_below="@+id/layout_info"
+                    android:paddingTop="5dp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
