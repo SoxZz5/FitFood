@@ -20,6 +20,10 @@ Les fonctions à venir:
 <img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/creative1.png" alt="alt text" width="394" height="94">
 
 Nous distribuons le code gratuitement afin qu'il puissent vous aidez à titre d'exemple pour vos projets android
+### Attention à des fins de test pour l'ajout de recette il faudra modifier la ligne suivante dans utils/utils.java
+```sh
+public static boolean KEY_VALID_RECIPE = false; // False doit devenir true pour auto valider les recettes sans passer par l'administration
+```
 
 ## Fonctionnalité
 

@@ -14,6 +14,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -86,6 +87,10 @@ public class MainActivity extends AppCompatActivity{
                 transaction.commit();
             }
         }
+
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+        final Toast toast = Toast.makeText(context, R.string.feature_not_yet_available, duration);
 
         setContentView(R.layout.activity_main);
         //ON EST DEJA CONNECTER
@@ -161,7 +166,7 @@ public class MainActivity extends AppCompatActivity{
                                     toolbar.setTitle(R.string.drawer_item_home_cook);
                                 }
                             }
-                            if(drawerItem.getIdentifier() == 2)
+                            else if(drawerItem.getIdentifier() == 2)
                             {
                                 if(drawableTag != 2)
                                 {
@@ -178,7 +183,7 @@ public class MainActivity extends AppCompatActivity{
                                     toolbar.setTitle(R.string.drawer_item_day_cook);
                                 }
                             }
-                            if(drawerItem.getIdentifier() == 4)
+                            else if(drawerItem.getIdentifier() == 4)
                             {
                                 if(drawableTag!=4) {
                                     refreshMenu(MainActivity.this);
@@ -191,15 +196,15 @@ public class MainActivity extends AppCompatActivity{
                                     toolbar.setTitle(R.string.drawer_item_last_cook);
                                 }
                             }
-                            if(drawerItem.getIdentifier() == 5)
+                            /*else if(drawerItem.getIdentifier() == 5)
                             {
                                 if(drawableTag!=5)
                                 {
                                     drawableTag=5;
                                 }
-                            }
+                            }*/
 
-                            if(drawerItem.getIdentifier() == 6)
+                            else if(drawerItem.getIdentifier() == 6)
                             {
                                 if(drawableTag!=6)
                                 {
@@ -221,12 +226,15 @@ public class MainActivity extends AppCompatActivity{
                                 }
                             }
 
-                            if(drawerItem.getIdentifier() == 12)
+                            else if(drawerItem.getIdentifier() == 12)
                             {
                                 firebaseAuth.signOut();
                                 Intent intent = new Intent(MainActivity.this,LoginActivity.class);
                                 startActivity(intent);
                                 finish();
+                            }
+                            else if(drawerItem.getIdentifier() != -1) {
+                                toast.show();
                             }
                         }
                         return false;

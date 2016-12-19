@@ -159,5 +159,6 @@
     <string name="recipe_tv_minute_label">min</string>
     <string name="steps">Étapes</string>
     <string name="drawer_item_display">Recette</string>
+    <string name="feature_not_yet_available">Cette fonctionnalité n\'est pas encore disponible</string>
 </resources>
 
