@@ -1,5 +1,6 @@
 package konid.soxzz5.fitfood;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -109,7 +110,7 @@ public class MainActivity extends AppCompatActivity{
         PrimaryDrawerItem day_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_day_cook).withIcon(GoogleMaterial.Icon.gmd_cake).withIdentifier(2);
         PrimaryDrawerItem top_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_top_cook).withIcon(GoogleMaterial.Icon.gmd_local_play).withIdentifier(3).withSelectable(false);
         PrimaryDrawerItem last_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_last_cook).withIcon(GoogleMaterial.Icon.gmd_style).withIdentifier(4);
-        PrimaryDrawerItem seek_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_seek_cook).withIcon(GoogleMaterial.Icon.gmd_loupe).withIdentifier(5);
+        PrimaryDrawerItem seek_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_seek_cook).withIcon(GoogleMaterial.Icon.gmd_loupe).withIdentifier(5).withSelectable(false);
         PrimaryDrawerItem add_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_add_cook).withIcon(GoogleMaterial.Icon.gmd_note_add).withIdentifier(6);
         SectionDrawerItem book = new SectionDrawerItem().withName(R.string.drawer_item_book).withTextColor(Color.GREEN);
         PrimaryDrawerItem mycook_book = new PrimaryDrawerItem().withName(R.string.drawer_item_mycook_book).withIcon(GoogleMaterial.Icon.gmd_restaurant).withIdentifier(7).withSelectable(false);
@@ -158,6 +159,7 @@ public class MainActivity extends AppCompatActivity{
                             {
                                 if(drawableTag!=1)
                                 {
+                                    refreshMenu(MainActivity.this);
                                     drawableTag=1;
                                     HomeFragment newFragment = new HomeFragment();
                                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -171,6 +173,7 @@ public class MainActivity extends AppCompatActivity{
                             {
                                 if(drawableTag != 2)
                                 {
+                                    refreshMenu(MainActivity.this);
                                     drawableTag=2;
                                     Bundle args = new Bundle();
                                     args.putString("recipe_key", recipe_of_day);
@@ -186,6 +189,7 @@ public class MainActivity extends AppCompatActivity{
                             if(drawerItem.getIdentifier() == 4)
                             {
                                 if(drawableTag!=4) {
+                                    refreshMenu(MainActivity.this);
                                     drawableTag = 4;
                                     LastRecipeFragment newFragment = new LastRecipeFragment();
                                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -200,19 +204,6 @@ public class MainActivity extends AppCompatActivity{
                                 if(drawableTag!=5)
                                 {
                                     drawableTag=5;
-                                    SingleRecipeDisplay newFragment = new SingleRecipeDisplay();
-                                    Bundle args = new Bundle();
-                                    args.putInt("position", position);
-                                    newFragment.setArguments(args);
-
-                                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                                    transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
-                                    transaction.replace(R.id.fragment_container, newFragment);
-
-                                    transaction.commit();
-                                    toolbar.setTitle(R.string.drawer_item_add_cook);
-                                    toolbar.getMenu().clear();
-                                    toolbar.inflateMenu(R.menu.bypass_menuitem);
                                 }
                             }
 
@@ -370,5 +361,10 @@ public class MainActivity extends AppCompatActivity{
         toolbar.getMenu().clear();
         toolbar.inflateMenu(R.menu.bypass_menuitem);
         drawableTag=50;
+    }
+
+    public static void refreshMenu(Activity activity)
+    {
+        activity.invalidateOptionsMenu();
     }
 }
