@@ -22,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import konid.soxzz5.fitfood.MainActivity;
 import konid.soxzz5.fitfood.R;
 import konid.soxzz5.fitfood.firebase_fitfood.Recipe;
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.RecipeShowHomeAdapter;
@@ -54,6 +55,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Ad
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        String recipeID = snapshot.getKey();
                         if (snapshot.child("rvalidate").getValue() != null && String.valueOf(snapshot.child("rvalidate").getValue()) != "false") {
                             if (snapshot.child("rtitle").getValue().toString().toLowerCase().equals(query.toLowerCase())) {
                                 int temp_category = Integer.parseInt(snapshot.child("rcategory").getValue().toString());
@@ -68,11 +70,20 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Ad
                                 String temp_title = snapshot.child("rtitle").getValue().toString();
                                 int temp_type = Integer.parseInt(snapshot.child("rtype").getValue().toString());
                                 boolean temp_valide = (Boolean) snapshot.child("rvalidate").getValue();
-                                recipeList.add(new Recipe(temp_title, temp_category, temp_level, temp_type, temp_prepareHour, temp_prepareMinute, temp_heatHour, temp_heatMinute, temp_forWho, temp_date, temp_valide, temp_dll_link));
+                                recipeList.add(new Recipe(recipeID, temp_title, temp_category, temp_level, temp_type, temp_prepareHour, temp_prepareMinute, temp_heatHour, temp_heatMinute, temp_forWho, temp_date, temp_valide, temp_dll_link));
                             }
                         }
                     }
                     listview_container.setAdapter(recipeShowHomeAdapter);
+                    listview_container.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position,
+                                                long id) {
+                            Recipe clickedRecipe = (Recipe) parent.getItemAtPosition(position);
+                            System.out.println(clickedRecipe.getRecipeID());
+                            ((MainActivity) getActivity()).openRecipe(clickedRecipe.getRecipeID());
+                        }
+                    });
                     recipeShowHomeAdapter.notifyDataSetChanged();
                 }
 

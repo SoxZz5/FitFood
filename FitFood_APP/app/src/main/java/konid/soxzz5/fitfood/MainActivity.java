@@ -7,6 +7,7 @@ import android.speech.RecognizerIntent;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -361,5 +362,6 @@ public class MainActivity extends AppCompatActivity{
         toolbar.setTitle(R.string.drawer_item_display);
         toolbar.getMenu().clear();
         toolbar.inflateMenu(R.menu.bypass_menuitem);
+        drawableTag=50;
     }
 }
