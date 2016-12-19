@@ -214,9 +214,9 @@ public class SingleRecipeDisplay extends Fragment {
                     //Date
                     recipe_info_date.setText(loadedRecipe.getRdate());
                     //TITRE
-                    recipeTitle.setText(loadedRecipe.getRtitle());
                     final Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
                     toolbar.setTitle(loadedRecipe.getRtitle());
+
                     //Pour combien de personnes
                     recipe_info_forwho.setText(loadedRecipe.getRforWho());
                     //Heure de cuisson

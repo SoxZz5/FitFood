@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity{
                         drawer_layout = menu.getDrawerLayout();
                         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                         refreshMenu(MainActivity.this);
-                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                         menu.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
                         return true;
                     }
