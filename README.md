@@ -17,7 +17,7 @@ Les fonctions à venir:
   - Ajout des allergénes à la recherche avancées
   
 ## Fitfood est sous licences APACHE 2.0
-``sh
+```
 Copyright 2016 Giffard Lucas "SoxZz5" / Cortella Nicolas "konidk"
 
 Fitfood is licensed under the Apache License, Version 2.0 (the "License");
@@ -31,7 +31,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-``
+```
 
 Nous distribuons le code gratuitement afin qu'il puissent vous aidez à titre d'exemple pour vos projets android
 ### Attention à des fins de test pour l'ajout de recette il faudra modifier la ligne suivante dans utils/utils.java
@@ -41,7 +41,7 @@ public static boolean KEY_VALID_RECIPE = false; // False doit devenir true pour 
 
 ### Deuxième point pour que l'application fonctionne après lancement via ADB, vérifier d'avoir bien accepter les droits 
 Fitfood nécessite un accès à la caméra et au stockage externe afin de pouvoir garder en mémoire les photos de vos recettes et à des fin de cache pour compression ensuite.
-Internet est obligatoire, `il faut aussi avoir les googles services à jour !`
+Internet est obligatoire, ```il faut aussi avoir les googles services à jour !```
 ```sh
 <uses-feature
         android:name="android.hardware.camera"
@@ -124,7 +124,7 @@ Lors de l'appuye sur le bouton connexion on utilise une fonction propre à fireb
 });
 ```
 
-Une fonction est appeller le reste est très graphique ``LoginUser() ``
+Une fonction est appeller le reste est très graphique ```LoginUser()` ``
 - Retourne la bonne Intent en fonction d'une variable de préférences afin de tester si c'est la première connexion de l'utilisateur suite à son enregistrement pour lui afficher l'activity AfterLogin.
 ```sh
 private Intent LoginUser(){
