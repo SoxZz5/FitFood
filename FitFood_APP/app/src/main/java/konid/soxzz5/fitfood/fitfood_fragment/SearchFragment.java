@@ -26,6 +26,7 @@ import konid.soxzz5.fitfood.MainActivity;
 import konid.soxzz5.fitfood.R;
 import konid.soxzz5.fitfood.firebase_fitfood.Recipe;
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.RecipeShowHomeAdapter;
+import konid.soxzz5.fitfood.utils.utils;
 
 /**
  * Created by Soxzer on 18/12/2016.
@@ -57,7 +58,9 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Ad
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         String recipeID = snapshot.getKey();
                         if (snapshot.child("rvalidate").getValue() != null && String.valueOf(snapshot.child("rvalidate").getValue()) != "false") {
-                            if (snapshot.child("rtitle").getValue().toString().toLowerCase().equals(query.toLowerCase())) {
+                            double lev_dist = utils.getSimilarity(snapshot.child("rtitle").getValue().toString().toLowerCase(),query.toLowerCase());
+                            System.out.println("lev_dist :" + lev_dist + "title :" + snapshot.child("rtitle").getValue().toString().toLowerCase() + "query:" + query.toLowerCase());
+                            if (lev_dist > 0.10f) {
                                 int temp_category = Integer.parseInt(snapshot.child("rcategory").getValue().toString());
                                 String temp_date = snapshot.child("rdate").getValue().toString();
                                 String temp_forWho = snapshot.child("rforWho").getValue().toString();
