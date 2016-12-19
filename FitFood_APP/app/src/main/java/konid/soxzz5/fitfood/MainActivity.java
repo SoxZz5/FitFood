@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity{
             else
             {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
                 transaction.replace(R.id.fragment_container, HomeFragment);
                 transaction.commit();
             }
@@ -160,6 +161,7 @@ public class MainActivity extends AppCompatActivity{
                                     drawableTag=1;
                                     HomeFragment newFragment = new HomeFragment();
                                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                    transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
                                     transaction.replace(R.id.fragment_container, newFragment);
                                     transaction.commit();
                                     toolbar.setTitle(R.string.drawer_item_home_cook);
@@ -175,6 +177,7 @@ public class MainActivity extends AppCompatActivity{
                                     RecipeOfDayFragment newFragment = new RecipeOfDayFragment();
                                     newFragment.setArguments(args);
                                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                    transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
                                     transaction.replace(R.id.fragment_container, newFragment);
                                     transaction.commit();
                                     toolbar.setTitle(R.string.drawer_item_day_cook);
@@ -186,6 +189,7 @@ public class MainActivity extends AppCompatActivity{
                                     drawableTag = 4;
                                     LastRecipeFragment newFragment = new LastRecipeFragment();
                                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                    transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
                                     transaction.replace(R.id.fragment_container, newFragment);
                                     transaction.commit();
                                     toolbar.setTitle(R.string.drawer_item_last_cook);
@@ -202,7 +206,7 @@ public class MainActivity extends AppCompatActivity{
                                     newFragment.setArguments(args);
 
                                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
+                                    transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
                                     transaction.replace(R.id.fragment_container, newFragment);
 
                                     transaction.commit();
@@ -224,7 +228,7 @@ public class MainActivity extends AppCompatActivity{
 
                                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
-
+                                    transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
                                     transaction.replace(R.id.fragment_container, newFragment);
 
                                     transaction.commit();
@@ -261,6 +265,7 @@ public class MainActivity extends AppCompatActivity{
                 bundle.putString("seek", query);
                 newFragment.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
                 transaction.replace(R.id.fragment_container, newFragment);
                 transaction.commit();
                 toolbar.setTitle(query);
@@ -356,6 +361,7 @@ public class MainActivity extends AppCompatActivity{
         newFragment.setRecipeID(recipeID);
         newFragment.setArguments(args);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
         transaction.replace(R.id.fragment_container, newFragment);
         transaction.commit();
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
