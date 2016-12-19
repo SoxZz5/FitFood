@@ -74,6 +74,7 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
             convertView.setTag(recipeShowHomeHolder);
         }
 
+
         //ON MODIFIE LE HOLDER DE NOTRE ITEM
         recipe = getItem(position);
         recipeShowHomeHolder.recipe_title.setText(recipe.getRtitle());

@@ -61,6 +61,7 @@ public class SingleRecipeDisplay extends Fragment {
     private TextView info_typedish;
     private ImageView recipe_imageView;
     private Context context;
+    private String recipeID;
     private int recipeId = 0;
     Recipe loadedRecipe = new Recipe();
     String name;
@@ -88,7 +89,8 @@ public class SingleRecipeDisplay extends Fragment {
         recipe_imageView = (ImageView) v.findViewById(R.id.recipe_imageView);
 
         storage = FirebaseStorage.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("recipe").child("-KZJ6t1o9jAVh30yyLvC");
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("recipe").child(this.recipeID);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -250,5 +252,13 @@ public class SingleRecipeDisplay extends Fragment {
 
 
         return v;
+    }
+
+    public String getRecipeID() {
+        return recipeID;
+    }
+
+    public void setRecipeID(String recipeID) {
+        this.recipeID = recipeID;
     }
 }

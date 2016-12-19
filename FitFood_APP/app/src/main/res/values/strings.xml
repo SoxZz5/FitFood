@@ -11,6 +11,7 @@
     <string name="drawer_item_top_cook">Top recipes</string>
     <string name="drawer_item_last_cook">Lasts recipes</string>
     <string name="drawer_item_add_cook">Submit a recipe</string>
+    <string name="drawer_item_display">Recipe</string>
     <string name="drawer_item_seek_cook">Advanced search</string>
     <string name="drawer_item_book">Personal place</string>
     <string name="drawer_item_mycook_book">My recipes</string>

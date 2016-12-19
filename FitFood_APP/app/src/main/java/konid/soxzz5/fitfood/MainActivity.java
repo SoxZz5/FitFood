@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity{
         databaseReference = FirebaseDatabase.getInstance().getReference();
         sessionManager = new SessionManager();
         final Fragment HomeFragment = (Fragment) new HomeFragment();
-
         if(user == null)
         {
             Intent intent = new Intent(MainActivity.this,LoginActivity.class);
@@ -202,7 +201,6 @@ public class MainActivity extends AppCompatActivity{
                                     newFragment.setArguments(args);
 
                                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
 
                                     transaction.replace(R.id.fragment_container, newFragment);
 
@@ -349,5 +347,19 @@ public class MainActivity extends AppCompatActivity{
             return;
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void openRecipe(String recipeID) {
+        SingleRecipeDisplay newFragment = new SingleRecipeDisplay();
+        Bundle args = new Bundle();
+        newFragment.setRecipeID(recipeID);
+        newFragment.setArguments(args);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, newFragment);
+        transaction.commit();
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.drawer_item_display);
+        toolbar.getMenu().clear();
+        toolbar.inflateMenu(R.menu.bypass_menuitem);
     }
 }
