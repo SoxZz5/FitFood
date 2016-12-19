@@ -67,7 +67,7 @@ public class RecipeOfDayFragment extends Fragment {
     private TextView recipe_tv_finalminute;
     private TextView info_typedish;
     private ImageView recipe_imageView;
-    private ProgressBar recipe_img_pb;
+    private ProgressBar img_pb;
     private Context context;
     private int recipeId = 0;
     Recipe loadedRecipe = new Recipe();
@@ -96,7 +96,7 @@ public class RecipeOfDayFragment extends Fragment {
         recipe_info_level = (TextView) v.findViewById(R.id.recipe_info_level);
         recipe_info_date = (TextView) v.findViewById(R.id.recipe_info_date);
         recipe_imageView = (ImageView) v.findViewById(R.id.recipe_imageView);
-        recipe_img_pb = (ProgressBar) v.findViewById(R.id.recipe_image_pb);
+        img_pb = (ProgressBar) v.findViewById(R.id.recipe_image_pb);
         mRemoteConfig = FirebaseRemoteConfig.getInstance();
 
         Bundle bundle_tmp = this.getArguments();
@@ -238,7 +238,6 @@ public class RecipeOfDayFragment extends Fragment {
                         recipe_tv_finalhour.setText(String.valueOf(finalTime.get(Calendar.HOUR_OF_DAY)));
                         //Minuts au total
                         recipe_tv_finalminute.setText(String.valueOf(finalTime.get(Calendar.MINUTE)));
-                        recipe_img_pb.setVisibility(View.VISIBLE);
                         Picasso.with(context).setLoggingEnabled(true);
                         Picasso.with(context)
                                 .load(loadedRecipe.getURL())
@@ -247,7 +246,6 @@ public class RecipeOfDayFragment extends Fragment {
                                 .into(recipe_imageView, new Callback() {
                                     @Override
                                     public void onSuccess() {
-                                        recipe_img_pb.setVisibility(View.GONE);
                                     }
                                     @Override
                                     public void onError() {

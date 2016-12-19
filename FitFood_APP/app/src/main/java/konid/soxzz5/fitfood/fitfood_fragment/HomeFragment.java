@@ -24,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.ViewFlipper;
 
 import com.google.firebase.database.ChildEventListener;
@@ -74,6 +75,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
     private LinearLayout slider;
     public boolean valid_recipe = false;
     public boolean iscollapsed = false;
+    private ProgressBar listview_pb;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -87,6 +89,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
         recipeList = new ArrayList<>();
         recipeShowHomeAdapter = new RecipeShowHomeAdapter(mContext, recipeList,this);
         listview_container = (ListView) v.findViewById(R.id.home_listview_container);
+        listview_pb = (ProgressBar) v.findViewById(R.id.listview_pb);
+        listview_pb.setVisibility(View.VISIBLE);
         //slider = (LinearLayout) v.findViewById(R.id.slider_layout_container);
         listview_container.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -156,6 +160,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
                         ((MainActivity) getActivity()).openRecipe(clickedRecipe.getRecipeID());
                     }
                 });
+                listview_pb.setVisibility(View.GONE);
                 recipeShowHomeAdapter.notifyDataSetChanged();
             }
 
