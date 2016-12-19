@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -60,6 +61,7 @@ public class SingleRecipeDisplay extends Fragment {
     private TextView recipe_tv_finalminute;
     private TextView info_typedish;
     private ImageView recipe_imageView;
+    private ProgressBar recipe_img_bar;
     private Context context;
     private String recipeID;
     private int recipeId = 0;
@@ -86,6 +88,7 @@ public class SingleRecipeDisplay extends Fragment {
         info_typedish = (TextView) v.findViewById(R.id.info_typedish);
         recipe_info_level = (TextView) v.findViewById(R.id.recipe_info_level);
         recipe_info_date = (TextView) v.findViewById(R.id.recipe_info_date);
+        recipe_img_bar = (ProgressBar) v.findViewById(R.id.recipe_img_pb);
         recipe_imageView = (ImageView) v.findViewById(R.id.recipe_imageView);
 
         storage = FirebaseStorage.getInstance();
@@ -94,7 +97,7 @@ public class SingleRecipeDisplay extends Fragment {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child("rvalidate").getValue()!=null && String.valueOf(dataSnapshot.child("rvalidate").getValue())!="false") {
+                if(dataSnapshot.child("rvalidate").getValue()!=null) {
                     loadedRecipe.setRtitle(String.valueOf(dataSnapshot.child("rtitle").getValue()));
                     loadedRecipe.setRforWho(String.valueOf(dataSnapshot.child("rforWho").getValue()));
                     loadedRecipe.setURL(String.valueOf(dataSnapshot.child("rrecipe_download_img_link").getValue()));
@@ -226,7 +229,7 @@ public class SingleRecipeDisplay extends Fragment {
                     recipe_tv_finalhour.setText(String.valueOf(finalTime.get(Calendar.HOUR_OF_DAY)));
                     //Minuts au total
                     recipe_tv_finalminute.setText(String.valueOf(finalTime.get(Calendar.MINUTE)));
-
+                    System.out.println("FDPFDP2: " + loadedRecipe.getURL());
                     Picasso.with(context).setLoggingEnabled(true);
                     Picasso.with(context)
                             .load(loadedRecipe.getURL())
@@ -235,6 +238,7 @@ public class SingleRecipeDisplay extends Fragment {
                             .into(recipe_imageView, new Callback() {
                                 @Override
                                 public void onSuccess() {
+                                    recipe_img_bar.setVisibility(View.GONE);
                                 }
                                 @Override
                                 public void onError() {
