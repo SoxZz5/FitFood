@@ -54,21 +54,22 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Ad
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        System.out.println("rtitle :" + snapshot.child("rtitle").getValue().toString().toLowerCase() + " / " + query.toLowerCase());
-                        if(snapshot.child("rtitle").getValue().toString().toLowerCase().equals(query.toLowerCase()))  {
-                            int temp_category = Integer.parseInt(snapshot.child("rcategory").getValue().toString());
-                            String temp_date = snapshot.child("rdate").getValue().toString();
-                            String temp_forWho = snapshot.child("rforWho").getValue().toString();
-                            int temp_heatHour = Integer.parseInt(snapshot.child("rheatHour").getValue().toString());
-                            int temp_heatMinute = Integer.parseInt(snapshot.child("rheatMinute").getValue().toString());
-                            int temp_level = Integer.parseInt(snapshot.child("rlevel").getValue().toString());
-                            int temp_prepareHour = Integer.parseInt(snapshot.child("rprepareHour").getValue().toString());
-                            int temp_prepareMinute = Integer.parseInt(snapshot.child("rprepareMinute").getValue().toString());
-                            String temp_dll_link = snapshot.child("rrecipe_download_img_link").getValue().toString();
-                            String temp_title = snapshot.child("rtitle").getValue().toString();
-                            int temp_type = Integer.parseInt(snapshot.child("rtype").getValue().toString());
-                            boolean temp_valide = (Boolean) snapshot.child("rvalidate").getValue();
-                            recipeList.add(new Recipe(temp_title, temp_category, temp_level, temp_type, temp_prepareHour, temp_prepareMinute, temp_heatHour, temp_heatMinute, temp_forWho, temp_date, temp_valide, temp_dll_link));
+                        if (snapshot.child("rvalidate").getValue() != null && String.valueOf(snapshot.child("rvalidate").getValue()) != "false") {
+                            if (snapshot.child("rtitle").getValue().toString().toLowerCase().equals(query.toLowerCase())) {
+                                int temp_category = Integer.parseInt(snapshot.child("rcategory").getValue().toString());
+                                String temp_date = snapshot.child("rdate").getValue().toString();
+                                String temp_forWho = snapshot.child("rforWho").getValue().toString();
+                                int temp_heatHour = Integer.parseInt(snapshot.child("rheatHour").getValue().toString());
+                                int temp_heatMinute = Integer.parseInt(snapshot.child("rheatMinute").getValue().toString());
+                                int temp_level = Integer.parseInt(snapshot.child("rlevel").getValue().toString());
+                                int temp_prepareHour = Integer.parseInt(snapshot.child("rprepareHour").getValue().toString());
+                                int temp_prepareMinute = Integer.parseInt(snapshot.child("rprepareMinute").getValue().toString());
+                                String temp_dll_link = snapshot.child("rrecipe_download_img_link").getValue().toString();
+                                String temp_title = snapshot.child("rtitle").getValue().toString();
+                                int temp_type = Integer.parseInt(snapshot.child("rtype").getValue().toString());
+                                boolean temp_valide = (Boolean) snapshot.child("rvalidate").getValue();
+                                recipeList.add(new Recipe(temp_title, temp_category, temp_level, temp_type, temp_prepareHour, temp_prepareMinute, temp_heatHour, temp_heatMinute, temp_forWho, temp_date, temp_valide, temp_dll_link));
+                            }
                         }
                     }
                     listview_container.setAdapter(recipeShowHomeAdapter);

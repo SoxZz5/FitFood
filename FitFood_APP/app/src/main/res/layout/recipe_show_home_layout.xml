@@ -3,21 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white_overlay_50"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp">
+        android:background="@color/white_overlay_70"
+        android:layout_marginBottom="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:id="@+id/image_view_layout">
+            android:id="@+id/image_view_layout"
+            android:padding="2dp">
 
             <ProgressBar
                 style="?android:attr/progressBarStyleSmall"
@@ -41,8 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/recipe_layout_title"
-            android:background="@color/black_overlay_50"
-            android:layout_marginTop="4dp"
+            android:background="@color/black_overlay_65"
             android:paddingLeft="5dp"
             android:paddingTop="2dp"
             android:paddingBottom="2dp"
@@ -55,8 +52,8 @@
                 android:text="Roti de veau à l'échalotte"
                 android:textColor="@color/accent"
                 android:textAlignment="center"
-                android:textSize="12sp"
-                android:textStyle="normal|bold" />
+                android:textSize="14sp"
+                android:textStyle="normal|bold|italic" />
         </FrameLayout>
 
         <RelativeLayout
