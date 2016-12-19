@@ -256,6 +256,7 @@ public class MainActivity extends AppCompatActivity{
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                drawableTag = -1;
                 SearchFragment newFragment = new SearchFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("seek", query);
