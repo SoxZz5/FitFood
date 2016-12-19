@@ -98,7 +98,7 @@ public class SingleRecipeDisplay extends Fragment {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child("rvalidate").getValue()!=null) {
+                if (dataSnapshot.child("rvalidate").getValue() != null && String.valueOf(dataSnapshot.child("rvalidate").getValue()) != "false") {
                     loadedRecipe.setRtitle(String.valueOf(dataSnapshot.child("rtitle").getValue()));
                     loadedRecipe.setRforWho(String.valueOf(dataSnapshot.child("rforWho").getValue()));
                     loadedRecipe.setURL(String.valueOf(dataSnapshot.child("rrecipe_download_img_link").getValue()));
