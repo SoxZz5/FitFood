@@ -318,6 +318,14 @@ public class MainActivity extends AppCompatActivity{
         } else {
             super.onBackPressed();
         }
+        if(drawableTag != -1)
+        {
+            finish();
+        }
+        else
+        {
+            //NOTHING
+        }
     }
 
 
