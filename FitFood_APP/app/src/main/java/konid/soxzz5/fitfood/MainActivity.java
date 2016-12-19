@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.speech.RecognizerIntent;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,10 +14,19 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.google.firebase.storage.FirebaseStorage;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
@@ -26,9 +36,12 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import java.util.ArrayList;
+
+import konid.soxzz5.fitfood.firebase_fitfood.Recipe;
 import konid.soxzz5.fitfood.fitfood_fragment.AddRecipeFragment;
 import konid.soxzz5.fitfood.fitfood_fragment.HomeFragment;
 import konid.soxzz5.fitfood.fitfood_fragment.LastRecipeFragment;
+import konid.soxzz5.fitfood.fitfood_fragment.RecipeOfDayFragment;
 import konid.soxzz5.fitfood.fitfood_fragment.SearchFragment;
 import konid.soxzz5.fitfood.fitfood_fragment.SingleRecipeDisplay;
 import konid.soxzz5.fitfood.fitfood_session.SessionManager;
@@ -46,6 +59,7 @@ public class MainActivity extends AppCompatActivity{
     FirebaseUser user;
     SessionManager sessionManager;
     String first_sign;
+    String recipe_of_day;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +105,7 @@ public class MainActivity extends AppCompatActivity{
         //DEFINITION ITEM MENU
         PrimaryDrawerItem home_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_home_cook).withIcon(GoogleMaterial.Icon.gmd_home).withIdentifier(1);
         SectionDrawerItem cook = new SectionDrawerItem().withName(R.string.drawer_item_cook).withTextColor(Color.GREEN);
-        PrimaryDrawerItem day_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_day_cook).withIcon(GoogleMaterial.Icon.gmd_cake).withIdentifier(2).withSelectable(false);
+        PrimaryDrawerItem day_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_day_cook).withIcon(GoogleMaterial.Icon.gmd_cake).withIdentifier(2);
         PrimaryDrawerItem top_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_top_cook).withIcon(GoogleMaterial.Icon.gmd_local_play).withIdentifier(3).withSelectable(false);
         PrimaryDrawerItem last_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_last_cook).withIcon(GoogleMaterial.Icon.gmd_style).withIdentifier(4);
         PrimaryDrawerItem seek_cook = new PrimaryDrawerItem().withName(R.string.drawer_item_seek_cook).withIcon(GoogleMaterial.Icon.gmd_loupe).withIdentifier(5);
@@ -149,6 +163,21 @@ public class MainActivity extends AppCompatActivity{
                                     transaction.replace(R.id.fragment_container, newFragment);
                                     transaction.commit();
                                     toolbar.setTitle(R.string.drawer_item_home_cook);
+                                }
+                            }
+                            if(drawerItem.getIdentifier() == 2)
+                            {
+                                if(drawableTag != 2)
+                                {
+                                    drawableTag=2;
+                                    Bundle args = new Bundle();
+                                    args.putString("recipe_key", recipe_of_day);
+                                    RecipeOfDayFragment newFragment = new RecipeOfDayFragment();
+                                    newFragment.setArguments(args);
+                                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                    transaction.replace(R.id.fragment_container, newFragment);
+                                    transaction.commit();
+                                    toolbar.setTitle(R.string.drawer_item_day_cook);
                                 }
                             }
                             if(drawerItem.getIdentifier() == 4)
@@ -218,7 +247,7 @@ public class MainActivity extends AppCompatActivity{
                     }
                 }).build();
 
-            menu.setSelection(drawableTag);
+
 
         //ON CREER NOTRE SEARCHVIEW
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
@@ -236,7 +265,6 @@ public class MainActivity extends AppCompatActivity{
                 transaction.replace(R.id.fragment_container, newFragment);
                 transaction.commit();
                 toolbar.setTitle(query);
-                drawableTag=-1;
                 return false;
             }
 
@@ -256,6 +284,24 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onSearchViewClosed() {
                 //Do some magic
+            }
+        });
+
+        DatabaseReference newdatabaseReference = FirebaseDatabase.getInstance().getReference();
+        newdatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren())
+                {
+                    if(snapshot.getKey().equals("recipe_of_day")) {
+                        recipe_of_day = snapshot.getValue().toString();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
     }

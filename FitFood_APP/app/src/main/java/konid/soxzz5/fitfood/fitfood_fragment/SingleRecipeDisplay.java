@@ -30,6 +30,8 @@ import konid.soxzz5.fitfood.fitfood_addrecipe_listview.PrepStep;
 
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 import java.util.List;
@@ -223,21 +225,19 @@ public class SingleRecipeDisplay extends Fragment {
                     //Minuts au total
                     recipe_tv_finalminute.setText(String.valueOf(finalTime.get(Calendar.MINUTE)));
 
-                    //Téléchargement et affichage de l'image de la recette
-                    StorageReference storageRef = storage.getReferenceFromUrl(loadedRecipe.getURL());
-                    final long ONE_MEGABYTE = 1024 * 1024;
-                    storageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                        @Override
-                        public void onSuccess(byte[] bytes) {
-                            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                            recipe_imageView.setImageBitmap(bitmap);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            // Handle any errors
-                        }
-                    });
+                    Picasso.with(context).setLoggingEnabled(true);
+                    Picasso.with(context)
+                            .load(loadedRecipe.getURL())
+                            .fit()
+                            .centerCrop()
+                            .into(recipe_imageView, new Callback() {
+                                @Override
+                                public void onSuccess() {
+                                }
+                                @Override
+                                public void onError() {
+                                }
+                            });
 
                 }
             }

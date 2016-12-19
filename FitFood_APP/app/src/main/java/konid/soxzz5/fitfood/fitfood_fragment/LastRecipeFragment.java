@@ -52,6 +52,7 @@ public class LastRecipeFragment extends Fragment implements View.OnClickListener
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if(snapshot.child("rvalidate").getValue()!=null && String.valueOf(snapshot.child("rvalidate").getValue())!="false") {
                             int temp_category = Integer.parseInt(snapshot.child("rcategory").getValue().toString());
                             String temp_date = snapshot.child("rdate").getValue().toString();
                             String temp_forWho = snapshot.child("rforWho").getValue().toString();
@@ -65,6 +66,7 @@ public class LastRecipeFragment extends Fragment implements View.OnClickListener
                             int temp_type = Integer.parseInt(snapshot.child("rtype").getValue().toString());
                             boolean temp_valide = (Boolean) snapshot.child("rvalidate").getValue();
                             recipeList.add(new Recipe(temp_title, temp_category, temp_level, temp_type, temp_prepareHour, temp_prepareMinute, temp_heatHour, temp_heatMinute, temp_forWho, temp_date, temp_valide, temp_dll_link));
+                        }
                     }
                     Collections.reverse(recipeList);
                     listview_container.setAdapter(recipeShowHomeAdapter);
