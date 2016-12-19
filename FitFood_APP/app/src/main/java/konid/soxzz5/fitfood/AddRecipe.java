@@ -3,6 +3,7 @@ package konid.soxzz5.fitfood;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.FragmentTransaction;
@@ -457,5 +458,9 @@ public class AddRecipe extends AppCompatActivity {
                 }
             }
             });
+    }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 }

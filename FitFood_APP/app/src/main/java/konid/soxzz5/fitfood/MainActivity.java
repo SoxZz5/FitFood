@@ -3,6 +3,7 @@ package konid.soxzz5.fitfood;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.speech.RecognizerIntent;
 import android.app.Fragment;
@@ -47,10 +48,13 @@ import konid.soxzz5.fitfood.fitfood_session.SessionManager;
 
 
 public class MainActivity extends AppCompatActivity{
-    int drawableTag;
+    int drawableTag=1;
+    boolean first_connect_done = false;
     private static final int RC_CAMERA = 123;
     private static final int RC_STORAGE = 124;
     private static final int RC_SETTINGS_SCREEN = 125;
+    boolean was_searched = false;
+    boolean was_query = false;
     Drawer menu;
     MaterialSearchView searchView;
     FirebaseAuth firebaseAuth;
@@ -69,6 +73,8 @@ public class MainActivity extends AppCompatActivity{
     AddRecipeFragment addRecipeFragment;
     public Toolbar toolbar;
     public boolean first_time_search = true;
+    public boolean first_time_query = true;
+    //drawableTag PERMET DE SAVOIR QUELLE FRAGMENT LANCER ET LA GESTION DE LA TOOLBAR
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,12 +99,13 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(intent);
                 finish();
             }
-            else
+            else if (!first_connect_done)
             {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
                 transaction.replace(R.id.fragment_container, HomeFragment);
                 transaction.commit();
+                first_connect_done = true;
             }
         }
 
@@ -108,8 +115,6 @@ public class MainActivity extends AppCompatActivity{
 
         setContentView(R.layout.activity_main);
         //ON EST DEJA CONNECTER
-        //drawableTag PERMET DE SAVOIR QUELLE FRAGMENT LANCER ET LA GESTION DE LA TOOLBAR
-        drawableTag=1;
 
         //DECLARATION DE LA TOOLBAR ET SETSUPPORT EN ACTIONBAR PERMET DE GERER LA TOOLBAR COMME UNE ACTIONBAR
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -277,35 +282,50 @@ public class MainActivity extends AppCompatActivity{
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                mem_DrawableTag = drawableTag;
-                drawableTag = -1;
-                searchFragment = new SearchFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("seek", query);
-                searchFragment.setArguments(bundle);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
-                transaction.replace(R.id.fragment_container, searchFragment);
-                transaction.commit();
-                toolbar.setTitle(query);
-                return false;
+                System.out.println("QUERY SUBMIT| memtag :" + mem_DrawableTag + " / dtag = " +drawableTag);
+                if(first_time_query)
+                {
+                    first_time_query=false;
+                    drawableTag = -1;
+                }
+                    was_query=true;
+                    searchFragment = new SearchFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("seek", query);
+                    searchFragment.setArguments(bundle);
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    if(searchFragment.isVisible())
+                    {
+                        transaction.detach(searchFragment);
+                        transaction.attach(searchFragment);
+                    }
+                    else
+                    {
+                        transaction.setCustomAnimations(R.animator.slide_in_up, R.animator.slide_out_down, 0, 0);
+                        transaction.replace(R.id.fragment_container, searchFragment);
+                    }
+                    transaction.commit();
+                    toolbar.setTitle(query);
+                    searchView.closeSearch();
+                return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                System.out.println("QUERY CHANGE| memtag :" + mem_DrawableTag + " / dtag = " +drawableTag);
                 if(first_time_search)
                 {
                     mem_DrawableTag = drawableTag;
                     drawableTag = -1;
                     first_time_search=false;
                 }
-                if(newText.isEmpty())
+                if(newText.equals(""))
                 {
-                    refreshFragment();
-                    first_time_search = true;
+                    //refreshFragment();
                 }
                 else
                 {
+                    was_searched=true;
                     searchFragment = new SearchFragment();
                     Bundle bundle = new Bundle();
                     bundle.putString("seek", newText);
@@ -331,13 +351,20 @@ public class MainActivity extends AppCompatActivity{
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
-                //NOTHING TO DO
+                menu.closeDrawer();
             }
 
             @Override
             public void onSearchViewClosed() {
-                first_time_search = false;
-                refreshFragment();
+                first_time_search = true;
+                first_time_query = true;
+                if(!was_query) {
+                    was_searched=false;
+                    refreshFragment();
+                }
+                else{
+                    was_query=false;
+                }
             }
         });
 
@@ -379,18 +406,24 @@ public class MainActivity extends AppCompatActivity{
     //PERMET DE FERMER LA SEARCHVIEW AVEC BACK
     @Override
     public void onBackPressed() {
+        System.out.println(was_searched);
         if (searchView.isSearchOpen()) {
             searchView.closeSearch();
-        } else {
-            super.onBackPressed();
         }
-        if(drawableTag != -1)
+        else if(was_searched)
+        {
+            //refreshFragment();
+        }
+        else if(drawableTag != -1)
         {
             finish();
         }
-        else
+        else if(mem_DrawableTag != -1)
         {
-            //NOTHING
+            //refreshFragment();
+        }
+        else{
+            super.onBackPressed();
         }
     }
 
@@ -416,6 +449,10 @@ public class MainActivity extends AppCompatActivity{
     public void openRecipe(String recipeID) {
         singleRecipeDisplay = new SingleRecipeDisplay();
         singleRecipeDisplay.setRecipeID(recipeID);
+        if(searchView.isSearchOpen())
+        {
+            searchView.closeSearch();
+        }
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
         transaction.replace(R.id.fragment_container, singleRecipeDisplay);
@@ -428,8 +465,10 @@ public class MainActivity extends AppCompatActivity{
         toolbar.inflateMenu(R.menu.bypass_menuitem);
         menu.getActionBarDrawerToggle().setDrawerIndicatorEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mem_DrawableTag = drawableTag;
-        drawableTag=-1;
+        if(drawableTag != -1) {
+            mem_DrawableTag = drawableTag;
+            drawableTag = -1;
+        }
 
     }
 
@@ -440,48 +479,55 @@ public class MainActivity extends AppCompatActivity{
 
     public void refreshFragment()
     {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        switch(mem_DrawableTag)
-        {
-            case 1:
-                toolbar.setTitle(R.string.drawer_item_home_cook);
-                transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
-                homeFragment = new HomeFragment();
-                transaction.replace(R.id.fragment_container,homeFragment).commit();
-                break;
-            case 3:
-                toolbar.setTitle(R.string.drawer_item_top_cook);
-                break;
-            case 4:
-                toolbar.setTitle(R.string.drawer_item_last_cook);
-                transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
-                transaction.replace(R.id.fragment_container,lastRecipeFragment).commit();
-                break;
-            case 5:
-                toolbar.setTitle(R.string.drawer_item_seek_cook);
-                break;
-            case 7:
-                toolbar.setTitle(R.string.drawer_item_mycook_book);
-                break;
-            case 8:
-                toolbar.setTitle(R.string.drawer_item_list_book);
-                break;
-            case 9:
-                toolbar.setTitle(R.string.drawer_item_historic_book);
-                break;
-            case 10:
-                toolbar.setTitle(R.string.drawer_item_param_book);
-                break;
-            case 11:
-                toolbar.setTitle(R.string.drawer_item_account);
-                break;
+        System.out.println("memtag :" + mem_DrawableTag + " / dtag = " +drawableTag);
+        if(mem_DrawableTag != -1 && drawableTag == -1) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            switch (mem_DrawableTag) {
+                case 1:
+                    toolbar.setTitle(R.string.drawer_item_home_cook);
+                    transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
+                    homeFragment = new HomeFragment();
+                    transaction.replace(R.id.fragment_container, homeFragment).commit();
+                    break;
+                case 3:
+                    toolbar.setTitle(R.string.drawer_item_top_cook);
+                    break;
+                case 4:
+                    toolbar.setTitle(R.string.drawer_item_last_cook);
+                    transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
+                    transaction.replace(R.id.fragment_container, lastRecipeFragment).commit();
+                    break;
+                case 5:
+                    toolbar.setTitle(R.string.drawer_item_seek_cook);
+                    break;
+                case 7:
+                    toolbar.setTitle(R.string.drawer_item_mycook_book);
+                    break;
+                case 8:
+                    toolbar.setTitle(R.string.drawer_item_list_book);
+                    break;
+                case 9:
+                    toolbar.setTitle(R.string.drawer_item_historic_book);
+                    break;
+                case 10:
+                    toolbar.setTitle(R.string.drawer_item_param_book);
+                    break;
+                case 11:
+                    toolbar.setTitle(R.string.drawer_item_account);
+                    break;
+            }
+            drawableTag = mem_DrawableTag;
+            mem_DrawableTag = -1;
+            drawer_layout = menu.getDrawerLayout();
+            drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+            refreshMenu(MainActivity.this);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            menu.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
         }
-        drawableTag=mem_DrawableTag;
-        mem_DrawableTag = -1;
-        drawer_layout = menu.getDrawerLayout();
-        drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-        refreshMenu(MainActivity.this);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        menu.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 }

@@ -120,7 +120,7 @@ public class SingleRecipeDisplay extends Fragment {
                     int i=0;
                     for(i=0;i<allIngredients.size();i++) {
                         ingredientsString += (i+1) + ") " + allIngredients.get(i).getName() + " " + allIngredients.get(i).getQuantity();
-                        if(i!=allIngredients.size()-1) ingredientsString += "\n";
+                        if(i!=allIngredients.size()-1) ingredientsString += "\n\n";
                     }
                     ingredients_text.setText(ingredientsString);
 
@@ -133,7 +133,7 @@ public class SingleRecipeDisplay extends Fragment {
                     String stepsString = "";
                     for(i=0;i<allSteps.size();i++) {
                         stepsString += (i+1) + ") " + allSteps.get(i).getName();
-                        if(i!=allSteps.size()-1) stepsString += "\n";
+                        if(i!=allSteps.size()-1) stepsString += "\n\n";
                     }
                     steps_text.setText(stepsString);
 

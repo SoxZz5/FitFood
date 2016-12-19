@@ -20,7 +20,7 @@ public class AddRecipeFragment extends Fragment {
     {
         //DO SOMETHING WITH
         View v = inflater.inflate(R.layout.fragment_addrecipe, container, false);
-
+        setRetainInstance(true);
         Button submit = (Button) v.findViewById(R.id.recipeadd_bt_submit);
 
         submit.setOnClickListener(new View.OnClickListener(){
