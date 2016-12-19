@@ -1,6 +1,7 @@
 package konid.soxzz5.fitfood.fitfood_fragment;
 
 import android.annotation.SuppressLint;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -38,12 +39,15 @@ import java.util.List;
 
 import konid.soxzz5.fitfood.AddRecipe;
 import konid.soxzz5.fitfood.LoginActivity;
+import konid.soxzz5.fitfood.MainActivity;
 import konid.soxzz5.fitfood.R;
 import konid.soxzz5.fitfood.firebase_fitfood.Recipe;
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.Ingredient;
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.IngredientListAdapter;
 import konid.soxzz5.fitfood.fitfood_addrecipe_listview.RecipeShowHomeAdapter;
 import konid.soxzz5.fitfood.utils.utils;
+
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 /**
  * Created by Soxzer on 14/12/2016.
@@ -83,7 +87,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
         recipeList = new ArrayList<>();
         recipeShowHomeAdapter = new RecipeShowHomeAdapter(mContext, recipeList,this);
         listview_container = (ListView) v.findViewById(R.id.home_listview_container);
-        slider = (LinearLayout) v.findViewById(R.id.slider_layout_container);
+        //slider = (LinearLayout) v.findViewById(R.id.slider_layout_container);
         listview_container.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView absListView, int i) {
@@ -127,6 +131,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String recipeID = snapshot.getKey();
                     int temp_category = Integer.parseInt(snapshot.child("rcategory").getValue().toString());
                     String temp_date = snapshot.child("rdate").getValue().toString();
                     String temp_forWho = snapshot.child("rforWho").getValue().toString();
@@ -139,9 +144,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
                     String temp_title = snapshot.child("rtitle").getValue().toString();
                     int temp_type = Integer.parseInt(snapshot.child("rtype").getValue().toString());
                     boolean temp_valide = (Boolean) snapshot.child("rvalidate").getValue();
-                    recipeList.add(new Recipe(temp_title,temp_category,temp_level,temp_type,temp_prepareHour,temp_prepareMinute,temp_heatHour,temp_heatMinute,temp_forWho,temp_date,temp_valide,temp_dll_link));
+                    recipeList.add(new Recipe(recipeID, temp_title,temp_category,temp_level,temp_type,temp_prepareHour,temp_prepareMinute,temp_heatHour,temp_heatMinute,temp_forWho,temp_date,temp_valide,temp_dll_link));
                 }
                 listview_container.setAdapter(recipeShowHomeAdapter);
+                listview_container.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position,
+                                            long id) {
+                        Recipe clickedRecipe = (Recipe) parent.getItemAtPosition(position);
+                        System.out.println(clickedRecipe.getRecipeID());
+                        ((MainActivity) getActivity()).openRecipe(clickedRecipe.getRecipeID());
+                    }
+                });
                 recipeShowHomeAdapter.notifyDataSetChanged();
             }
 
@@ -258,8 +272,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
 
     @Override
     public void onClick(View view) {
-        //TODO GO SINGLE RECIPE
-        //View étant l'imageview cliquer :)
+
     }
 
     @Override

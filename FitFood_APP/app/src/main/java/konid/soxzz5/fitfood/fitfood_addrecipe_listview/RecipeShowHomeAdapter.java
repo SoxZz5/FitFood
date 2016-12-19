@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 
@@ -70,6 +71,7 @@ public class RecipeShowHomeAdapter  extends ArrayAdapter<Recipe> {
             recipeShowHomeHolder.recipe_image = (ImageView) convertView.findViewById(R.id.recipe_imageView);
             convertView.setTag(recipeShowHomeHolder);
         }
+
 
         //ON MODIFIE LE HOLDER DE NOTRE ITEM
         recipe = getItem(position);

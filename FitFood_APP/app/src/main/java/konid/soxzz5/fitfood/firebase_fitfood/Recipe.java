@@ -30,6 +30,7 @@ public class Recipe {
     private int RprepareMinute;
     private int RheatHour;
     private int RheatMinute;
+    private String RecipeID;
     private String RforWho;
     private List<Ingredient> Ringredients;
     private List<PrepStep> Rsteps;
@@ -40,6 +41,22 @@ public class Recipe {
 
     public Recipe(){
 
+    }
+
+    public Recipe(String recipeID, String rtitle, int rcategory, int rlevel, int rtype, int rprepareHour, int rprepareMinute, int rheatHour, int rheatMinute, String rforWho, String rdate, boolean rvalidate, String rrecipe_download_img_link) {
+        RecipeID = recipeID;
+        Rtitle = rtitle;
+        Rcategory = rcategory;
+        Rlevel = rlevel;
+        Rtype = rtype;
+        RprepareHour = rprepareHour;
+        RprepareMinute = rprepareMinute;
+        RheatHour = rheatHour;
+        RheatMinute = rheatMinute;
+        RforWho = rforWho;
+        Rdate = rdate;
+        Rvalidate = rvalidate;
+        Rrecipe_download_img_link = rrecipe_download_img_link;
     }
 
     public Recipe(String rtitle, int rcategory, int rlevel, int rtype, int rprepareHour, int rprepareMinute, int rheatHour, int rheatMinute, String rforWho, String rdate, boolean rvalidate, String rrecipe_download_img_link) {
@@ -211,5 +228,9 @@ public class Recipe {
     public boolean getRvalidate()
     {
         return Rvalidate;
+    }
+
+    public String getRecipeID() {
+        return RecipeID;
     }
 }

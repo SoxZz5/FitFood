@@ -158,5 +158,6 @@
     <string name="recipe_tv_hour_label">h</string>
     <string name="recipe_tv_minute_label">min</string>
     <string name="steps">Étapes</string>
+    <string name="drawer_item_display">Recette</string>
 </resources>
 
