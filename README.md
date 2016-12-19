@@ -7,9 +7,9 @@ FitFood est une application communautaire de partage de recettes culinaires, Fit
   - La création d'un compte personnel
   - L'ajout des ingrédients à votre liste de course
   - La navigation parmis plusieurs catégories :
-  -- Recette du jour , la recette séléctionner par notre équipe du jour
-  -- Dernières recettes , les dernières recettes actualiser en direct
-  -- Top des recettes , les recettes les mieux notés !
+    - Recette du jour , la recette séléctionner par notre équipe du jour
+    - Dernières recettes , les dernières recettes actualiser en direct
+    - Top des recettes , les recettes les mieux notés !
  
 Les fonctions à venir:
   - Pannel de préférences pour séléctionner les différents allérgenes
