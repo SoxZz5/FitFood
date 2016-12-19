@@ -25,6 +25,26 @@ Nous distribuons le code gratuitement afin qu'il puissent vous aidez à titre d'
 public static boolean KEY_VALID_RECIPE = false; // False doit devenir true pour auto valider les recettes sans passer par l'administration
 ```
 
+### Deuxième point pour que l'application fonctionne après lancement via ADB, vérifier d'avoir bien accepter les droits 
+Fitfood nécessite un accès à la caméra et au stockage externe afin de pouvoir garder en mémoire les photos de vos recettes et à des fin de cache pour compression ensuite.
+Internet est obligatoire, `il faut aussi avoir les googles services à jour !`
+```sh
+<uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="true"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+```
+    
 ## Fonctionnalité
 
 ### Login et Register via Firebase
