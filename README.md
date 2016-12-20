@@ -1,3 +1,8 @@
+Pour compiler l'application :
+- Télécharger l'archive contenant le projet
+- Ouvrir le dossier "FitFood_APP" avec votre environnement de développement.
+- Compiler l'application
+
 FitFood
 =======
 FitFood est une application communautaire de partage de recettes culinaires saines et savoureuses.
