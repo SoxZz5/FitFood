@@ -3,8 +3,9 @@ Pour compiler l'application :
 - Ouvrir le dossier "FitFood_APP" avec votre environnement de développement
 - Compiler l'application
 
-FitFood
-=======
+![Logo FitFood Officiel](http://nicolascortella.fr/projects/GitHub/FitFood/fitfoodlogosmall-x1.png)
+
+#**FitFood** - Des recettes saines qui en valent la peine.
 FitFood est une application communautaire de partage de recettes culinaires saines et savoureuses.
 
 Elle permet :
@@ -48,8 +49,9 @@ public static boolean KEY_VALID_RECIPE = false; // Passer le booléen "KEY_VALID
 
 ###Pour que l'application fonctionne après lancement via ADB, veuillez accorder manuellement les permissions nécessaires
 FitFood demande deux permissions :
-- Accès à la caméra : Nécessaire pour prendre en photo vos recettes et les partager ensuite
-- Accès au stockage externe : Nécessaire pour enregistrer vos photos et stocker des informations en cache
+
+  - Accès à la caméra : Nécessaire pour prendre en photo vos recettes et les partager ensuite
+  - Accès au stockage externe : Nécessaire pour enregistrer vos photos et stocker des informations en cache
 
 Internet est obligatoire, `il faut posséder les services Google à jour.`
 
@@ -71,9 +73,9 @@ Voici les permissions requises par FitFood (issues du fichier **AndroidManifest.
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 ```
     
-## Fonctionnalités
+# Fonctionnalités
 
-### Connexion et inscription via Firebase
+## 1. Connexion et inscription via Firebase
 [![Foo](https://firebase.google.com/_static/254aea64a1/images/firebase/lockup.png)](https://firebase.google.com/)
 
 Dépendences **gradle**:
@@ -208,7 +210,7 @@ firebaseAuth.createUserWithEmailAndPassword(mail,password)
     });
 ```
 
-### AfterLogin via l'option database de firebase
+## 2. AfterLogin via l'option database de firebase
 [![](https://img.youtube.com/vi/U5aeM5dvUpA/0.jpg)](https://www.youtube.com/watch?v=U5aeM5dvUpA)
 
 Interface permettant de saisir plus d'informations sur l'utilisateur (après sa première connexion) :
@@ -281,7 +283,87 @@ public void saveUserInformation(){
 }
 ```
 
-La suite des fonctionnalités n'est pas encore expliquée ici.
+## 3. Le menu
+
+Il permet à l'utilisateur de se déplacer à travers les différentes interfaces proposées par l'application.
+On y retrouve dans l'ordre :
+
+- Accueil : Liste de recettes en vrac en fonction des préférences de l'utilisateur
+- Coin cuisine : Cet espace permet de découvrir des recettes, d'effectuer des recherches sur ces recettes
+- Coin perso : Espace personnel de l'utilisateur dans lequel il retrouve ses recettes ainsi que toutes les informations relatives à son compte
+- Se déconnecter : Permet la déconnexion de l'utilisateur
+
+Menu :
+
+<img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/menu.png" alt="alt text" width="216" height="384" hspace="15">
+
+## 4. L'accueil et la visualisation des recettes
+
+
+<img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/accueil.png" alt="alt text" width="216" height="384" hspace="15">
+
+La liste de recettes afichée sur la page d'accueil décrit pour chaque recette :
+
+- Son titre
+- Son régime alimentaire associé
+- Son type
+- Sa difficulté
+- Ses portions
+- Ses temps de préparations et de cuisson
+
+Il est alors possible de cliquer sur n'importe quelle recette et d'accéder à ses détails :
+
+<img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/pudding.png" alt="alt text" width="216" height="384" hspace="15">
+
+
+## 5. Proposer une recette
+
+N'importe quel utilisateur inscrit et connecté peut proposer une recette. Celle-ci doit faire l'objet d'une validation par un administrateur.
+
+<img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/step0.png" alt="alt text" width="216" height="384" hspace="15">
+
+La proposition d'une recette se fait en 5 étapes. Chaque étape possède des vérifications de champs spécifiques de tel sorte que l'utilisateur ne puisse pas saisir n'importe quoi (exemple: des caractères spéciaux dans le titre de la recette).
+
+#### **1. Définir l'identité de la recette**
+
+L'utilisateur est amené à saisir le titre de la recette ainsi que sa catégorie (c'est-à-dire le régime alimentaire ciblé).
+
+<img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/step1.png" alt="alt text" width="216" height="384" hspace="15">
+
+
+#### **2. Renseigner le type de plat et sa difficulté**
+
+L'utilisateur est amené à saisir le type de plat (entrée, plat principal, ...) ainsi que la maîtrise nécessaire pour réaliser la recette.
+
+<img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/step2.png" alt="alt text" width="216" height="384" hspace="15">
+
+#### **3. Portions, temps de préparation et de cuisson**
+
+Cette étape permet de déterminer pour combien de personnes la recette est destinée. De plus, les temps de préparation et de cuisson de la recette sont requis.
+
+<img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/step3.png" alt="alt text" width="216" height="384" hspace="15">
+
+#### **4. Ingrédients nécessaires**
+
+Les ingrédients nécessaires à la recette sont renseignés dans cette étape. On spécifie la quantité pour chaque ingrédient et on l'ajoute ensuite à la liste.
+
+<img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/step4.png" alt="alt text" width="216" height="384" hspace="15">
+
+#### **5. Étapes de préparation**
+
+La préparation nécessite également des étapes. C'est à travers cet interface qu'elles doivent être spécifiées.
+
+<img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/step5.png" alt="alt text" width="216" height="384" hspace="15">
+
+#### **6. Photo et validation de la recette**
+
+Enfin, l'utilisateur peut poster une photo de sa recette pour ensuite la partager à la communauté. Une fois la recette soumise, elle est automatiquement ajoutée à la liste d'attente des recettes à valider par les administrateurs.
+
+<img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/step6.png" alt="alt text" width="216" height="384" hspace="15">
+
+La suite des fonctionnalités n'est pas encore expliquée ici (recherche avancée, top des recettes, mon compte, ...).
 N'hésitez pas à télécharger l'application pour accéder à l'ensemble de ses fonctionnalités.
 
-<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+<img src="http://nicolascortella.fr/projects/GitHub/FitFood/fitfoodtextsmall.png" alt="alt text" width="216" height="55" hspace="15">
+
+<div>Some icons contained in this app have been made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
