@@ -1,6 +1,6 @@
 Pour compiler l'application :
 - Télécharger l'archive contenant le projet
-- Ouvrir le dossier "FitFood_APP" avec votre environnement de développement.
+- Ouvrir le dossier "FitFood_APP" avec votre environnement de développement
 - Compiler l'application
 
 FitFood
@@ -281,5 +281,7 @@ public void saveUserInformation(){
 }
 ```
 
+La suite des fonctionnalités n'est pas encore expliquée ici.
+N'hésitez pas à télécharger l'application pour accéder à l'ensemble de ses fonctionnalités.
 
 <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
