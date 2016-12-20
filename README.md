@@ -1,22 +1,24 @@
-# FitFood
+FitFood
+=======
+FitFood est une application communautaire de partage de recettes culinaires saines et savoureuses.
 
-FitFood est une application communautaire de partage de recettes culinaires, FitFood permet:
+Elle permet :
 
   - Une recherche par régime alimentaire (Omnivore , Végétarien ou Vegan)
-  - L'ajout de recette par un membre de la communauté
+  - L'ajout d'une ou plusieurs recettes par un membre de la communauté
   - La création d'un compte personnel
-  - L'ajout des ingrédients à votre liste de course
-  - La navigation parmis plusieurs catégories :
-    - Recette du jour , la recette séléctionner par notre équipe du jour
-    - Dernières recettes , les dernières recettes actualiser en direct
-    - Top des recettes , les recettes les mieux notés !
+  - L'ajout des ingrédients à votre liste de course en fonction des recettes sélectionnées
+  - La navigation parmis trois catégories :
+    - Recette du jour - La recette sélectionnée par notre équipe au jour le jour
+    - Dernières recettes - Les dernières recettes ajoutées sur l'application
+    - Top des recettes - Les recettes les mieux notées par la communauté
  
-Les fonctions à venir:
-  - Pannel de préférences pour séléctionner les différents allérgenes
-  - Algorithme de trie pour la gestion des ingrédients automatiquement
-  - Ajout des allergénes à la recherche avancées
+Les fonctionnalités futures :
+  - Panel de préférences (permettra notamment d'ajouter les allergènes à éviter)
+  - Algorithme de tri pour la gestion automatique des ingrédients
+  - Ajout des allergènes à la recherche avancée
   
-## Fitfood est sous licences APACHE 2.0
+## FitFood est sous licence APACHE 2.0
 ```
 Copyright 2016 Giffard Lucas "SoxZz5" / Cortella Nicolas "konidk"
 
@@ -33,15 +35,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-Nous distribuons le code gratuitement afin qu'il puissent vous aidez à titre d'exemple pour vos projets android
-### Attention à des fins de test pour l'ajout de recette il faudra modifier la ligne suivante dans utils/utils.java
+Nous distribuons le code gratuitement afin qu'il puisse vous aider (à titre d'exemple) pour vos projets Android.
+### Attention ! À des fins de test, pour l'ajout d'une recette il faudra modifier la ligne suivante dans utils/utils.java
 ```sh
-public static boolean KEY_VALID_RECIPE = false; // False doit devenir true pour auto valider les recettes sans passer par l'administration
+public static boolean KEY_VALID_RECIPE = false; // Passer le booléen "KEY_VALID_RECIPE" à "true" pour éviter la validation de la recette par le panel d'administration. Cette dernière apparaîtra alors directement dans la liste des recettes.
 ```
 
-### Deuxième point pour que l'application fonctionne après lancement via ADB, vérifier d'avoir bien accepter les droits 
-Fitfood nécessite un accès à la caméra et au stockage externe afin de pouvoir garder en mémoire les photos de vos recettes et à des fin de cache pour compression ensuite.
-Internet est obligatoire, ```il faut aussi avoir les googles services à jour !```
+###Pour que l'application fonctionne après lancement via ADB, veuillez accorder manuellement les permissions nécessaires
+FitFood demande deux permissions :
+- Accès à la caméra : Nécessaire pour prendre en photo vos recettes et les partager ensuite
+- Accès au stockage externe : Nécessaire pour enregistrer vos photos et stocker des informations en cache
+
+Internet est obligatoire, `il faut posséder les services Google à jour.`
+
+Voici les permissions requises par FitFood (issues du fichier **AndroidManifest.xml**) :
 ```sh
 <uses-feature
         android:name="android.hardware.camera"
@@ -59,12 +66,12 @@ Internet est obligatoire, ```il faut aussi avoir les googles services à jour !`
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 ```
     
-## Fonctionnalité
+## Fonctionnalités
 
-### Login et Register via Firebase
+### Connexion et inscription via Firebase
 [![Foo](https://firebase.google.com/_static/254aea64a1/images/firebase/lockup.png)](https://firebase.google.com/)
 
-Dépendences gradle:
+Dépendences **gradle**:
 ```sh 
 dependencies {
      compile 'com.google.firebase:firebase-core:10.0.1'
@@ -72,16 +79,19 @@ dependencies {
      compile 'com.google.firebase:firebase-database:10.0.1'
 }
 ```
+
+Interface de connexion :
+
 <img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/login_layout.png" alt="alt text" width="216" height="384" hspace="15"><img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/register_layout.png" alt="alt text" width="216" height="384" hspace="15">
 
-On commence par définir Firebase dans chaque script.
+On initialise **Firebase** dans chaque activité :
 ```sh
 FirebaseAuth firebaseAuth;
 FirebaseUser user; //Utiliser plus loin
 firebaseAuth = FirebaseAuth.getInstance();
 ```
 
-Ensuite on utilise un session manager afin de conserver l'email de l'utilisateur dans les préférences.
+Ensuite on utilise un **sessionManager** afin de conserver l'email de l'utilisateur dans les préférences.
 ```sh
 SessionManager sessionManager = new SessionManager();
 if(sessionManager.getPreferences(LoginActivity.this,"mail_sign") != null){
@@ -90,7 +100,7 @@ if(sessionManager.getPreferences(LoginActivity.this,"mail_sign") != null){
 }
 ```
 
-Si l'utilisateur arrive sur cette activité via Register il aura alors des extras dans son Bundle afin d'afficher un message de remerciement après l'inscription avec son email.
+Si l'utilisateur arrive sur cette activité via **Register** il aura alors des **extras** dans son **Bundle** afin d'afficher un message de remerciement (utilisation d'un **Toast**) après l'inscription avec son email.
 ```sh
 Intent intent_tmp = getIntent();
 Bundle bundle_tmp = intent_tmp.getExtras();
@@ -103,8 +113,8 @@ Bundle bundle_tmp = intent_tmp.getExtras();
     }
 ```
 
-Lors de l'appuye sur le bouton connexion on utilise une fonction propre à firebase:
-- On envoye une requete de login à firebase dans le onComplete on récupére la réponse
+Lors de l'appuie sur le bouton connexion on utilise une fonction propre à Firebase.
+On envoie une requête de connexion à Firebase via la fonction ``onComplete()`` et on récupère la réponse :
 ```sh
  firebaseAuth.signInWithEmailAndPassword(email,password)
     .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
@@ -124,8 +134,8 @@ Lors de l'appuye sur le bouton connexion on utilise une fonction propre à fireb
 });
 ```
 
-Une fonction est appeller le reste est très graphique ```LoginUser()` ``
-- Retourne la bonne Intent en fonction d'une variable de préférences afin de tester si c'est la première connexion de l'utilisateur suite à son enregistrement pour lui afficher l'activity AfterLogin.
+Une fonction est ensuite appelée :  ``LoginUser()``
+Elle retourne la bonne **Intent** en fonction d'une variable de préférence afin de tester si c'est la première connexion de l'utilisateur suite à son enregistrement. Si oui, on affichera l'activité **AfterLogin** qui permet de saisir plus d'informations (pseudo, nom, prénom, ...).
 ```sh
 private Intent LoginUser(){
         user = firebaseAuth.getCurrentUser();
@@ -141,8 +151,9 @@ private Intent LoginUser(){
     }
 ```
 
-Passons maintenant à Register.
-Tous les editText comporte un TextChangeListener permettant de tester chaque input et ceux pour chaque editText de notre code exemple:
+Passons maintenant à l'inscription (**Register**).
+Tous les *editText* comportent un *TextChangeListener* permettant de tester chaque entrée.
+En voici un exemple : 
 ```sh
 @Override
 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -159,11 +170,11 @@ public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
     }
 }
 ```
-Le champ mot de passe est lui vérifier avec une fonction de calcul de puissance de mot de passe universel
+Le champ mot de passe est vérifié avec une fonction de calcul de niveau de sécurité universelle.
 
 <img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/register_password.png" alt="alt text" hspace="15">
 
-La fonction de test utilise une regex via ``findMatch(String myString , String RegexPattern)`` qui retourne true or false:
+La fonction de test utilise une regex via ``findMatch(String myString , String RegexPattern)`` qui retourne *true* or *false*:
 ```sh
 String match = "";
 Pattern regEx = Pattern.compile(pattern); //On compile le pattern
@@ -176,7 +187,7 @@ Matcher m = regEx.matcher(myString); //On match en fonction du pattern
     }
 ```
 
-Pour l'inscription tout comme pour la connexion on utilise une fonction bien spécifique à firebase
+Pour l'inscription tout comme pour la connexion on utilise une fonction spécifique à Firebase :
 ```sh
 firebaseAuth.createUserWithEmailAndPassword(mail,password)
     .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
@@ -194,9 +205,12 @@ firebaseAuth.createUserWithEmailAndPassword(mail,password)
 
 ### AfterLogin via l'option database de firebase
 [![](https://img.youtube.com/vi/U5aeM5dvUpA/0.jpg)](https://www.youtube.com/watch?v=U5aeM5dvUpA)
+
+Interface permettant de saisir plus d'informations sur l'utilisateur (après sa première connexion) :
+
 <img src="https://raw.githubusercontent.com/SoxZz5/FitFood/master/image_readme/afterlogin_layout.png" alt="alt text" width="216" height="384" hspace="15">
 
-On va venir récupérer à notre habitude les variables de firebase en ajoutant une ``DatabaseReference ``
+Comme à notre habitude, on va récupérer les variables de Firebase en ajoutant une ``DatabaseReference `` :
 
 ```sh
 firebaseAuth = FirebaseAuth.getInstance();
@@ -205,7 +219,7 @@ sessionManager = new SessionManager();
 user = firebaseAuth.getCurrentUser();
 ```
 
-On va venir aussi récupérer les pseudo déjà présent dans notre base de données pour éviter la duplication
+On récupère également les pseudos déjà présents dans notre base de données pour éviter la duplication :
 
 ```sh
 mUsername = new ArrayList<>();
@@ -228,7 +242,7 @@ mref.addChildEventListener(new ChildEventListener() {
 });
 ```
 
-On utilise la même façon de faire via findMatch afin de tester les entrées des editText, puis à la validation nous testons alors si le pseudo est déjà présent dans la liste
+On utilise la même façon de faire via ``findMatch()`` afin de tester les entrées des *editText*, puis à la validation nous testons alors si le pseudo est déjà présent dans la liste :
 ```sh
 if(valid_pseudo)
 {
@@ -250,8 +264,7 @@ if(valid_pseudo)
 }
 ```
 
-Suite à ça si toutes les informations sont valides et que le pseudo est disponible on appelle la fonction 
-``saveUserInformation()``
+Si toutes les informations sont valides et que le pseudo est disponible, on appelle la fonction  ``saveUserInformation()``
 ```sh
 public void saveUserInformation(){
     String email = user.getEmail().toString().trim();
