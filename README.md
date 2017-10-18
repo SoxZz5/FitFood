@@ -3,7 +3,7 @@ Pour compiler l'application :
 - Ouvrir le dossier "FitFood_APP" avec votre environnement de développement
 - Compiler l'application
 
-![Logo FitFood Officiel](http://nicolascortella.fr/projects/GitHub/FitFood/fitfoodlogosmall-x1.png)
+<img src="https://github.com/SoxZz5/FitFood/blob/master/image_readme/fitfoodtextesmall.png?raw=true" alt="alt text" width="631" height="160" hspace="15">
 
 #**FitFood** - Des recettes saines qui en valent la peine.
 FitFood est une application communautaire de partage de recettes culinaires saines et savoureuses.
